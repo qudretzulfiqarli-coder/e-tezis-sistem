@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="az">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>E-Tezis Sistemi</title>
 
@@ -277,9 +282,12 @@
         }
 
     </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -316,9 +324,7 @@
 <div class="container">
 
 
-    <!-- =========================
-         ANA SƏHİFƏ
-    ========================== -->
+    <!-- ANA SƏHİFƏ -->
 
     <section
         id="homeSection"
@@ -350,9 +356,7 @@
     </section>
 
 
-    <!-- =========================
-         GİRİŞ
-    ========================== -->
+    <!-- GİRİŞ -->
 
     <section
         id="loginSection"
@@ -402,9 +406,7 @@
     </section>
 
 
-    <!-- =========================
-         QEYDİYYAT
-    ========================== -->
+    <!-- QEYDİYYAT -->
 
     <section
         id="registerSection"
@@ -475,30 +477,36 @@
             placeholder="Məsələn: Bakı Dövlət Universiteti">
 
 
-        <div class="message info" style="display:block;">
-            Təşkilatınız siyahıda hazır olmayacaq.
-            Öz təşkilatınızın tam adını yazın.
+        <div
+            class="message info"
+            style="display:block;">
+
+            Təşkilatınızın adını özünüz yazın.
+            Hazır təşkilat siyahısı yoxdur.
+
         </div>
 
 
         <button
             class="blue-btn"
             onclick="register()">
+
             Qeydiyyatdan keç
+
         </button>
 
         <button
             class="white-btn"
             onclick="showLogin()">
+
             Girişə qayıt
+
         </button>
 
     </section>
 
 
-    <!-- =========================
-         İSTİFADƏÇİ PANELİ
-    ========================== -->
+    <!-- İSTİFADƏÇİ PANELİ -->
 
     <section
         id="userSection"
@@ -520,23 +528,54 @@
                 class="profile-info">
 
                 <div class="profile-row">
-                    <strong>Ad və soyad:</strong>
-                    <span id="profileName">-</span>
+
+                    <strong>
+                        Ad və soyad:
+                    </strong>
+
+                    <span id="profileName">
+                        -
+                    </span>
+
                 </div>
 
-                <div class="profile-row">
-                    <strong>E-poçt:</strong>
-                    <span id="profileEmail">-</span>
-                </div>
 
                 <div class="profile-row">
-                    <strong>Telefon:</strong>
-                    <span id="profilePhone">-</span>
+
+                    <strong>
+                        E-poçt:
+                    </strong>
+
+                    <span id="profileEmail">
+                        -
+                    </span>
+
                 </div>
 
+
                 <div class="profile-row">
-                    <strong>Təşkilat:</strong>
-                    <span id="profileOrganization">-</span>
+
+                    <strong>
+                        Telefon:
+                    </strong>
+
+                    <span id="profilePhone">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <strong>
+                        Təşkilat:
+                    </strong>
+
+                    <span id="profileOrganization">
+                        -
+                    </span>
+
                 </div>
 
             </div>
@@ -552,22 +591,25 @@
                 id="newArticleTab"
                 class="tab active"
                 onclick="showNewArticle()">
+
                 ➕ Yeni məqalə
+
             </button>
+
 
             <button
                 id="myArticlesTab"
                 class="tab"
                 onclick="showMyArticles()">
+
                 📋 Mənim məqalələrim
+
             </button>
 
         </div>
 
 
-        <!-- =========================
-             YENİ MƏQALƏ
-        ========================== -->
+        <!-- YENİ MƏQALƏ -->
 
         <div
             id="newArticleSection"
@@ -577,11 +619,12 @@
                 Yeni məqalə əlavə et
             </h2>
 
+
             <div
                 id="articleSuccess"
                 class="message success">
-                Məqalə uğurla göndərildi. ✅
             </div>
+
 
             <div
                 id="articleError"
@@ -592,10 +635,15 @@
             <div class="profile-info">
 
                 <div class="profile-row">
-                    <strong>Təşkilat:</strong>
+
+                    <strong>
+                        Təşkilat:
+                    </strong>
+
                     <span id="articleOrganization">
                         -
                     </span>
+
                 </div>
 
                 <small>
@@ -663,21 +711,22 @@
 
             <textarea
                 id="articleInfo"
-                placeholder="Məqalə haqqında əlavə məlumat..."></textarea>
+                placeholder="Məqalə haqqında əlavə məlumat...">
+            </textarea>
 
 
             <button
                 class="blue-btn"
                 onclick="addArticle()">
+
                 Məqaləni göndər
+
             </button>
 
         </div>
 
 
-        <!-- =========================
-             MƏQALƏLƏR
-        ========================== -->
+        <!-- MƏQALƏLƏR -->
 
         <div
             id="myArticlesSection"
@@ -696,11 +745,14 @@
 
     </section>
 
+
 </div>
 
 
 <footer>
+
     © 2026 E-Tezis Sistemi
+
 </footer>
 
 
@@ -732,7 +784,7 @@ let currentProfile = null;
 
 
 /* =====================================================
-   SEKSİYALARI GİZLƏT
+   BÜTÜN SEKSİYALARI GİZLƏT
 ===================================================== */
 
 function hideAllSections() {
@@ -757,7 +809,7 @@ function hideAllSections() {
 
 
 /* =====================================================
-   GİRİŞ SƏHİFƏSİ
+   GİRİŞ
 ===================================================== */
 
 function showLogin() {
@@ -772,7 +824,7 @@ function showLogin() {
 
 
 /* =====================================================
-   QEYDİYYAT SƏHİFƏSİ
+   QEYDİYYAT
 ===================================================== */
 
 function showRegister() {
@@ -856,6 +908,8 @@ async function register() {
     successBox.style.display = "none";
 
 
+    /* MƏLUMATLARIN YOXLAMASI */
+
     if (
         !name ||
         !email ||
@@ -870,6 +924,7 @@ async function register() {
             "block";
 
         return;
+
     }
 
 
@@ -882,6 +937,7 @@ async function register() {
             "block";
 
         return;
+
     }
 
 
@@ -894,8 +950,11 @@ async function register() {
             "block";
 
         return;
+
     }
 
+
+    /* SUPABASE AUTH */
 
     const {
         data,
@@ -919,20 +978,24 @@ async function register() {
             "block";
 
         return;
+
     }
 
 
     if (!data.user) {
 
         errorBox.innerText =
-            "İstifadəçi yaradılmadı.";
+            "İstifadəçi yaradıla bilmədi.";
 
         errorBox.style.display =
             "block";
 
         return;
+
     }
 
+
+    /* PROFİL YARAT */
 
     const {
         error: profileError
@@ -941,13 +1004,17 @@ async function register() {
             .from("profillər")
             .insert({
 
-                id: data.user.id,
+                id:
+                    data.user.id,
 
-                ad_soyad: name,
+                ad_soyad:
+                    name,
 
-                telefon: phone,
+                telefon:
+                    phone,
 
-                teskilat_adi: organization
+                teskilat_adi:
+                    organization
 
             });
 
@@ -959,47 +1026,132 @@ async function register() {
         );
 
         errorBox.innerText =
+            "Profil yaradılmadı: " +
             profileError.message;
 
         errorBox.style.display =
             "block";
 
         return;
+
     }
 
 
-    successBox.innerText =
-        "Qeydiyyat uğurla tamamlandı. E-poçtunuzu təsdiqlədikdən sonra sistemə daxil ola bilərsiniz.";
+    /* İSTİFADƏÇİ MƏLUMATLARINI YADDA SAXLA */
 
-    successBox.style.display =
-        "block";
+    currentUser =
+        data.user;
 
+
+    currentProfile = {
+
+        id:
+            data.user.id,
+
+        ad_soyad:
+            name,
+
+        telefon:
+            phone,
+
+        teskilat_adi:
+            organization
+
+    };
+
+
+    /* PANELİ DOLDUR */
+
+    document
+        .getElementById("userInfo")
+        .innerText =
+        name;
+
+
+    document
+        .getElementById("welcomeText")
+        .innerText =
+        "Xoş gəlmisiniz, " +
+        name +
+        "!";
+
+
+    document
+        .getElementById("profileName")
+        .innerText =
+        name;
+
+
+    document
+        .getElementById("profileEmail")
+        .innerText =
+        email;
+
+
+    document
+        .getElementById("profilePhone")
+        .innerText =
+        phone || "-";
+
+
+    document
+        .getElementById("profileOrganization")
+        .innerText =
+        organization;
+
+
+    document
+        .getElementById("articleOrganization")
+        .innerText =
+        organization;
+
+
+    document
+        .getElementById("loginButton")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("logoutButton")
+        .classList.remove("hidden");
+
+
+    /* FORMU TƏMİZLƏ */
 
     document
         .getElementById("registerName")
         .value = "";
 
+
     document
         .getElementById("registerEmail")
         .value = "";
+
 
     document
         .getElementById("registerPassword")
         .value = "";
 
+
     document
         .getElementById("registerPhone")
         .value = "";
+
 
     document
         .getElementById("registerOrganization")
         .value = "";
 
+
+    /* BİRBAŞA PANELƏ KEÇ */
+
+    showUserPanel();
+
 }
 
 
 /* =====================================================
-   GİRİŞ
+   GİRİŞ FUNKSİYASI
 ===================================================== */
 
 async function login() {
@@ -1035,6 +1187,7 @@ async function login() {
             "block";
 
         return;
+
     }
 
 
@@ -1042,13 +1195,17 @@ async function login() {
         data,
         error
     } =
-        await supabaseClient.auth.signInWithPassword({
+        await supabaseClient
+            .auth
+            .signInWithPassword({
 
-            email: email,
+                email:
+                    email,
 
-            password: password
+                password:
+                    password
 
-        });
+            });
 
 
     if (error) {
@@ -1060,6 +1217,7 @@ async function login() {
             "block";
 
         return;
+
     }
 
 
@@ -1108,6 +1266,7 @@ async function initializeUser() {
         );
 
         return;
+
     }
 
 
@@ -1198,8 +1357,10 @@ async function addArticle() {
         "none";
 
 
-    if (!currentUser ||
-        !currentProfile) {
+    if (
+        !currentUser ||
+        !currentProfile
+    ) {
 
         errorBox.innerText =
             "Əvvəlcə sistemə daxil olun.";
@@ -1208,6 +1369,7 @@ async function addArticle() {
             "block";
 
         return;
+
     }
 
 
@@ -1262,6 +1424,7 @@ async function addArticle() {
             "block";
 
         return;
+
     }
 
 
@@ -1277,6 +1440,7 @@ async function addArticle() {
             "block";
 
         return;
+
     }
 
 
@@ -1328,6 +1492,7 @@ async function addArticle() {
             "block";
 
         return;
+
     }
 
 
@@ -1434,16 +1599,20 @@ async function showMyArticles() {
             '<div class="empty">Məqalələri yükləmək mümkün olmadı.</div>';
 
         return;
+
     }
 
 
-    if (!data ||
-        data.length === 0) {
+    if (
+        !data ||
+        data.length === 0
+    ) {
 
         list.innerHTML =
             '<div class="empty">Hələ heç bir məqalə göndərməmisiniz.</div>';
 
         return;
+
     }
 
 
@@ -1471,13 +1640,17 @@ async function showMyArticles() {
             ) {
 
                 facebookHtml = `
+
                     <a
                         class="facebook"
                         href="${escapeAttribute(article.facebook_link)}"
                         target="_blank"
                         rel="noopener noreferrer">
+
                         🔗 Facebook paylaşımını aç
+
                     </a>
+
                 `;
 
             }
@@ -1490,26 +1663,56 @@ async function showMyArticles() {
                 </h3>
 
                 <div class="article-info">
-                    <strong>Təşkilat:</strong>
-                    ${escapeHtml(article.teskilat_adi || "-")}
+
+                    <strong>
+                        Təşkilat:
+                    </strong>
+
+                    ${escapeHtml(
+                        article.teskilat_adi || "-"
+                    )}
+
                 </div>
 
-                <div class="article-info">
-                    <strong>Müəllif:</strong>
-                    ${escapeHtml(article.muellif || "-")}
-                </div>
 
                 <div class="article-info">
-                    <strong>Mövzu:</strong>
-                    ${escapeHtml(article.movzu || "-")}
+
+                    <strong>
+                        Müəllif:
+                    </strong>
+
+                    ${escapeHtml(
+                        article.muellif || "-"
+                    )}
+
                 </div>
+
+
+                <div class="article-info">
+
+                    <strong>
+                        Mövzu:
+                    </strong>
+
+                    ${escapeHtml(
+                        article.movzu || "-"
+                    )}
+
+                </div>
+
 
                 ${facebookHtml}
 
+
                 <br>
 
+
                 <span class="status">
-                    ${escapeHtml(article.status || "Yeni")}
+
+                    ${escapeHtml(
+                        article.status || "Yeni"
+                    )}
+
                 </span>
 
             `;
@@ -1524,7 +1727,7 @@ async function showMyArticles() {
 
 
 /* =====================================================
-   YENİ MƏQALƏ TABI
+   YENİ MƏQALƏ
 ===================================================== */
 
 function showNewArticle() {
@@ -1596,13 +1799,15 @@ async function logout() {
 
 
 /* =====================================================
-   TƏHLÜKƏSİZ HTML
+   HTML TƏHLÜKƏSİZLİYİ
 ===================================================== */
 
 function escapeHtml(text) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     div.textContent =
         text || "";
@@ -1614,9 +1819,17 @@ function escapeHtml(text) {
 
 function escapeAttribute(text) {
 
-    return String(text || "")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return String(
+        text || ""
+    )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -1656,7 +1869,7 @@ checkSession();
 
 
 /* =====================================================
-   AUTH DƏYİŞİKLİYİNİ İZLƏ
+   AUTH DƏYİŞİKLİKLƏRİ
 ===================================================== */
 
 supabaseClient
@@ -1680,7 +1893,9 @@ supabaseClient
         }
     );
 
+
 </script>
 
 </body>
+
 </html>
