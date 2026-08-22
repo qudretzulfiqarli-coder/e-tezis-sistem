@@ -9,7 +9,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -48,6 +47,11 @@ button{
     padding:11px 18px;
     cursor:pointer;
     font-weight:700;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
 }
 
 .btn{
@@ -113,11 +117,14 @@ button{
 }
 
 @media(max-width:700px){
-
     .grid{
         grid-template-columns:1fr;
     }
 
+    header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
 }
 
 .field{
@@ -183,6 +190,16 @@ textarea:focus{
     background:#eef4ff;
     margin:15px 0;
     color:#243b78;
+}
+
+.notice.success{
+    background:#eaf8ef;
+    color:#146c2e;
+}
+
+.notice.error{
+    background:#fff0f0;
+    color:#b42318;
 }
 
 .hidden{
@@ -302,6 +319,9 @@ footer{
     border-color:#3157d5;
 }
 
+.status{
+    margin-top:15px;
+}
 </style>
 </head>
 
@@ -314,19 +334,13 @@ footer{
     </div>
 
     <div>
-
-        <button
-            class="btn"
-            onclick="showSection('user')">
+        <button class="btn" onclick="showSection('user')">
             İstifadəçi
         </button>
 
-        <button
-            class="btn"
-            onclick="openAdminLogin()">
+        <button class="btn" onclick="openAdminLogin()">
             Admin
         </button>
-
     </div>
 
 </header>
@@ -346,24 +360,19 @@ footer{
 
 </div>
 
+
 <!-- =====================================================
-     İSTİFADƏÇİ PANELİ
+     İSTİFADƏÇİ
 ===================================================== -->
 
-<div
-    id="user"
-    class="section active">
+<div id="user" class="section active">
 
-    <h2>
-        İstifadəçi paneli
-    </h2>
+    <h2>İstifadəçi paneli</h2>
 
     <div class="notice">
-
         Burada qeydiyyat və giriş tələb olunmur.
         Təşkilat və ya könüllü məlumatlarını daxil edib
         məqalə linkini göndərə bilər.
-
     </div>
 
     <div class="tabs">
@@ -371,20 +380,17 @@ footer{
         <button
             class="tab active"
             onclick="userMode('organization',this)">
-
             🏢 Təşkilat
-
         </button>
 
         <button
             class="tab"
             onclick="userMode('volunteer',this)">
-
             🤝 Könüllü
-
         </button>
 
     </div>
+
 
     <!-- TƏŞKİLAT -->
 
@@ -393,129 +399,60 @@ footer{
         <div class="grid">
 
             <div class="field">
-
-                <label>
-                    Təşkilatın adı
-                </label>
-
-                <input
-                    id="organizationName"
-                    placeholder="Təşkilatın tam adı">
-
+                <label>Təşkilatın adı</label>
+                <input id="organizationName">
             </div>
 
             <div class="field">
-
-                <label>
-                    İl
-                </label>
-
-                <select
-                    id="organizationYear">
-                </select>
-
+                <label>İl</label>
+                <select id="organizationYear"></select>
             </div>
 
             <div class="field">
-
-                <label>
-                    Ay
-                </label>
-
-                <select
-                    id="organizationMonth">
-                </select>
-
+                <label>Ay</label>
+                <select id="organizationMonth"></select>
             </div>
 
             <div class="field">
-
-                <label>
-                    Məsul şəxsin adı və soyadı
-                </label>
-
-                <input
-                    id="responsibleName">
-
+                <label>Məsul şəxsin adı və soyadı</label>
+                <input id="responsibleName">
             </div>
 
             <div class="field">
-
-                <label>
-                    Məsul şəxsin vəzifəsi
-                </label>
-
-                <input
-                    id="responsiblePosition">
-
+                <label>Məsul şəxsin vəzifəsi</label>
+                <input id="responsiblePosition">
             </div>
 
             <div class="field">
-
-                <label>
-                    Məsul şəxsin əlaqə nömrəsi
-                </label>
-
-                <input
-                    id="responsiblePhone">
-
+                <label>Məsul şəxsin əlaqə nömrəsi</label>
+                <input id="responsiblePhone">
             </div>
 
             <div class="field">
-
-                <label>
-                    Məsul şəxsin e-maili
-                </label>
-
-                <input
-                    id="responsibleEmail"
-                    type="email">
-
+                <label>Məsul şəxsin e-maili</label>
+                <input id="responsibleEmail" type="email">
             </div>
 
             <div class="field full">
-
-                <label>
-                    Məqalənin adı
-                </label>
-
-                <input
-                    id="articleTitle">
-
+                <label>Məqalənin adı</label>
+                <input id="articleTitle">
             </div>
 
             <div class="field">
-
-                <label>
-                    Məqaləni yazan şəxsin adı və soyadı
-                </label>
-
-                <input
-                    id="authorName">
-
+                <label>Məqaləni yazan şəxsin adı və soyadı</label>
+                <input id="authorName">
             </div>
 
             <div class="field">
-
-                <label>
-                    Məqaləni yazan şəxsin vəzifəsi
-                </label>
-
-                <input
-                    id="authorPosition">
-
+                <label>Məqaləni yazan şəxsin vəzifəsi</label>
+                <input id="authorPosition">
             </div>
 
             <div class="field full">
-
-                <label>
-                    Facebook məqalə linki
-                </label>
-
+                <label>Facebook məqalə linki</label>
                 <input
                     id="facebookLink"
                     placeholder="https://facebook.com/...">
-
             </div>
 
         </div>
@@ -525,78 +462,43 @@ footer{
             <button
                 class="btn-success"
                 onclick="submitOrganizationArticle()">
-
                 Məqaləni göndər
-
             </button>
 
         </div>
 
     </div>
 
+
     <!-- KÖNÜLLÜ -->
 
-    <div
-        id="volunteerForm"
-        class="hidden">
+    <div id="volunteerForm" class="hidden">
 
         <div class="grid">
 
             <div class="field">
-
-                <label>
-                    Könüllünün adı və soyadı
-                </label>
-
-                <input
-                    id="volunteerName">
-
+                <label>Könüllünün adı və soyadı</label>
+                <input id="volunteerName">
             </div>
 
             <div class="field">
-
-                <label>
-                    İl
-                </label>
-
-                <select
-                    id="volunteerYear">
-                </select>
-
+                <label>İl</label>
+                <select id="volunteerYear"></select>
             </div>
 
             <div class="field">
-
-                <label>
-                    Ay
-                </label>
-
-                <select
-                    id="volunteerMonth">
-                </select>
-
+                <label>Ay</label>
+                <select id="volunteerMonth"></select>
             </div>
 
             <div class="field full">
-
-                <label>
-                    Məqalənin adı
-                </label>
-
-                <input
-                    id="volunteerArticleTitle">
-
+                <label>Məqalənin adı</label>
+                <input id="volunteerArticleTitle">
             </div>
 
             <div class="field full">
-
-                <label>
-                    Məqalə linki
-                </label>
-
-                <input
-                    id="volunteerArticleLink">
-
+                <label>Məqalə linki</label>
+                <input id="volunteerArticleLink">
             </div>
 
         </div>
@@ -606,78 +508,56 @@ footer{
             <button
                 class="btn-success"
                 onclick="submitVolunteer()">
-
                 Könüllü məqaləsini göndər
-
             </button>
 
         </div>
 
     </div>
 
+
     <hr>
 
-    <h2>
-        📄 İstifadəçilər üçün tezislər
-    </h2>
+    <h2>📄 İstifadəçilər üçün tezislər</h2>
 
     <div id="publicTheses">
-
         Yüklənir...
-
     </div>
 
 </div>
+
 
 <!-- =====================================================
      ADMIN LOGIN
 ===================================================== -->
 
-<div
-    id="adminLogin"
-    class="section">
+<div id="adminLogin" class="section">
 
     <div class="login-box">
 
-        <h2>
-            🔐 Admin panelə giriş
-        </h2>
+        <h2>🔐 Admin panelə giriş</h2>
 
         <p class="small">
-
-            Admin hesabınızın Gmail/e-mail və
-            parolunu daxil edin.
-
+            Admin hesabınızın e-mail və parolunu daxil edin.
         </p>
 
         <br>
 
         <div class="field">
-
-            <label>
-                Gmail / E-mail
-            </label>
-
+            <label>E-mail</label>
             <input
                 id="adminEmail"
                 type="email"
                 placeholder="admin@gmail.com">
-
         </div>
 
         <br>
 
         <div class="field">
-
-            <label>
-                Parol
-            </label>
-
+            <label>Parol</label>
             <input
                 id="adminPassword"
-                type="password"
-                placeholder="Admin parolu">
-
+                type="password">
         </div>
 
         <div class="actions">
@@ -685,17 +565,13 @@ footer{
             <button
                 class="btn"
                 onclick="adminLogin()">
-
                 Daxil ol
-
             </button>
 
             <button
                 class="btn-secondary"
                 onclick="showSection('user')">
-
                 Geri
-
             </button>
 
         </div>
@@ -706,16 +582,14 @@ footer{
 
 </div>
 
+
 <!-- =====================================================
-     ADMIN PANELİ
+     ADMIN PANEL
 ===================================================== -->
 
-<div
-    id="admin"
-    class="section">
+<div id="admin" class="section">
 
-    <div
-        style="
+    <div style="
         display:flex;
         justify-content:space-between;
         align-items:center;
@@ -723,99 +597,48 @@ footer{
         flex-wrap:wrap;">
 
         <div>
-
-            <h2>
-                👑 Admin Panel
-            </h2>
+            <h2>👑 Admin Panel</h2>
 
             <p class="small">
-
-                Məqalə, tezis, təşkilat və
-                könüllülərin idarə edilməsi.
-
+                Məqalə, tezis, təşkilat və könüllülərin idarə edilməsi.
             </p>
-
         </div>
 
         <button
             class="btn-danger"
             onclick="adminLogout()">
-
             Çıxış
-
         </button>
 
     </div>
+
 
     <!-- STATİSTİKA -->
 
     <div class="cards">
 
         <div class="card">
-
-            <h3>
-                Ümumi məqalələr
-            </h3>
-
-            <div
-                class="number"
-                id="totalArticles">
-
-                0
-
-            </div>
-
+            <h3>Ümumi məqalələr</h3>
+            <div class="number" id="totalArticles">0</div>
         </div>
 
         <div class="card">
-
-            <h3>
-                Təşkilatlar
-            </h3>
-
-            <div
-                class="number"
-                id="totalOrganizations">
-
-                0
-
-            </div>
-
+            <h3>Təşkilatlar</h3>
+            <div class="number" id="totalOrganizations">0</div>
         </div>
 
         <div class="card">
-
-            <h3>
-                Könüllü məqalələri
-            </h3>
-
-            <div
-                class="number"
-                id="totalVolunteers">
-
-                0
-
-            </div>
-
+            <h3>Könüllü məqalələri</h3>
+            <div class="number" id="totalVolunteers">0</div>
         </div>
 
         <div class="card">
-
-            <h3>
-                Tezislər
-            </h3>
-
-            <div
-                class="number"
-                id="totalTheses">
-
-                0
-
-            </div>
-
+            <h3>Tezislər</h3>
+            <div class="number" id="totalTheses">0</div>
         </div>
 
     </div>
+
 
     <!-- ADMIN MENYU -->
 
@@ -824,73 +647,52 @@ footer{
         <button
             class="tab active"
             onclick="adminTab('dashboard',this)">
-
             📊 Hesabat
-
         </button>
 
         <button
             class="tab"
             onclick="adminTab('articles',this)">
-
             📰 Məqalələr
-
         </button>
 
         <button
             class="tab"
             onclick="adminTab('volunteers',this)">
-
             🤝 Könüllülər
-
         </button>
 
         <button
             class="tab"
             onclick="adminTab('theses',this)">
-
             📄 Tezislər
-
         </button>
 
     </div>
 
+
     <!-- HESABAT -->
 
-    <div
-        id="dashboard"
-        class="adminPage">
+    <div id="dashboard" class="adminPage">
 
-        <h2>
-            📊 Hesabatlar
-        </h2>
+        <h2>📊 Hesabatlar</h2>
 
         <div class="grid">
 
             <div class="field">
-
-                <label>
-                    İl
-                </label>
-
+                <label>İl</label>
                 <select
                     id="reportYear"
                     onchange="loadReport()">
                 </select>
-
             </div>
 
             <div class="field">
-
-                <label>
-                    Ay
-                </label>
-
+                <label>Ay</label>
                 <select
                     id="reportMonth"
                     onchange="loadReport()">
                 </select>
-
             </div>
 
         </div>
@@ -898,74 +700,41 @@ footer{
         <div class="cards">
 
             <div class="card">
-
-                <h3>
-                    Seçilmiş ayda məqalələr
-                </h3>
-
+                <h3>Seçilmiş ayda məqalələr</h3>
                 <div
                     class="number"
                     id="selectedMonthArticles">
-
                     0
-
                 </div>
-
             </div>
 
             <div class="card">
-
-                <h3>
-                    Seçilmiş ayda könüllülər
-                </h3>
-
+                <h3>Seçilmiş ayda könüllülər</h3>
                 <div
                     class="number"
                     id="selectedMonthVolunteers">
-
                     0
-
                 </div>
-
             </div>
 
         </div>
 
-        <h3>
-            Təşkilatlar üzrə aylıq statistika
-        </h3>
+        <h3>Təşkilatlar üzrə aylıq statistika</h3>
 
         <div class="table-wrap">
 
             <table>
 
                 <thead>
-
                     <tr>
-
-                        <th>
-                            Təşkilat
-                        </th>
-
-                        <th>
-                            İl
-                        </th>
-
-                        <th>
-                            Ay
-                        </th>
-
-                        <th>
-                            Məqalə sayı
-                        </th>
-
+                        <th>Təşkilat</th>
+                        <th>İl</th>
+                        <th>Ay</th>
+                        <th>Məqalə sayı</th>
                     </tr>
-
                 </thead>
 
-                <tbody
-                    id="organizationReport">
-                </tbody>
+                <tbody id="organizationReport"></tbody>
 
             </table>
 
@@ -973,42 +742,31 @@ footer{
 
     </div>
 
+
     <!-- MƏQALƏLƏR -->
 
-    <div
-        id="articles"
-        class="adminPage hidden">
+    <div id="articles" class="adminPage hidden">
 
-        <h2>
-            📰 Məqalələr
-        </h2>
+        <h2>📰 Məqalələr</h2>
 
         <div class="grid">
 
             <div class="field">
-
-                <label>
-                    Məqalə adına görə axtarış
-                </label>
+                <label>Məqalə adına görə axtarış</label>
 
                 <input
                     id="articleSearch"
                     placeholder="Məqalənin adını yaz..."
                     oninput="filterArticles()">
-
             </div>
 
             <div class="field">
-
-                <label>
-                    İl
-                </label>
+                <label>İl</label>
 
                 <select
                     id="articleFilterYear"
                     onchange="filterArticles()">
                 </select>
-
             </div>
 
         </div>
@@ -1020,46 +778,19 @@ footer{
                 <thead>
 
                     <tr>
-
-                        <th>
-                            Təşkilat
-                        </th>
-
-                        <th>
-                            Məqalə
-                        </th>
-
-                        <th>
-                            Məsul şəxs
-                        </th>
-
-                        <th>
-                            Müəllif
-                        </th>
-
-                        <th>
-                            İl
-                        </th>
-
-                        <th>
-                            Ay
-                        </th>
-
-                        <th>
-                            Facebook
-                        </th>
-
-                        <th>
-                            Əməliyyat
-                        </th>
-
+                        <th>Təşkilat</th>
+                        <th>Məqalə</th>
+                        <th>Məsul şəxs</th>
+                        <th>Müəllif</th>
+                        <th>İl</th>
+                        <th>Ay</th>
+                        <th>Facebook</th>
+                        <th>Əməliyyat</th>
                     </tr>
 
                 </thead>
 
-                <tbody
-                    id="articlesTable">
-                </tbody>
+                <tbody id="articlesTable"></tbody>
 
             </table>
 
@@ -1067,15 +798,12 @@ footer{
 
     </div>
 
+
     <!-- KÖNÜLLÜLƏR -->
 
-    <div
-        id="volunteers"
-        class="adminPage hidden">
+    <div id="volunteers" class="adminPage hidden">
 
-        <h2>
-            🤝 Könüllülər
-        </h2>
+        <h2>🤝 Könüllülər</h2>
 
         <div class="table-wrap">
 
@@ -1084,38 +812,17 @@ footer{
                 <thead>
 
                     <tr>
-
-                        <th>
-                            Ad Soyad
-                        </th>
-
-                        <th>
-                            Məqalə
-                        </th>
-
-                        <th>
-                            İl
-                        </th>
-
-                        <th>
-                            Ay
-                        </th>
-
-                        <th>
-                            Link
-                        </th>
-
-                        <th>
-                            Əməliyyat
-                        </th>
-
+                        <th>Ad Soyad</th>
+                        <th>Məqalə</th>
+                        <th>İl</th>
+                        <th>Ay</th>
+                        <th>Link</th>
+                        <th>Əməliyyat</th>
                     </tr>
 
                 </thead>
 
-                <tbody
-                    id="volunteersTable">
-                </tbody>
+                <tbody id="volunteersTable"></tbody>
 
             </table>
 
@@ -1123,21 +830,17 @@ footer{
 
     </div>
 
+
     <!-- TEZİSLƏR -->
 
-    <div
-        id="theses"
-        class="adminPage hidden">
+    <div id="theses" class="adminPage hidden">
 
-        <h2>
-            📄 Tezis idarəetməsi
-        </h2>
+        <h2>📄 Tezis idarəetməsi</h2>
 
         <div class="notice">
 
-            Buradan Word formatında tezis
-            birbaşa kompüterdən yükləyə bilərsiniz.
-            Yüklənən fayl istifadəçi panelində görünəcək.
+            Buradan Word formatında tezis birbaşa kompüterdən
+            yükləyə bilərsiniz. Yüklənən fayl istifadəçi panelində görünəcək.
 
         </div>
 
@@ -1145,9 +848,7 @@ footer{
 
             <div class="field">
 
-                <label>
-                    Tezisin adı
-                </label>
+                <label>Tezisin adı</label>
 
                 <input
                     id="thesisTitle"
@@ -1157,25 +858,17 @@ footer{
 
             <div class="field">
 
-                <label>
-                    İl
-                </label>
+                <label>İl</label>
 
-                <select
-                    id="thesisYear">
-                </select>
+                <select id="thesisYear"></select>
 
             </div>
 
             <div class="field">
 
-                <label>
-                    Ay
-                </label>
+                <label>Ay</label>
 
-                <select
-                    id="thesisMonth">
-                </select>
+                <select id="thesisMonth"></select>
 
             </div>
 
@@ -1188,13 +881,10 @@ footer{
                 <input
                     id="thesisFile"
                     type="file"
-                    accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                    accept=".doc,.docx">
 
                 <p class="small">
-
-                    Kompüterinizdən Word faylını seçin.
                     Maksimum 20 MB.
-
                 </p>
 
             </div>
@@ -1204,13 +894,17 @@ footer{
         <div class="actions">
 
             <button
+                id="uploadThesisButton"
                 class="btn-success"
                 onclick="addThesis()">
-
                 + Word tezisi yüklə
-
             </button>
 
+        </div>
+
+        <div
+            id="thesisUploadStatus"
+            class="status">
         </div>
 
         <div class="table-wrap">
@@ -1220,34 +914,16 @@ footer{
                 <thead>
 
                     <tr>
-
-                        <th>
-                            Tezis
-                        </th>
-
-                        <th>
-                            İl
-                        </th>
-
-                        <th>
-                            Ay
-                        </th>
-
-                        <th>
-                            Word
-                        </th>
-
-                        <th>
-                            Əməliyyat
-                        </th>
-
+                        <th>Tezis</th>
+                        <th>İl</th>
+                        <th>Ay</th>
+                        <th>Word</th>
+                        <th>Əməliyyat</th>
                     </tr>
 
                 </thead>
 
-                <tbody
-                    id="thesesTable">
-                </tbody>
+                <tbody id="thesesTable"></tbody>
 
             </table>
 
@@ -1260,10 +936,9 @@ footer{
 </div>
 
 <footer>
-
     E-Tezis Premium © 2026
-
 </footer>
+
 
 <script>
 
@@ -1285,11 +960,10 @@ supabase.createClient(
 
 
 /* =====================================================
-   AY VƏ İLLƏR
+   AY
 ===================================================== */
 
 const months = [
-
     "Yanvar",
     "Fevral",
     "Mart",
@@ -1302,32 +976,34 @@ const months = [
     "Oktyabr",
     "Noyabr",
     "Dekabr"
-
 ];
 
+
+/* =====================================================
+   İLLƏR
+===================================================== */
 
 function fillYears(){
 
     const ids = [
-
         "organizationYear",
         "volunteerYear",
         "reportYear",
         "articleFilterYear",
         "thesisYear"
-
     ];
+
+    const currentYear =
+        new Date().getFullYear();
 
     ids.forEach(id=>{
 
         const select =
             document.getElementById(id);
 
-        if(!select){
-            return;
-        }
+        if(!select) return;
 
-        select.innerHTML="";
+        select.innerHTML = "";
 
         for(
             let year=2000;
@@ -1338,75 +1014,15 @@ function fillYears(){
             const option =
                 document.createElement("option");
 
-            option.value=year;
+            option.value = year;
+            option.textContent = year;
 
-            option.textContent=year;
-
-            if(
-                year ===
-                new Date().getFullYear()
-            ){
-
-                option.selected=true;
-
+            if(year === currentYear){
+                option.selected = true;
             }
 
             select.appendChild(option);
-
         }
-
-    });
-
-}
-
-
-function fillMonths(){
-
-    const ids = [
-
-        "organizationMonth",
-        "volunteerMonth",
-        "reportMonth",
-        "thesisMonth"
-
-    ];
-
-    ids.forEach(id=>{
-
-        const select =
-            document.getElementById(id);
-
-        if(!select){
-            return;
-        }
-
-        select.innerHTML="";
-
-        months.forEach(
-            (month,index)=>{
-
-                const option =
-                    document.createElement("option");
-
-                option.value =
-                    index+1;
-
-                option.textContent =
-                    month;
-
-                if(
-                    index ===
-                    new Date().getMonth()
-                ){
-
-                    option.selected=true;
-
-                }
-
-                select.appendChild(option);
-
-            }
-        );
 
     });
 
@@ -1414,17 +1030,62 @@ function fillMonths(){
 
 
 /* =====================================================
-   SƏHİFƏ
+   AYLAR
+===================================================== */
+
+function fillMonths(){
+
+    const ids = [
+        "organizationMonth",
+        "volunteerMonth",
+        "reportMonth",
+        "thesisMonth"
+    ];
+
+    const currentMonth =
+        new Date().getMonth();
+
+    ids.forEach(id=>{
+
+        const select =
+            document.getElementById(id);
+
+        if(!select) return;
+
+        select.innerHTML = "";
+
+        months.forEach((month,index)=>{
+
+            const option =
+                document.createElement("option");
+
+            option.value = index + 1;
+            option.textContent = month;
+
+            if(index === currentMonth){
+                option.selected = true;
+            }
+
+            select.appendChild(option);
+
+        });
+
+    });
+
+}
+
+
+/* =====================================================
+   SECTION
 ===================================================== */
 
 function showSection(id){
 
     document
     .querySelectorAll(".section")
-    .forEach(
-        section =>
-        section.classList.remove("active")
-    );
+    .forEach(section=>{
+        section.classList.remove("active");
+    });
 
     const section =
         document.getElementById(id);
@@ -1437,20 +1098,20 @@ function showSection(id){
 
 
 /* =====================================================
-   İSTİFADƏÇİ MODU
+   USER MODE
 ===================================================== */
 
 function userMode(mode,button){
 
     document
     .querySelectorAll("#user .tab")
-    .forEach(
-        x=>x.classList.remove("active")
-    );
+    .forEach(x=>{
+        x.classList.remove("active");
+    });
 
     button.classList.add("active");
 
-    if(mode==="organization"){
+    if(mode === "organization"){
 
         document
         .getElementById("organizationForm")
@@ -1506,10 +1167,11 @@ async function adminLogin(){
     if(!email || !password){
 
         message.innerHTML =
-        '<div class="notice">E-mail və parolu daxil edin.</div>';
+        '<div class="notice error">' +
+        'E-mail və parolu daxil edin.' +
+        '</div>';
 
         return;
-
     }
 
     message.innerHTML =
@@ -1522,17 +1184,15 @@ async function adminLogin(){
     await supabaseClient
     .auth
     .signInWithPassword({
-
-        email:email,
-        password:password
-
+        email,
+        password
     });
 
     if(error){
 
         message.innerHTML =
-        '<div class="notice" style="color:#b42318;">' +
-        'E-mail və ya parol yanlışdır.' +
+        '<div class="notice error">' +
+        escapeHtml(error.message) +
         '</div>';
 
         console.error(
@@ -1541,22 +1201,20 @@ async function adminLogin(){
         );
 
         return;
-
     }
 
-    if(data.session){
+    if(data && data.session){
 
         showSection("admin");
 
         await loadAdmin();
-
     }
 
 }
 
 
 /* =====================================================
-   ADMIN ÇIXIŞ
+   ADMIN LOGOUT
 ===================================================== */
 
 async function adminLogout(){
@@ -1571,80 +1229,45 @@ async function adminLogout(){
 
 
 /* =====================================================
-   TƏŞKİLAT MƏQALƏSİ
+   TƏŞKİLAT MƏQALƏ
 ===================================================== */
 
 async function submitOrganizationArticle(){
 
-    const data={
+    const data = {
 
         organization_name:
-        document
-        .getElementById("organizationName")
-        .value
-        .trim(),
+            document.getElementById("organizationName").value.trim(),
 
         year:
-        Number(
-            document
-            .getElementById("organizationYear")
-            .value
-        ),
+            Number(document.getElementById("organizationYear").value),
 
         month:
-        Number(
-            document
-            .getElementById("organizationMonth")
-            .value
-        ),
+            Number(document.getElementById("organizationMonth").value),
 
         responsible_name:
-        document
-        .getElementById("responsibleName")
-        .value
-        .trim(),
+            document.getElementById("responsibleName").value.trim(),
 
         responsible_position:
-        document
-        .getElementById("responsiblePosition")
-        .value
-        .trim(),
+            document.getElementById("responsiblePosition").value.trim(),
 
         responsible_phone:
-        document
-        .getElementById("responsiblePhone")
-        .value
-        .trim(),
+            document.getElementById("responsiblePhone").value.trim(),
 
         responsible_email:
-        document
-        .getElementById("responsibleEmail")
-        .value
-        .trim(),
+            document.getElementById("responsibleEmail").value.trim(),
 
         article_title:
-        document
-        .getElementById("articleTitle")
-        .value
-        .trim(),
+            document.getElementById("articleTitle").value.trim(),
 
         author_name:
-        document
-        .getElementById("authorName")
-        .value
-        .trim(),
+            document.getElementById("authorName").value.trim(),
 
         author_position:
-        document
-        .getElementById("authorPosition")
-        .value
-        .trim(),
+            document.getElementById("authorPosition").value.trim(),
 
         facebook_link:
-        document
-        .getElementById("facebookLink")
-        .value
-        .trim()
+            document.getElementById("facebookLink").value.trim()
 
     };
 
@@ -1659,7 +1282,6 @@ async function submitOrganizationArticle(){
         );
 
         return;
-
     }
 
     const {
@@ -1667,22 +1289,18 @@ async function submitOrganizationArticle(){
     } =
     await supabaseClient
     .from("meqaleler")
-    .insert([data]);
+    .insert(data);
 
     if(error){
 
         alert(
-            "Məqalə göndərilmədi:\n"+
+            "Məqalə göndərilmədi:\n\n" +
             error.message
         );
 
-        console.error(
-            "MEQALƏ DATABASE ERROR:",
-            error
-        );
+        console.error(error);
 
         return;
-
     }
 
     alert(
@@ -1690,12 +1308,10 @@ async function submitOrganizationArticle(){
     );
 
     document
-    .querySelectorAll(
-        "#organizationForm input"
-    )
-    .forEach(
-        input=>input.value=""
-    );
+    .querySelectorAll("#organizationForm input")
+    .forEach(input=>{
+        input.value = "";
+    });
 
 }
 
@@ -1706,39 +1322,22 @@ async function submitOrganizationArticle(){
 
 async function submitVolunteer(){
 
-    const data={
+    const data = {
 
         name:
-        document
-        .getElementById("volunteerName")
-        .value
-        .trim(),
+            document.getElementById("volunteerName").value.trim(),
 
         article_title:
-        document
-        .getElementById("volunteerArticleTitle")
-        .value
-        .trim(),
+            document.getElementById("volunteerArticleTitle").value.trim(),
 
         year:
-        Number(
-            document
-            .getElementById("volunteerYear")
-            .value
-        ),
+            Number(document.getElementById("volunteerYear").value),
 
         month:
-        Number(
-            document
-            .getElementById("volunteerMonth")
-            .value
-        ),
+            Number(document.getElementById("volunteerMonth").value),
 
         article_link:
-        document
-        .getElementById("volunteerArticleLink")
-        .value
-        .trim()
+            document.getElementById("volunteerArticleLink").value.trim()
 
     };
 
@@ -1752,7 +1351,6 @@ async function submitVolunteer(){
         );
 
         return;
-
     }
 
     const {
@@ -1760,22 +1358,18 @@ async function submitVolunteer(){
     } =
     await supabaseClient
     .from("konulluler")
-    .insert([data]);
+    .insert(data);
 
     if(error){
 
         alert(
-            "Göndərilmədi:\n"+
+            "Göndərilmədi:\n\n" +
             error.message
         );
 
-        console.error(
-            "KONULLU DATABASE ERROR:",
-            error
-        );
+        console.error(error);
 
         return;
-
     }
 
     alert(
@@ -1783,12 +1377,10 @@ async function submitVolunteer(){
     );
 
     document
-    .querySelectorAll(
-        "#volunteerForm input"
-    )
-    .forEach(
-        input=>input.value=""
-    );
+    .querySelectorAll("#volunteerForm input")
+    .forEach(input=>{
+        input.value = "";
+    });
 
 }
 
@@ -1800,30 +1392,23 @@ async function submitVolunteer(){
 async function loadAdmin(){
 
     const {
-        data:{
-            session
-        }
+        data
     } =
     await supabaseClient
     .auth
     .getSession();
 
-    if(!session){
+    if(!data || !data.session){
 
         showSection("adminLogin");
 
         return;
-
     }
 
     await loadArticles();
-
     await loadVolunteers();
-
     await loadTheses();
-
     await loadReport();
-
     await loadStatistics();
 
 }
@@ -1837,21 +1422,19 @@ function adminTab(id,button){
 
     document
     .querySelectorAll(".adminPage")
-    .forEach(
-        x=>x.classList.add("hidden")
-    );
+    .forEach(x=>{
+        x.classList.add("hidden");
+    });
 
     document
     .getElementById(id)
     .classList.remove("hidden");
 
     document
-    .querySelectorAll(
-        "#admin .tabs .tab"
-    )
-    .forEach(
-        x=>x.classList.remove("active")
-    );
+    .querySelectorAll("#admin .tabs .tab")
+    .forEach(x=>{
+        x.classList.remove("active");
+    });
 
     button.classList.add("active");
 
@@ -1862,7 +1445,7 @@ function adminTab(id,button){
    MƏQALƏLƏR
 ===================================================== */
 
-let allArticles=[];
+let allArticles = [];
 
 
 async function loadArticles(){
@@ -1878,18 +1461,18 @@ async function loadArticles(){
 
     if(error){
 
-        console.error(error);
+        console.error(
+            "MƏQALƏ LOAD ERROR:",
+            error
+        );
 
         return;
-
     }
 
     allArticles =
         data || [];
 
-    renderArticles(
-        allArticles
-    );
+    renderArticles(allArticles);
 
 }
 
@@ -1897,117 +1480,75 @@ async function loadArticles(){
 function renderArticles(data){
 
     const tbody =
-        document
-        .getElementById("articlesTable");
+        document.getElementById("articlesTable");
 
-    tbody.innerHTML="";
+    if(!tbody) return;
+
+    tbody.innerHTML = "";
 
     data.forEach(row=>{
 
         const tr =
             document.createElement("tr");
 
-        tr.innerHTML=`
+        tr.innerHTML = `
 
-        <td>
-            ${escapeHtml(
-                row.organization_name || ""
-            )}
-        </td>
+            <td>
+                ${escapeHtml(row.organization_name || "")}
+            </td>
 
-        <td>
-            ${escapeHtml(
-                row.article_title || ""
-            )}
-        </td>
+            <td>
+                ${escapeHtml(row.article_title || "")}
+            </td>
 
-        <td>
+            <td>
+                ${escapeHtml(row.responsible_name || "")}
+                <br>
+                <span class="small">
+                    ${escapeHtml(row.responsible_position || "")}
+                </span>
+                <br>
+                <span class="small">
+                    ${escapeHtml(row.responsible_phone || "")}
+                </span>
+                <br>
+                <span class="small">
+                    ${escapeHtml(row.responsible_email || "")}
+                </span>
+            </td>
 
-            ${escapeHtml(
-                row.responsible_name || ""
-            )}
+            <td>
+                ${escapeHtml(row.author_name || "")}
+                <br>
+                <span class="small">
+                    ${escapeHtml(row.author_position || "")}
+                </span>
+            </td>
 
-            <br>
+            <td>
+                ${row.year || ""}
+            </td>
 
-            <span class="small">
+            <td>
+                ${months[(Number(row.month)||1)-1] || ""}
+            </td>
 
-                ${escapeHtml(
-                    row.responsible_position || ""
-                )}
+            <td>
+                <a
+                    href="${safeUrl(row.facebook_link)}"
+                    target="_blank"
+                    rel="noopener">
+                    Facebook
+                </a>
+            </td>
 
-            </span>
-
-            <br>
-
-            <span class="small">
-
-                ${escapeHtml(
-                    row.responsible_phone || ""
-                )}
-
-            </span>
-
-            <br>
-
-            <span class="small">
-
-                ${escapeHtml(
-                    row.responsible_email || ""
-                )}
-
-            </span>
-
-        </td>
-
-        <td>
-
-            ${escapeHtml(
-                row.author_name || ""
-            )}
-
-            <br>
-
-            <span class="small">
-
-                ${escapeHtml(
-                    row.author_position || ""
-                )}
-
-            </span>
-
-        </td>
-
-        <td>
-            ${row.year || ""}
-        </td>
-
-        <td>
-            ${months[(row.month || 1)-1] || ""}
-        </td>
-
-        <td>
-
-            <a
-                href="${safeUrl(row.facebook_link)}"
-                target="_blank">
-
-                Facebook
-
-            </a>
-
-        </td>
-
-        <td>
-
-            <button
-                class="btn-danger"
-                onclick="deleteArticle(${row.id})">
-
-                Sil
-
-            </button>
-
-        </td>
+            <td>
+                <button
+                    class="btn-danger"
+                    onclick="deleteArticle(${row.id})">
+                    Sil
+                </button>
+            </td>
 
         `;
 
@@ -2041,26 +1582,17 @@ function filterArticles(){
         allArticles.filter(row=>{
 
             const title =
-                String(
-                    row.article_title || ""
-                )
+                String(row.article_title || "")
                 .toLowerCase();
 
             return (
-
-                title.includes(search)
-
-                &&
-
-                Number(row.year)===year
-
+                title.includes(search) &&
+                Number(row.year) === year
             );
 
         });
 
-    renderArticles(
-        filtered
-    );
+    renderArticles(filtered);
 
 }
 
@@ -2071,14 +1603,10 @@ function filterArticles(){
 
 async function deleteArticle(id){
 
-    if(
-        !confirm(
-            "Bu məqaləni silmək istədiyinizə əminsiniz?"
-        )
-    ){
-
+    if(!confirm(
+        "Bu məqaləni silmək istədiyinizə əminsiniz?"
+    )){
         return;
-
     }
 
     const {
@@ -2094,13 +1622,10 @@ async function deleteArticle(id){
         alert(error.message);
 
         return;
-
     }
 
     await loadArticles();
-
     await loadStatistics();
-
     await loadReport();
 
 }
@@ -2123,66 +1648,58 @@ async function loadVolunteers(){
 
     if(error){
 
-        console.error(error);
+        console.error(
+            "KÖNÜLLÜ LOAD ERROR:",
+            error
+        );
 
         return;
-
     }
 
     const tbody =
-        document
-        .getElementById("volunteersTable");
+        document.getElementById("volunteersTable");
 
-    tbody.innerHTML="";
+    tbody.innerHTML = "";
 
     (data || []).forEach(row=>{
 
         const tr =
             document.createElement("tr");
 
-        tr.innerHTML=`
+        tr.innerHTML = `
 
-        <td>
-            ${escapeHtml(row.name || "")}
-        </td>
+            <td>
+                ${escapeHtml(row.name || "")}
+            </td>
 
-        <td>
-            ${escapeHtml(
-                row.article_title || ""
-            )}
-        </td>
+            <td>
+                ${escapeHtml(row.article_title || "")}
+            </td>
 
-        <td>
-            ${row.year || ""}
-        </td>
+            <td>
+                ${row.year || ""}
+            </td>
 
-        <td>
-            ${months[(row.month || 1)-1] || ""}
-        </td>
+            <td>
+                ${months[(Number(row.month)||1)-1] || ""}
+            </td>
 
-        <td>
+            <td>
+                <a
+                    href="${safeUrl(row.article_link)}"
+                    target="_blank"
+                    rel="noopener">
+                    Aç
+                </a>
+            </td>
 
-            <a
-                href="${safeUrl(row.article_link)}"
-                target="_blank">
-
-                Aç
-
-            </a>
-
-        </td>
-
-        <td>
-
-            <button
-                class="btn-danger"
-                onclick="deleteVolunteer(${row.id})">
-
-                Sil
-
-            </button>
-
-        </td>
+            <td>
+                <button
+                    class="btn-danger"
+                    onclick="deleteVolunteer(${row.id})">
+                    Sil
+                </button>
+            </td>
 
         `;
 
@@ -2195,14 +1712,10 @@ async function loadVolunteers(){
 
 async function deleteVolunteer(id){
 
-    if(
-        !confirm(
-            "Bu könüllü məqaləsi silinsin?"
-        )
-    ){
-
+    if(!confirm(
+        "Bu könüllü məqaləsi silinsin?"
+    )){
         return;
-
     }
 
     const {
@@ -2218,19 +1731,16 @@ async function deleteVolunteer(id){
         alert(error.message);
 
         return;
-
     }
 
     await loadVolunteers();
-
     await loadStatistics();
 
 }
 
 
 /* =====================================================
-   WORD TEZİS YÜKLƏMƏ
-   DÜZƏLDİLMİŞ VERSİYA
+   TEZİS YÜKLƏ
 ===================================================== */
 
 async function addThesis(){
@@ -2256,31 +1766,32 @@ async function addThesis(){
         );
 
     const fileInput =
-        document
-        .getElementById("thesisFile");
+        document.getElementById("thesisFile");
 
     const file =
         fileInput.files[0];
 
+    const button =
+        document.getElementById("uploadThesisButton");
+
+    const status =
+        document.getElementById("thesisUploadStatus");
+
+
     if(!title){
 
-        alert(
-            "Tezisin adını yazın."
-        );
+        alert("Tezisin adını yazın.");
 
         return;
-
     }
 
     if(!file){
 
-        alert(
-            "Word faylını seçin."
-        );
+        alert("Word faylını seçin.");
 
         return;
-
     }
+
 
     const extension =
         file.name
@@ -2288,31 +1799,33 @@ async function addThesis(){
         .pop()
         .toLowerCase();
 
+
     if(
         extension !== "doc" &&
         extension !== "docx"
     ){
 
         alert(
-            "Yalnız .doc və .docx Word fayllarına icazə verilir."
+            "Yalnız .doc və .docx fayllarına icazə verilir."
         );
 
         return;
-
     }
 
-    if(
-        file.size >
-        20 * 1024 * 1024
-    ){
+
+    if(file.size > 20 * 1024 * 1024){
 
         alert(
-            "Faylın ölçüsü maksimum 20 MB ola bilər."
+            "Fayl maksimum 20 MB ola bilər."
         );
 
         return;
-
     }
+
+
+    /*
+       FAYL ADI
+    */
 
     const safeName =
         file.name
@@ -2321,21 +1834,25 @@ async function addThesis(){
             "_"
         );
 
-    const fileName =
-        Date.now()
-        + "_"
-        + safeName;
-
     const filePath =
-        fileName;
+        Date.now() +
+        "_" +
+        Math.random()
+        .toString(36)
+        .substring(2,8) +
+        "_" +
+        safeName;
 
-    alert(
-        "Word faylı yüklənir..."
-    );
 
-    /*
-       1. ƏVVƏL STORAGE
-    */
+    button.disabled = true;
+
+    status.innerHTML =
+    '<div class="notice">⏳ Word faylı Storage-a yüklənir...</div>';
+
+
+    /* =================================================
+       1. STORAGE
+    ================================================= */
 
     const {
         error:uploadError
@@ -2348,31 +1865,40 @@ async function addThesis(){
         file,
         {
             cacheControl:"3600",
-            upsert:false
+            upsert:false,
+            contentType:
+                file.type ||
+                "application/octet-stream"
         }
     );
 
+
     if(uploadError){
 
-        alert(
-            "Word faylı yüklənmədi:\n\n" +
-            uploadError.message +
-            "\n\nCode: " +
-            (uploadError.statusCode || "")
-        );
+        button.disabled = false;
+
+        status.innerHTML =
+        '<div class="notice error">' +
+        'Storage xətası: ' +
+        escapeHtml(uploadError.message) +
+        '</div>';
 
         console.error(
-            "STORAGE UPLOAD ERROR:",
+            "STORAGE ERROR:",
             uploadError
         );
 
         return;
-
     }
 
-    /*
+
+    status.innerHTML =
+    '<div class="notice">✅ Fayl Storage-a yükləndi. Database-ə yazılır...</div>';
+
+
+    /* =================================================
        2. PUBLIC URL
-    */
+    ================================================= */
 
     const {
         data:publicData
@@ -2380,52 +1906,64 @@ async function addThesis(){
     supabaseClient
     .storage
     .from("tezisler")
-    .getPublicUrl(
-        filePath
-    );
+    .getPublicUrl(filePath);
+
 
     const fileUrl =
-        publicData &&
-        publicData.publicUrl
-        ?
-        publicData.publicUrl
-        :
-        "";
+        publicData?.publicUrl || "";
+
 
     if(!fileUrl){
 
-        alert(
-            "Word faylı Storage-a yükləndi, amma Public URL alınmadı."
-        );
+        await supabaseClient
+        .storage
+        .from("tezisler")
+        .remove([filePath]);
 
-        console.error(
-            "PUBLIC URL ERROR"
-        );
+        button.disabled = false;
+
+        status.innerHTML =
+        '<div class="notice error">' +
+        'Public URL alınmadı.' +
+        '</div>';
 
         return;
-
     }
 
-    /*
+
+    console.log(
+        "FILE PATH:",
+        filePath
+    );
+
+    console.log(
+        "FILE URL:",
+        fileUrl
+    );
+
+
+    /* =================================================
        3. DATABASE
-    */
+    ================================================= */
 
     const thesisData = {
 
-        title:title,
+        title: title,
 
-        year:year,
+        year: year,
 
-        month:month,
+        month: month,
 
-        file_url:fileUrl
+        file_url: fileUrl
 
     };
 
+
     console.log(
-        "TEZIS DATABASE DATA:",
+        "DATABASE DATA:",
         thesisData
     );
+
 
     const {
         data:insertedData,
@@ -2433,124 +1971,135 @@ async function addThesis(){
     } =
     await supabaseClient
     .from("tezisler")
-    .insert([
-        thesisData
-    ])
-    .select();
+    .insert(thesisData)
+    .select("*");
 
-    /*
+
+    /* =================================================
        4. DATABASE XƏTASI
-    */
+    ================================================= */
 
     if(databaseError){
 
+        console.error(
+            "DATABASE ERROR:",
+            databaseError
+        );
+
+
         /*
-           Database yazılmadığı üçün
-           Storage-dakı faylı silməyə çalışırıq.
+           Storage-dakı faylı sil
         */
 
-        try{
+        const {
+            error:cleanupError
+        } =
+        await supabaseClient
+        .storage
+        .from("tezisler")
+        .remove([filePath]);
 
-            await supabaseClient
-            .storage
-            .from("tezisler")
-            .remove([
-                filePath
-            ]);
 
-        }catch(storageDeleteError){
+        if(cleanupError){
 
             console.error(
                 "STORAGE CLEANUP ERROR:",
-                storageDeleteError
+                cleanupError
             );
-
         }
 
+
+        button.disabled = false;
+
+
+        status.innerHTML =
+        '<div class="notice error">' +
+
+        '<b>❌ Database-ə yazılmadı</b>' +
+
+        '<br><br>' +
+
+        '<b>Message:</b><br>' +
+        escapeHtml(
+            databaseError.message || ""
+        ) +
+
+        '<br><br>' +
+
+        '<b>Code:</b> ' +
+        escapeHtml(
+            databaseError.code || ""
+        ) +
+
+        '<br><br>' +
+
+        '<b>Details:</b><br>' +
+        escapeHtml(
+            databaseError.details || ""
+        ) +
+
+        '<br><br>' +
+
+        '<b>Hint:</b><br>' +
+        escapeHtml(
+            databaseError.hint || ""
+        ) +
+
+        '</div>';
+
+
         alert(
-            "❌ WORD FAYLI STORAGE-A YÜKLƏNDİ, AMMA DATABASE-Ə YAZILMADI.\n\n" +
-
-            "MESSAGE:\n" +
-            (databaseError.message || "") +
-
-            "\n\nCODE:\n" +
-            (databaseError.code || "") +
-
-            "\n\nDETAILS:\n" +
-            (databaseError.details || "") +
-
-            "\n\nHINT:\n" +
-            (databaseError.hint || "")
+            "❌ Storage işləyir, amma Database yazılmır.\n\n" +
+            (databaseError.message || "")
         );
 
-        console.error(
-            "================================"
-        );
-
-        console.error(
-            "TEZIS DATABASE ERROR"
-        );
-
-        console.error(
-            "MESSAGE:",
-            databaseError.message
-        );
-
-        console.error(
-            "CODE:",
-            databaseError.code
-        );
-
-        console.error(
-            "DETAILS:",
-            databaseError.details
-        );
-
-        console.error(
-            "HINT:",
-            databaseError.hint
-        );
-
-        console.error(
-            "================================"
-        );
 
         return;
-
     }
 
-    /*
+
+    /* =================================================
        5. UĞURLU
-    */
+    ================================================= */
 
     console.log(
-        "TEZIS INSERTED:",
+        "INSERTED DATA:",
         insertedData
     );
+
+
+    button.disabled = false;
+
+
+    status.innerHTML =
+    '<div class="notice success">' +
+    '✅ Tezis və Word faylı uğurla əlavə edildi.' +
+    '</div>';
+
 
     alert(
         "✅ Tezis və Word faylı uğurla əlavə edildi."
     );
 
+
     document
     .getElementById("thesisTitle")
-    .value="";
+    .value = "";
 
     document
     .getElementById("thesisFile")
-    .value="";
+    .value = "";
+
 
     await loadTheses();
-
     await loadPublicTheses();
-
     await loadStatistics();
 
 }
 
 
 /* =====================================================
-   TEZİSLƏRİ ADMIN-DƏ GÖSTƏR
+   TEZİSLƏRİ YÜKLƏ
 ===================================================== */
 
 async function loadTheses(){
@@ -2564,6 +2113,7 @@ async function loadTheses(){
     .select("*")
     .order("id",{ascending:false});
 
+
     if(error){
 
         console.error(
@@ -2572,76 +2122,64 @@ async function loadTheses(){
         );
 
         return;
-
     }
 
-    const tbody =
-        document
-        .getElementById("thesesTable");
 
-    tbody.innerHTML="";
+    const tbody =
+        document.getElementById("thesesTable");
+
+    tbody.innerHTML = "";
+
 
     (data || []).forEach(row=>{
 
         const tr =
             document.createElement("tr");
 
-        tr.innerHTML=`
 
-        <td>
+        tr.innerHTML = `
 
-            ${escapeHtml(
-                row.title || ""
-            )}
+            <td>
+                ${escapeHtml(row.title || "")}
+            </td>
 
-        </td>
+            <td>
+                ${row.year || ""}
+            </td>
 
-        <td>
-            ${row.year || ""}
-        </td>
+            <td>
+                ${months[
+                    (Number(row.month)||1)-1
+                ] || ""}
+            </td>
 
-        <td>
+            <td>
+                <a
+                    href="${safeUrl(row.file_url)}"
+                    target="_blank"
+                    rel="noopener">
+                    📄 Word faylı
+                </a>
+            </td>
 
-            ${months[
-                (row.month || 1)-1
-            ] || ""}
-
-        </td>
-
-        <td>
-
-            <a
-                href="${safeUrl(row.file_url)}"
-                target="_blank">
-
-                📄 Word faylı
-
-            </a>
-
-        </td>
-
-        <td>
-
-            <button
-                class="btn-danger"
-                onclick="deleteThesis(${row.id})">
-
-                Sil
-
-            </button>
-
-        </td>
+            <td>
+                <button
+                    class="btn-danger"
+                    onclick="deleteThesis(${row.id})">
+                    Sil
+                </button>
+            </td>
 
         `;
+
 
         tbody.appendChild(tr);
 
     });
 
+
     document
-    .getElementById(
-        "totalTheses"
-    )
+    .getElementById("totalTheses")
     .textContent =
     (data || []).length;
 
@@ -2654,15 +2192,12 @@ async function loadTheses(){
 
 async function deleteThesis(id){
 
-    if(
-        !confirm(
-            "Bu tezis silinsin?"
-        )
-    ){
-
+    if(!confirm(
+        "Bu tezis silinsin?"
+    )){
         return;
-
     }
+
 
     const {
         data,
@@ -2674,6 +2209,7 @@ async function deleteThesis(id){
     .eq("id",id)
     .single();
 
+
     if(selectError){
 
         alert(
@@ -2682,59 +2218,54 @@ async function deleteThesis(id){
         );
 
         return;
-
     }
 
+
     const {
-        error
+        error:deleteError
     } =
     await supabaseClient
     .from("tezisler")
     .delete()
     .eq("id",id);
 
-    if(error){
+
+    if(deleteError){
 
         alert(
-            error.message
+            "Database silmə xətası:\n" +
+            deleteError.message
         );
 
         return;
-
     }
 
+
     /*
-       Storage-dan da faylı silməyə çalışırıq.
+       Storage faylını tapıb sil
     */
 
-    if(
-        data &&
-        data.file_url
-    ){
+    if(data?.file_url){
 
         try{
 
             const url =
-                new URL(
-                    data.file_url
-                );
+                new URL(data.file_url);
 
             const marker =
                 "/storage/v1/object/public/tezisler/";
 
             const index =
-                url.pathname.indexOf(
-                    marker
-                );
+                url.pathname.indexOf(marker);
+
 
             if(index !== -1){
 
                 const filePath =
-                    url.pathname
-                    .substring(
-                        index +
-                        marker.length
+                    url.pathname.substring(
+                        index + marker.length
                     );
+
 
                 const {
                     error:storageError
@@ -2742,9 +2273,8 @@ async function deleteThesis(id){
                 await supabaseClient
                 .storage
                 .from("tezisler")
-                .remove([
-                    filePath
-                ]);
+                .remove([filePath]);
+
 
                 if(storageError){
 
@@ -2752,45 +2282,43 @@ async function deleteThesis(id){
                         "STORAGE DELETE ERROR:",
                         storageError
                     );
-
                 }
 
             }
 
         }catch(error){
 
-            console.error(error);
+            console.error(
+                "STORAGE URL ERROR:",
+                error
+            );
 
         }
 
     }
 
+
     await loadTheses();
-
     await loadPublicTheses();
-
     await loadStatistics();
 
 }
 
 
 /* =====================================================
-   İSTİFADƏÇİ TEZİSLƏRİ
+   PUBLIC TEZİSLƏR
 ===================================================== */
 
 async function loadPublicTheses(){
 
     const container =
-        document
-        .getElementById(
-            "publicTheses"
-        );
+        document.getElementById("publicTheses");
+
 
     if(!container){
-
         return;
-
     }
+
 
     const {
         data,
@@ -2801,6 +2329,7 @@ async function loadPublicTheses(){
     .select("*")
     .order("id",{ascending:false});
 
+
     if(error){
 
         console.error(
@@ -2809,44 +2338,43 @@ async function loadPublicTheses(){
         );
 
         container.innerHTML =
-        '<div class="small">Tezisləri yükləmək mümkün olmadı.</div>';
+        '<div class="notice error">' +
+        'Tezisləri yükləmək mümkün olmadı.' +
+        '</div>';
 
         return;
-
     }
 
-    if(
-        !data ||
-        data.length===0
-    ){
+
+    if(!data || data.length === 0){
 
         container.innerHTML =
-        '<div class="small">Hazırda tezis yoxdur.</div>';
+        '<div class="small">' +
+        'Hazırda tezis yoxdur.' +
+        '</div>';
 
         return;
-
     }
 
-    container.innerHTML="";
+
+    container.innerHTML = "";
+
 
     data.forEach(row=>{
 
         const div =
             document.createElement("div");
 
-        div.className =
-            "tezis";
+        div.className = "tezis";
 
-        div.innerHTML=`
+
+        div.innerHTML = `
 
             <h3>
-
                 📄
                 ${escapeHtml(
-                    row.title ||
-                    "Tezis"
+                    row.title || "Tezis"
                 )}
-
             </h3>
 
             <p class="small">
@@ -2856,7 +2384,7 @@ async function loadPublicTheses(){
                 —
 
                 ${months[
-                    (row.month || 1)-1
+                    (Number(row.month)||1)-1
                 ] || ""}
 
             </p>
@@ -2865,18 +2393,17 @@ async function loadPublicTheses(){
 
             <a
                 href="${safeUrl(row.file_url)}"
-                target="_blank">
+                target="_blank"
+                rel="noopener">
 
-                <button
-                    class="btn">
-
+                <button class="btn">
                     📄 Word faylını aç
-
                 </button>
 
             </a>
 
         `;
+
 
         container.appendChild(div);
 
@@ -2891,23 +2418,29 @@ async function loadPublicTheses(){
 
 async function loadReport(){
 
+    const yearElement =
+        document.getElementById("reportYear");
+
+    const monthElement =
+        document.getElementById("reportMonth");
+
+
+    if(!yearElement || !monthElement){
+        return;
+    }
+
+
     const year =
-        Number(
-            document
-            .getElementById(
-                "reportYear"
-            )
-            .value
-        );
+        Number(yearElement.value);
 
     const month =
-        Number(
-            document
-            .getElementById(
-                "reportMonth"
-            )
-            .value
-        );
+        Number(monthElement.value);
+
+
+    if(!year || !month){
+        return;
+    }
+
 
     const articles =
         await supabaseClient
@@ -2916,6 +2449,7 @@ async function loadReport(){
         .eq("year",year)
         .eq("month",month);
 
+
     const volunteers =
         await supabaseClient
         .from("konulluler")
@@ -2923,27 +2457,28 @@ async function loadReport(){
         .eq("year",year)
         .eq("month",month);
 
+
     const articleData =
         articles.data || [];
 
     const volunteerData =
         volunteers.data || [];
 
+
     document
-    .getElementById(
-        "selectedMonthArticles"
-    )
+    .getElementById("selectedMonthArticles")
     .textContent =
     articleData.length;
 
+
     document
-    .getElementById(
-        "selectedMonthVolunteers"
-    )
+    .getElementById("selectedMonthVolunteers")
     .textContent =
     volunteerData.length;
 
-    const grouped={};
+
+    const grouped = {};
+
 
     articleData.forEach(row=>{
 
@@ -2951,67 +2486,54 @@ async function loadReport(){
             row.organization_name ||
             "Naməlum təşkilat";
 
-        if(
-            !grouped[name]
-        ){
 
-            grouped[name]=0;
-
+        if(!grouped[name]){
+            grouped[name] = 0;
         }
+
 
         grouped[name]++;
 
     });
 
+
     const tbody =
-        document
-        .getElementById(
+        document.getElementById(
             "organizationReport"
         );
 
-    tbody.innerHTML="";
 
-    Object.keys(grouped)
-    .forEach(name=>{
+    tbody.innerHTML = "";
+
+
+    Object.keys(grouped).forEach(name=>{
 
         const tr =
-            document.createElement(
-                "tr"
-            );
+            document.createElement("tr");
 
-        tr.innerHTML=`
+
+        tr.innerHTML = `
 
             <td>
-
                 ${escapeHtml(name)}
-
             </td>
 
             <td>
-
                 ${year}
-
             </td>
 
             <td>
-
-                ${months[
-                    month-1
-                ]}
-
+                ${months[month-1] || ""}
             </td>
 
             <td>
-
                 <span class="badge">
-
                     ${grouped[name]}
-
                 </span>
-
             </td>
 
         `;
+
 
         tbody.appendChild(tr);
 
@@ -3029,19 +2551,20 @@ async function loadStatistics(){
     const articles =
         await supabaseClient
         .from("meqaleler")
-        .select(
-            "id,organization_name"
-        );
+        .select("id,organization_name");
+
 
     const volunteers =
         await supabaseClient
         .from("konulluler")
         .select("id");
 
+
     const theses =
         await supabaseClient
         .from("tezisler")
         .select("id");
+
 
     const articleData =
         articles.data || [];
@@ -3052,35 +2575,32 @@ async function loadStatistics(){
     const thesisData =
         theses.data || [];
 
+
     document
-    .getElementById(
-        "totalArticles"
-    )
+    .getElementById("totalArticles")
     .textContent =
     articleData.length;
 
+
     document
-    .getElementById(
-        "totalVolunteers"
-    )
+    .getElementById("totalVolunteers")
     .textContent =
     volunteerData.length;
 
+
     document
-    .getElementById(
-        "totalTheses"
-    )
+    .getElementById("totalTheses")
     .textContent =
     thesisData.length;
+
 
     const organizations =
         new Set();
 
+
     articleData.forEach(row=>{
 
-        if(
-            row.organization_name
-        ){
+        if(row.organization_name){
 
             organizations.add(
                 row.organization_name
@@ -3090,10 +2610,9 @@ async function loadStatistics(){
 
     });
 
+
     document
-    .getElementById(
-        "totalOrganizations"
-    )
+    .getElementById("totalOrganizations")
     .textContent =
     organizations.size;
 
@@ -3101,67 +2620,58 @@ async function loadStatistics(){
 
 
 /* =====================================================
-   TƏHLÜKƏSİZ HTML
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHtml(value){
 
     return String(value)
 
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
+        .replaceAll("&","&amp;")
 
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
+        .replaceAll("<","&lt;")
 
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
+        .replaceAll(">","&gt;")
 
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
+        .replaceAll('"',"&quot;")
 
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
+        .replaceAll("'","&#039;");
 
 }
 
 
+/* =====================================================
+   URL TƏHLÜKƏSİZLİYİ
+===================================================== */
+
 function safeUrl(url){
 
     if(!url){
-
         return "#";
-
     }
+
 
     try{
 
         const parsed =
             new URL(url);
 
-        if(
-            parsed.protocol ===
-            "http:" ||
 
-            parsed.protocol ===
-            "https:"
+        if(
+            parsed.protocol === "http:" ||
+            parsed.protocol === "https:"
         ){
 
             return parsed.href;
 
         }
 
-    }catch(error){}
+    }catch(error){
+
+        console.error(error);
+
+    }
+
 
     return "#";
 
@@ -3173,23 +2683,22 @@ function safeUrl(url){
 ===================================================== */
 
 fillYears();
-
 fillMonths();
 
 loadPublicTheses();
 
+
 (async()=>{
 
     const {
-        data:{
-            session
-        }
+        data
     } =
     await supabaseClient
     .auth
     .getSession();
 
-    if(session){
+
+    if(data && data.session){
 
         showSection("admin");
 
@@ -3202,6 +2711,30 @@ loadPublicTheses();
     }
 
 })();
+
+
+/* =====================================================
+   AUTH DƏYİŞİKLİYİ
+===================================================== */
+
+supabaseClient
+.auth
+.onAuthStateChange(
+    async(event,session)=>{
+
+        if(
+            event === "SIGNED_IN" &&
+            session
+        ){
+
+            showSection("admin");
+
+            await loadAdmin();
+
+        }
+
+    }
+);
 
 </script>
 
