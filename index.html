@@ -4,11 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>E-Tezis Sistemi</title>
+<title>E-Tezis Premium</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
+/* =====================================================
+   PREMIUM DESIGN
+===================================================== */
+
+:root{
+    --primary:#17365d;
+    --primary2:#244f82;
+    --accent:#d6a84f;
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --text:#182230;
+    --muted:#6b7280;
+    --border:#e4e9f0;
+    --danger:#c62828;
+    --success:#16803c;
+    --shadow:0 10px 35px rgba(20,42,70,.08);
+}
 
 *{
     box-sizing:border-box;
@@ -16,65 +34,103 @@
 
 body{
     margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f3f6fa;
-    color:#1f2937;
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+    background:
+        linear-gradient(
+            135deg,
+            #f7f9fc 0%,
+            #eef3f9 100%
+        );
+    color:var(--text);
 }
 
-header{
-    background:#17365d;
-    color:white;
-    padding:18px 25px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.logo{
-    font-size:23px;
-    font-weight:bold;
-}
-
-nav{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+button,
+input,
+select{
+    font-family:inherit;
 }
 
 button{
-    border:0;
-    border-radius:7px;
-    padding:11px 16px;
     cursor:pointer;
-    font-weight:bold;
 }
 
-.btn{
-    background:#17365d;
+.topbar{
+    min-height:76px;
+    background:
+        linear-gradient(
+            135deg,
+            #102b4b,
+            #1c4d80
+        );
     color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:15px 28px;
+    box-shadow:0 5px 25px rgba(0,0,0,.15);
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.btn-light{
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.brand-icon{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    background:rgba(255,255,255,.13);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.brand-title{
+    font-size:20px;
+    font-weight:800;
+}
+
+.brand-subtitle{
+    font-size:12px;
+    opacity:.75;
+    margin-top:2px;
+}
+
+.nav{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.nav button{
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.09);
+    color:white;
+    padding:10px 15px;
+    border-radius:9px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.nav button:hover{
     background:white;
-    color:#17365d;
-}
-
-.btn-green{
-    background:#15803d;
-    color:white;
-}
-
-.btn-red{
-    background:#b91c1c;
-    color:white;
+    color:var(--primary);
 }
 
 .container{
-    max-width:1250px;
-    margin:30px auto;
-    padding:0 18px;
+    max-width:1400px;
+    margin:0 auto;
+    padding:30px 22px 60px;
 }
 
 .page{
@@ -85,123 +141,258 @@ button{
     display:block;
 }
 
-.card{
-    background:white;
-    padding:24px;
-    border-radius:12px;
-    margin-bottom:20px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
+.hero{
+    border-radius:22px;
+    padding:35px;
+    color:white;
+    background:
+        linear-gradient(
+            135deg,
+            #17365d,
+            #28639b
+        );
+    box-shadow:var(--shadow);
+    margin-bottom:24px;
+    position:relative;
+    overflow:hidden;
 }
 
-h1,h2,h3{
-    color:#17365d;
+.hero:after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(255,255,255,.05);
+    right:-100px;
+    top:-130px;
+}
+
+.hero h1{
+    margin:0 0 10px;
+    color:white;
+    font-size:34px;
+}
+
+.hero p{
+    margin:0;
+    max-width:750px;
+    opacity:.88;
+    line-height:1.7;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:25px;
+    margin-bottom:22px;
+    box-shadow:var(--shadow);
+}
+
+.card-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card-title h2{
+    margin:0;
+}
+
+h1,
+h2,
+h3{
+    color:var(--primary);
+}
+
+h2{
+    font-size:22px;
+}
+
+h3{
+    font-size:17px;
 }
 
 .grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:16px;
+    gap:17px;
 }
 
 .grid3{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:16px;
+    gap:17px;
 }
 
 .grid4{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:16px;
+    gap:17px;
+}
+
+.field{
+    margin-bottom:5px;
 }
 
 label{
     display:block;
-    font-weight:bold;
-    margin-bottom:7px;
+    font-weight:750;
+    font-size:14px;
+    margin-bottom:8px;
+    color:#344054;
 }
 
 input,
 select{
     width:100%;
-    padding:12px;
-    border:1px solid #d1d5db;
-    border-radius:7px;
-    margin-bottom:15px;
+    border:1px solid #d7dee8;
+    background:#fff;
+    padding:13px 14px;
+    border-radius:10px;
     font-size:15px;
+    outline:none;
+    transition:.2s;
 }
 
 input:focus,
 select:focus{
-    outline:none;
-    border-color:#17365d;
+    border-color:var(--primary2);
+    box-shadow:0 0 0 3px rgba(36,79,130,.09);
+}
+
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:12px 17px;
+    background:var(--primary);
+    color:white;
+    font-weight:750;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+    background:var(--primary2);
+}
+
+.btn-gold{
+    background:var(--accent);
+    color:#202020;
+}
+
+.btn-green{
+    background:var(--success);
+    color:white;
+}
+
+.btn-red{
+    background:var(--danger);
+    color:white;
+}
+
+.btn-gray{
+    background:#eef2f6;
+    color:#344054;
+}
+
+.btn-small{
+    padding:8px 11px;
+    font-size:13px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
 }
 
 .message{
     display:none;
-    padding:12px;
-    border-radius:7px;
-    margin-bottom:15px;
+    padding:13px 15px;
+    border-radius:10px;
+    margin-bottom:17px;
+    font-weight:650;
 }
 
 .success{
-    background:#dcfce7;
-    color:#166534;
+    background:#e7f7ed;
+    color:#116b32;
+    border:1px solid #bde8ca;
 }
 
 .error{
-    background:#fee2e2;
-    color:#991b1b;
+    background:#fff0f0;
+    color:#a61b1b;
+    border:1px solid #f3c1c1;
 }
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
+    gap:16px;
 }
 
 .stat{
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
+    border:1px solid var(--border);
+    border-radius:15px;
     padding:20px;
-    text-align:center;
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #f8fafc
+        );
+}
+
+.stat-icon{
+    font-size:24px;
+    margin-bottom:10px;
 }
 
 .stat-number{
+    color:var(--primary);
     font-size:31px;
-    font-weight:bold;
-    color:#17365d;
+    font-weight:850;
 }
 
-.stat-title{
-    color:#6b7280;
-    margin-top:5px;
+.stat-label{
+    color:var(--muted);
+    font-size:14px;
+    margin-top:4px;
 }
 
 .article{
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    padding:18px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:19px;
     margin-bottom:12px;
     background:#fff;
 }
 
+.article:hover{
+    box-shadow:0 7px 25px rgba(20,42,70,.07);
+}
+
 .article-title{
-    font-size:19px;
-    font-weight:bold;
-    color:#17365d;
-    margin-bottom:10px;
+    color:var(--primary);
+    font-weight:800;
+    font-size:18px;
+    margin-bottom:12px;
 }
 
 .info{
-    padding:5px 0;
+    margin:6px 0;
+    line-height:1.5;
 }
 
 .link{
     color:#1877f2;
+    font-weight:750;
     text-decoration:none;
-    font-weight:bold;
 }
 
 .link:hover{
@@ -209,11 +400,12 @@ select:focus{
 }
 
 .empty{
-    padding:30px;
+    padding:35px 20px;
+    border-radius:12px;
+    background:#f7f9fc;
+    color:var(--muted);
     text-align:center;
-    background:#f8fafc;
-    border-radius:9px;
-    color:#6b7280;
+    border:1px dashed #d7dee8;
 }
 
 .table-wrap{
@@ -223,48 +415,52 @@ select:focus{
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:12px;
 }
 
 th,
 td{
-    padding:11px;
-    border-bottom:1px solid #e5e7eb;
+    padding:13px 12px;
+    border-bottom:1px solid var(--border);
     text-align:left;
-    white-space:nowrap;
 }
 
 th{
-    background:#f8fafc;
-    color:#17365d;
+    color:var(--primary);
+    background:#f7f9fc;
+    font-size:13px;
 }
 
 .badge{
     display:inline-block;
-    padding:4px 9px;
+    padding:5px 9px;
     border-radius:20px;
-    background:#e0f2fe;
-    color:#075985;
-    font-size:13px;
+    font-size:12px;
+    font-weight:750;
+    background:#edf4fc;
+    color:var(--primary);
 }
 
 .search{
     font-size:16px;
-    padding:14px;
+    padding:15px;
 }
 
-.report-box{
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
-    padding:18px;
-    border-radius:10px;
-    margin-bottom:15px;
+.report{
+    background:
+        linear-gradient(
+            135deg,
+            #f7faff,
+            #eef4fb
+        );
+    border:1px solid #dce6f2;
+    border-radius:15px;
+    padding:20px;
 }
 
 .report-number{
-    font-size:28px;
-    font-weight:bold;
-    color:#17365d;
+    font-size:30px;
+    font-weight:850;
+    color:var(--primary);
 }
 
 .thesis{
@@ -272,36 +468,128 @@ th{
     justify-content:space-between;
     align-items:center;
     gap:15px;
-    padding:16px;
-    border:1px solid #e5e7eb;
-    border-radius:9px;
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:13px;
     margin-bottom:10px;
 }
 
 .login-card{
-    max-width:500px;
-    margin:50px auto;
+    max-width:510px;
+    margin:55px auto;
+}
+
+.login-logo{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.divider{
+    height:1px;
+    background:var(--border);
+    margin:25px 0;
+}
+
+.section-title{
+    margin-top:5px;
+    margin-bottom:18px;
 }
 
 footer{
-    background:#17365d;
+    background:#102b4b;
     color:white;
     text-align:center;
-    padding:22px;
-    margin-top:50px;
+    padding:25px;
+    font-size:13px;
 }
 
-@media(max-width:850px){
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(7,19,34,.58);
+    z-index:500;
+    padding:20px;
+    overflow:auto;
+}
+
+.modal.show{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-box{
+    width:100%;
+    max-width:650px;
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.close{
+    border:0;
+    background:#eef2f6;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    font-size:18px;
+}
+
+@media(max-width:1000px){
+
+    .stats,
+    .grid4{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:750px){
+
+    .topbar{
+        position:relative;
+        padding:14px;
+    }
+
+    .container{
+        padding:20px 12px 40px;
+    }
+
+    .hero{
+        padding:25px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
 
     .grid,
     .grid3,
-    .grid4,
-    .stats{
+    .stats,
+    .grid4{
         grid-template-columns:1fr;
     }
 
-    header{
-        align-items:flex-start;
+    .card{
+        padding:18px;
+    }
+
+    .nav{
+        width:100%;
+    }
+
+    .nav button{
+        flex:1;
     }
 
     .thesis{
@@ -316,30 +604,50 @@ footer{
 
 <body>
 
-<header>
 
-<div class="logo">
-E-Tezis Sistemi
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="topbar">
+
+<div class="brand">
+
+<div class="brand-icon">
+📚
 </div>
 
-<nav>
+<div>
 
-<button
-class="btn-light"
-onclick="showPage('userPage')">
-İstifadəçi
+<div class="brand-title">
+E-Tezis
+</div>
+
+<div class="brand-subtitle">
+Elektron Tezis və Məqalə Sistemi
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="nav">
+
+<button onclick="showPage('userPage')">
+🏢 Təşkilat
 </button>
 
-<button
-class="btn-light"
-onclick="showPage('thesisPage')">
-Tezislər
+<button onclick="showPage('volunteerPage')">
+🤝 Könüllü
 </button>
 
-<button
-class="btn-light"
-onclick="openAdmin()">
-Admin
+<button onclick="showPage('thesisPage')">
+📄 Tezislər
+</button>
+
+<button onclick="openAdmin()">
+🔐 Admin
 </button>
 
 </nav>
@@ -351,17 +659,21 @@ Admin
 
 
 <!-- =====================================================
-     İSTİFADƏÇİ
+     USER PAGE
 ===================================================== -->
 
 <section id="userPage" class="page active">
 
-<div class="card">
+<div class="hero">
 
-<h1>Məqalə göndər</h1>
+<h1>
+Məqalə göndər
+</h1>
 
 <p>
-Təşkilat və məqalə məlumatlarını daxil edin.
+Təşkilatınızın hazırladığı məqaləni elektron sistem
+vasitəsilə göndərin. İl və ay seçin, məlumatları daxil
+edin və Facebook məqalə linkini əlavə edin.
 </p>
 
 </div>
@@ -376,11 +688,18 @@ class="message success"></div>
 class="message error"></div>
 
 
-<h2>Tarix</h2>
+<div class="card-title">
+
+<h2>
+📅 Məqalə tarixi
+</h2>
+
+</div>
+
 
 <div class="grid">
 
-<div>
+<div class="field">
 
 <label>İl</label>
 
@@ -388,7 +707,8 @@ class="message error"></div>
 
 </div>
 
-<div>
+
+<div class="field">
 
 <label>Ay</label>
 
@@ -398,23 +718,36 @@ class="message error"></div>
 
 </div>
 
+</div>
 
-<div class="section">
 
-<h2>Təşkilatın məlumatları</h2>
+<div class="card">
 
-<label>Təşkilatın adı</label>
+<h2 class="section-title">
+🏢 Təşkilat məlumatları
+</h2>
+
+
+<div class="field">
+
+<label>
+Təşkilatın adı
+</label>
 
 <input
 id="organization"
 placeholder="Təşkilatın tam adını yazın">
 
+</div>
+
 
 <div class="grid">
 
-<div>
+<div class="field">
 
-<label>Məsul şəxsin adı, soyadı</label>
+<label>
+Məsul şəxsin adı, soyadı
+</label>
 
 <input
 id="mesulAd"
@@ -423,9 +756,11 @@ placeholder="Ad Soyad">
 </div>
 
 
-<div>
+<div class="field">
 
-<label>Məsul şəxsin vəzifəsi</label>
+<label>
+Məsul şəxsin vəzifəsi
+</label>
 
 <input
 id="mesulVezife"
@@ -434,9 +769,11 @@ placeholder="Vəzifə">
 </div>
 
 
-<div>
+<div class="field">
 
-<label>Məsul şəxsin əlaqə nömrəsi</label>
+<label>
+Məsul şəxsin əlaqə nömrəsi
+</label>
 
 <input
 id="mesulTelefon"
@@ -445,9 +782,11 @@ placeholder="050 XXX XX XX">
 </div>
 
 
-<div>
+<div class="field">
 
-<label>Məsul şəxsin e-maili</label>
+<label>
+Məsul şəxsin e-maili
+</label>
 
 <input
 id="mesulEmail"
@@ -461,22 +800,33 @@ placeholder="example@mail.com">
 </div>
 
 
-<div class="section">
+<div class="card">
 
-<h2>Məqalə məlumatları</h2>
+<h2 class="section-title">
+✍️ Məqalə məlumatları
+</h2>
 
-<label>Məqalənin adı</label>
+
+<div class="field">
+
+<label>
+Məqalənin adı
+</label>
 
 <input
 id="meqaleAdi"
-placeholder="Məqalənin tam adını yazın">
+placeholder="Məqalənin tam adı">
+
+</div>
 
 
 <div class="grid">
 
-<div>
+<div class="field">
 
-<label>Məqaləni yazan şəxsin adı, soyadı</label>
+<label>
+Məqaləni yazan şəxsin adı, soyadı
+</label>
 
 <input
 id="muellifAd"
@@ -485,9 +835,11 @@ placeholder="Ad Soyad">
 </div>
 
 
-<div>
+<div class="field">
 
-<label>Məqaləni yazan şəxsin vəzifəsi</label>
+<label>
+Məqaləni yazan şəxsin vəzifəsi
+</label>
 
 <input
 id="muellifVezife"
@@ -498,30 +850,40 @@ placeholder="Vəzifə">
 </div>
 
 
-<label>Facebook məqalə linki</label>
+<div class="field">
+
+<label>
+Facebook məqalə linki
+</label>
 
 <input
 id="facebookLink"
 type="url"
 placeholder="https://www.facebook.com/...">
 
+</div>
+
 
 <button
-class="btn"
+class="btn btn-gold"
 onclick="sendArticle()">
 
-Məqaləni göndər
+📤 Məqaləni göndər
 
 </button>
-
-</div>
 
 </div>
 
 
 <div class="card">
 
-<h2>Seçilmiş ayın məqalələri</h2>
+<div class="card-title">
+
+<h2>
+📋 Seçilmiş ayın məqalələri
+</h2>
+
+</div>
 
 <div id="userArticles">
 
@@ -538,18 +900,116 @@ Yüklənir...
 
 
 <!-- =====================================================
-     TEZİSLƏR
+     VOLUNTEER PAGE
+===================================================== -->
+
+<section id="volunteerPage" class="page">
+
+<div class="hero">
+
+<h1>
+🤝 Könüllü məqalə göndərişi
+</h1>
+
+<p>
+Könüllülər üçün sadələşdirilmiş göndəriş bölməsi.
+Burada yalnız ad, soyad və məqalə linki tələb olunur.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div id="volunteerSuccess"
+class="message success"></div>
+
+<div id="volunteerError"
+class="message error"></div>
+
+
+<h2>
+Könüllünün məlumatları
+</h2>
+
+
+<div class="grid">
+
+<div class="field">
+
+<label>
+Könüllünün adı və soyadı
+</label>
+
+<input
+id="volunteerName"
+placeholder="Ad Soyad">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Məqalənin linki
+</label>
+
+<input
+id="volunteerLink"
+type="url"
+placeholder="https://www.facebook.com/...">
+
+</div>
+
+</div>
+
+
+<button
+class="btn btn-gold"
+onclick="sendVolunteer()">
+
+📤 Könüllü məqaləsini göndər
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+📋 Göndərilmiş könüllü məqalələri
+</h2>
+
+<div id="volunteerList">
+
+<div class="empty">
+Yüklənir...
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     THESIS PAGE
 ===================================================== -->
 
 <section id="thesisPage" class="page">
 
-<div class="card">
+<div class="hero">
 
-<h1>Tezislər</h1>
+<h1>
+📄 Tezis kitabxanası
+</h1>
 
 <p>
-Admin tərəfindən yerləşdirilmiş Word tezisləri
-burada il və aya görə görünəcək.
+Admin tərəfindən yerləşdirilmiş Word formatlı tezisləri
+il və ay seçərək açın.
 </p>
 
 </div>
@@ -559,17 +1019,22 @@ burada il və aya görə görünəcək.
 
 <div class="grid">
 
-<div>
+<div class="field">
 
-<label>İl</label>
+<label>
+İl
+</label>
 
 <select id="thesisYear"></select>
 
 </div>
 
-<div>
 
-<label>Ay</label>
+<div class="field">
+
+<label>
+Ay
+</label>
 
 <select id="thesisMonth"></select>
 
@@ -582,7 +1047,7 @@ burada il və aya görə görünəcək.
 class="btn"
 onclick="loadTheses()">
 
-Tezisləri göstər
+🔎 Tezisləri göstər
 
 </button>
 
@@ -613,10 +1078,22 @@ Yüklənir...
 
 <div class="card login-card">
 
-<h1>🔐 Admin Girişi</h1>
+<div class="login-logo">
+🔐
+</div>
 
-<p>
-Admin panelinə daxil olmaq üçün e-mail və şifrənizi daxil edin.
+<h1 style="text-align:center;">
+Admin paneli
+</h1>
+
+<p style="
+text-align:center;
+color:var(--muted);
+">
+
+Sistem idarəetməsi üçün admin hesabınızla
+daxil olun.
+
 </p>
 
 
@@ -624,27 +1101,40 @@ Admin panelinə daxil olmaq üçün e-mail və şifrənizi daxil edin.
 class="message error"></div>
 
 
-<label>Admin e-mail</label>
+<div class="field">
+
+<label>
+Admin e-mail
+</label>
 
 <input
 id="adminEmail"
 type="email"
 placeholder="admin@example.com">
 
+</div>
 
-<label>Şifrə</label>
+
+<div class="field">
+
+<label>
+Şifrə
+</label>
 
 <input
 id="adminPassword"
 type="password"
 placeholder="Şifrənizi daxil edin">
 
+</div>
+
 
 <button
 class="btn"
+style="width:100%;"
 onclick="adminLogin()">
 
-Admin panelinə daxil ol
+🔓 Admin panelinə daxil ol
 
 </button>
 
@@ -655,52 +1145,148 @@ Admin panelinə daxil ol
 
 
 <!-- =====================================================
-     ADMIN
+     ADMIN PAGE
 ===================================================== -->
 
 <section id="adminPage" class="page">
 
-<div class="card">
+<div class="hero">
 
 <div style="
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:10px;
+gap:20px;
 flex-wrap:wrap;
 ">
 
-<h1>Admin Panel</h1>
+<div>
 
-<button
-class="btn-red"
-onclick="adminLogout()">
-
-Çıxış
-
-</button>
-
-</div>
+<h1>
+Admin Dashboard
+</h1>
 
 <p>
-Burada istifadəçilərin göndərdiyi bütün məlumatlar,
-statistikalar, hesabatlar və Word tezisləri idarə olunur.
+E-Tezis sisteminin bütün məlumatlarını buradan idarə edin.
 </p>
 
 </div>
 
 
-<!-- ADMIN AY SEÇİMİ -->
+<button
+class="btn btn-gold"
+onclick="adminLogout()">
+
+🚪 Çıxış
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
+
+<div class="stat-icon">
+📝
+</div>
+
+<div
+id="articleCount"
+class="stat-number">
+0
+</div>
+
+<div class="stat-label">
+Məqalələr
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+📄
+</div>
+
+<div
+id="thesisCount"
+class="stat-number">
+0
+</div>
+
+<div class="stat-label">
+Tezislər
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+🏢
+</div>
+
+<div
+id="organizationCount"
+class="stat-number">
+0
+</div>
+
+<div class="stat-label">
+Təşkilatlar
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+🤝
+</div>
+
+<div
+id="volunteerCount"
+class="stat-number">
+0
+</div>
+
+<div class="stat-label">
+Könüllülər
+</div>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<!-- FILTER -->
 
 <div class="card">
 
-<h2>Statistika üçün dövr</h2>
+<h2>
+📅 Dashboard dövrü
+</h2>
+
 
 <div class="grid">
 
 <div>
 
-<label>İl</label>
+<label>
+İl
+</label>
 
 <select id="adminYear"></select>
 
@@ -709,7 +1295,9 @@ statistikalar, hesabatlar və Word tezisləri idarə olunur.
 
 <div>
 
-<label>Ay</label>
+<label>
+Ay
+</label>
 
 <select id="adminMonth"></select>
 
@@ -722,91 +1310,19 @@ statistikalar, hesabatlar və Word tezisləri idarə olunur.
 class="btn"
 onclick="loadAdminData()">
 
-Statistikaya bax
+📊 Statistikaya bax
 
 </button>
 
 </div>
 
 
-<!-- STATİSTİKA -->
-
-<div class="card">
-
-<h2>Ümumi statistika</h2>
-
-<div class="stats">
-
-<div class="stat">
-
-<div
-id="articleCount"
-class="stat-number">
-0
-</div>
-
-<div class="stat-title">
-Məqalə
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div
-id="thesisCount"
-class="stat-number">
-0
-</div>
-
-<div class="stat-title">
-Tezis
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div
-id="organizationCount"
-class="stat-number">
-0
-</div>
-
-<div class="stat-title">
-Təşkilat
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div
-id="authorCount"
-class="stat-number">
-0
-</div>
-
-<div class="stat-title">
-Müəllif
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- TƏŞKİLAT STATİSTİKASI -->
+<!-- ORGANIZATION STATS -->
 
 <div class="card">
 
 <h2>
-Təşkilatlar üzrə məqalə sayı
+🏢 Təşkilatlar üzrə statistika
 </h2>
 
 <div id="organizationStats">
@@ -820,25 +1336,25 @@ Məlumat yoxdur.
 </div>
 
 
-<!-- MƏQALƏ AXTARIŞI -->
+<!-- SEARCH -->
 
 <div class="card">
 
 <h2>
-Məqalə axtarışı
+🔎 Məqalə axtarışı
 </h2>
 
 <input
 id="articleSearch"
 class="search"
-placeholder="Məqalənin adına görə axtar..."
+placeholder="Məqalə adı, təşkilat və ya müəllif..."
 oninput="searchArticles()">
 
 
 <div id="searchResults">
 
 <div class="empty">
-Axtarış üçün məqalə adını yazın.
+Axtarış üçün məlumat yazın.
 </div>
 
 </div>
@@ -846,12 +1362,50 @@ Axtarış üçün məqalə adını yazın.
 </div>
 
 
-<!-- HESABATLAR -->
+<!-- ARTICLES -->
 
 <div class="card">
 
 <h2>
-Hesabatlar
+📝 Məqalələr
+</h2>
+
+<div id="adminArticles">
+
+<div class="empty">
+Məlumat yoxdur.
+</div>
+
+</div>
+
+</div>
+
+
+<!-- VOLUNTEERS -->
+
+<div class="card">
+
+<h2>
+🤝 Könüllü məqalələri
+</h2>
+
+<div id="adminVolunteers">
+
+<div class="empty">
+Məlumat yoxdur.
+</div>
+
+</div>
+
+</div>
+
+
+<!-- REPORTS -->
+
+<div class="card">
+
+<h2>
+📊 Hesabatlar
 </h2>
 
 
@@ -895,37 +1449,8 @@ Rüblük
 </div>
 
 
-<div id="quarterSelectBox"
-style="display:none;">
-
-<label>
-Rüb
-</label>
-
-<select id="reportQuarter">
-
-<option value="1">
-I rüb — Yanvar, Fevral, Mart
-</option>
-
-<option value="2">
-II rüb — Aprel, May, İyun
-</option>
-
-<option value="3">
-III rüb — İyul, Avqust, Sentyabr
-</option>
-
-<option value="4">
-IV rüb — Oktyabr, Noyabr, Dekabr
-</option>
-
-</select>
-
-</div>
-
-
-<div id="monthlyReportBox">
+<div
+id="monthlyReportBox">
 
 <label>
 Ay
@@ -936,11 +1461,44 @@ Ay
 </div>
 
 
+<div
+id="quarterSelectBox"
+style="display:none;">
+
+<label>
+Rüb
+</label>
+
+<select id="reportQuarter">
+
+<option value="1">
+I rüb
+</option>
+
+<option value="2">
+II rüb
+</option>
+
+<option value="3">
+III rüb
+</option>
+
+<option value="4">
+IV rüb
+</option>
+
+</select>
+
+</div>
+
+
+<br>
+
 <button
 class="btn"
 onclick="generateReport()">
 
-Hesabatı hazırla
+📊 Hesabatı hazırla
 
 </button>
 
@@ -958,31 +1516,12 @@ Hesabat seçin.
 </div>
 
 
-<!-- BÜTÜN MƏQALƏLƏR -->
+<!-- THESIS UPLOAD -->
 
 <div class="card">
 
 <h2>
-Seçilmiş ayın bütün məqalələri
-</h2>
-
-<div id="adminArticles">
-
-<div class="empty">
-Məlumat yoxdur.
-</div>
-
-</div>
-
-</div>
-
-
-<!-- WORD TEZİS -->
-
-<div class="card">
-
-<h2>
-Word tezisi əlavə et
+📄 Word tezisi əlavə et
 </h2>
 
 
@@ -993,17 +1532,35 @@ class="message success"></div>
 class="message error"></div>
 
 
-<label>İl</label>
+<div class="grid">
+
+<div>
+
+<label>
+İl
+</label>
 
 <select id="uploadYear"></select>
 
+</div>
 
-<label>Ay</label>
+
+<div>
+
+<label>
+Ay
+</label>
 
 <select id="uploadMonth"></select>
 
+</div>
 
-<label>Word faylı</label>
+</div>
+
+
+<label>
+Word faylı
+</label>
 
 <input
 id="thesisFile"
@@ -1012,12 +1569,31 @@ accept=".doc,.docx">
 
 
 <button
-class="btn-green"
+class="btn btn-green"
 onclick="uploadThesis()">
 
-Word faylını əlavə et
+📤 Word faylını əlavə et
 
 </button>
+
+</div>
+
+
+<!-- THESIS ADMIN -->
+
+<div class="card">
+
+<h2>
+📚 Tezislərin idarəsi
+</h2>
+
+<div id="adminTheses">
+
+<div class="empty">
+Məlumat yoxdur.
+</div>
+
+</div>
 
 </div>
 
@@ -1026,9 +1602,301 @@ Word faylını əlavə et
 </div>
 
 
+
+<!-- =====================================================
+     EDIT ARTICLE MODAL
+===================================================== -->
+
+<div
+id="articleModal"
+class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>
+✏️ Məqaləni redaktə et
+</h2>
+
+<button
+class="close"
+onclick="closeModal('articleModal')">
+
+×
+</button>
+
+</div>
+
+
+<input
+type="hidden"
+id="editArticleId">
+
+
+<label>
+Təşkilat
+</label>
+
+<input
+id="editOrganization">
+
+
+<label>
+Məsul şəxsin adı
+</label>
+
+<input
+id="editMesulAd">
+
+
+<label>
+Məsul şəxsin vəzifəsi
+</label>
+
+<input
+id="editMesulVezife">
+
+
+<label>
+Telefon
+</label>
+
+<input
+id="editMesulTelefon">
+
+
+<label>
+E-mail
+</label>
+
+<input
+id="editMesulEmail">
+
+
+<label>
+Məqalənin adı
+</label>
+
+<input
+id="editMeqaleAdi">
+
+
+<label>
+Müəllif
+</label>
+
+<input
+id="editMuellifAd">
+
+
+<label>
+Müəllifin vəzifəsi
+</label>
+
+<input
+id="editMuellifVezife">
+
+
+<label>
+Facebook linki
+</label>
+
+<input
+id="editFacebookLink">
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="saveArticleEdit()">
+
+💾 Yadda saxla
+
+</button>
+
+<button
+class="btn btn-gray"
+onclick="closeModal('articleModal')">
+
+Ləğv et
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     EDIT VOLUNTEER MODAL
+===================================================== -->
+
+<div
+id="volunteerModal"
+class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>
+✏️ Könüllünü redaktə et
+</h2>
+
+<button
+class="close"
+onclick="closeModal('volunteerModal')">
+
+×
+</button>
+
+</div>
+
+
+<input
+type="hidden"
+id="editVolunteerId">
+
+
+<label>
+Ad və soyad
+</label>
+
+<input
+id="editVolunteerName">
+
+
+<label>
+Məqalə linki
+</label>
+
+<input
+id="editVolunteerLink">
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="saveVolunteerEdit()">
+
+💾 Yadda saxla
+
+</button>
+
+<button
+class="btn btn-gray"
+onclick="closeModal('volunteerModal')">
+
+Ləğv et
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     EDIT THESIS MODAL
+===================================================== -->
+
+<div
+id="thesisModal"
+class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>
+✏️ Tezisi redaktə et
+</h2>
+
+<button
+class="close"
+onclick="closeModal('thesisModal')">
+
+×
+</button>
+
+</div>
+
+
+<input
+type="hidden"
+id="editThesisId">
+
+
+<label>
+İl
+</label>
+
+<select id="editThesisYear"></select>
+
+
+<label>
+Ay
+</label>
+
+<select id="editThesisMonth"></select>
+
+
+<label>
+Fayl adı
+</label>
+
+<input
+id="editThesisName">
+
+
+<label>
+Word faylının URL-i
+</label>
+
+<input
+id="editThesisUrl">
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="saveThesisEdit()">
+
+💾 Yadda saxla
+
+</button>
+
+<button
+class="btn btn-gray"
+onclick="closeModal('thesisModal')">
+
+Ləğv et
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
 <footer>
 
-E-Tezis Sistemi © 2026
+E-Tezis Premium © 2026
+<br>
+Elektron Tezis və Məqalə İdarəetmə Sistemi
 
 </footer>
 
@@ -1057,8 +1925,7 @@ SUPABASE_KEY
    AYLAR
 ===================================================== */
 
-const months = [
-
+const months=[
 {number:1,name:"Yanvar"},
 {number:2,name:"Fevral"},
 {number:3,name:"Mart"},
@@ -1071,20 +1938,21 @@ const months = [
 {number:10,name:"Oktyabr"},
 {number:11,name:"Noyabr"},
 {number:12,name:"Dekabr"}
-
 ];
 
 
 /* =====================================================
-   İLLƏR
+   YEARS
 ===================================================== */
 
 function fillYears(id){
 
-const select =
+const el=
 document.getElementById(id);
 
-select.innerHTML="";
+if(!el)return;
+
+el.innerHTML="";
 
 for(
 let y=2026;
@@ -1092,39 +1960,37 @@ y<=2100;
 y++
 ){
 
-const option =
+const option=
 document.createElement("option");
 
 option.value=y;
 option.textContent=y;
 
-select.appendChild(option);
+el.appendChild(option);
 
 }
 
 }
 
-
-/* =====================================================
-   AYLAR
-===================================================== */
 
 function fillMonths(id){
 
-const select =
+const el=
 document.getElementById(id);
 
-select.innerHTML="";
+if(!el)return;
+
+el.innerHTML="";
 
 months.forEach(m=>{
 
-const option =
+const option=
 document.createElement("option");
 
 option.value=m.number;
 option.textContent=m.name;
 
-select.appendChild(option);
+el.appendChild(option);
 
 });
 
@@ -1132,7 +1998,7 @@ select.appendChild(option);
 
 
 /* =====================================================
-   BAŞLANĞIC
+   INITIALIZE
 ===================================================== */
 
 function initialize(){
@@ -1142,7 +2008,8 @@ function initialize(){
 "thesisYear",
 "adminYear",
 "uploadYear",
-"reportYear"
+"reportYear",
+"editThesisYear"
 ].forEach(fillYears);
 
 
@@ -1151,25 +2018,20 @@ function initialize(){
 "thesisMonth",
 "adminMonth",
 "uploadMonth",
-"reportMonth"
+"reportMonth",
+"editThesisMonth"
 ].forEach(fillMonths);
 
 
-const now =
-new Date();
+const now=new Date();
 
-let year =
-now.getFullYear();
+let year=now.getFullYear();
 
-let month =
-now.getMonth()+1;
+let month=now.getMonth()+1;
 
+if(year<2026)year=2026;
 
-if(year<2026)
-year=2026;
-
-if(year>2100)
-year=2100;
+if(year>2100)year=2100;
 
 
 [
@@ -1177,10 +2039,14 @@ year=2100;
 "thesisYear",
 "adminYear",
 "uploadYear",
-"reportYear"
+"reportYear",
+"editThesisYear"
 ].forEach(id=>{
 
-document.getElementById(id).value=year;
+const el=
+document.getElementById(id);
+
+if(el)el.value=year;
 
 });
 
@@ -1190,15 +2056,21 @@ document.getElementById(id).value=year;
 "thesisMonth",
 "adminMonth",
 "uploadMonth",
-"reportMonth"
+"reportMonth",
+"editThesisMonth"
 ].forEach(id=>{
 
-document.getElementById(id).value=month;
+const el=
+document.getElementById(id);
+
+if(el)el.value=month;
 
 });
 
 
 loadUserArticles();
+
+loadVolunteerList();
 
 loadTheses();
 
@@ -1206,7 +2078,7 @@ loadTheses();
 
 
 /* =====================================================
-   SƏHİFƏ
+   PAGE
 ===================================================== */
 
 async function showPage(id){
@@ -1215,7 +2087,7 @@ if(id==="adminPage"){
 
 const {
 data
-} =
+}=
 await supabaseClient.auth.getSession();
 
 
@@ -1233,25 +2105,23 @@ return;
 document
 .querySelectorAll(".page")
 .forEach(page=>{
-
 page.classList.remove("active");
-
 });
 
 
-const page =
+const page=
 document.getElementById(id);
 
-
-if(page){
-
+if(page)
 page.classList.add("active");
-
-}
 
 
 if(id==="userPage")
 loadUserArticles();
+
+
+if(id==="volunteerPage")
+loadVolunteerList();
 
 
 if(id==="thesisPage")
@@ -1265,22 +2135,20 @@ loadAdminData();
 
 
 /* =====================================================
-   ADMIN AÇ
+   ADMIN OPEN
 ===================================================== */
 
 async function openAdmin(){
 
 const {
 data
-} =
+}=
 await supabaseClient.auth.getSession();
 
 
 if(data.session){
 
 showPage("adminPage");
-
-loadAdminData();
 
 }else{
 
@@ -1297,33 +2165,32 @@ showPage("adminLoginPage");
 
 async function adminLogin(){
 
-const email =
+const email=
 document
 .getElementById("adminEmail")
-.value
-.trim();
+.value.trim();
 
 
-const password =
+const password=
 document
 .getElementById("adminPassword")
 .value;
 
 
-const errorBox =
+const error=
 document
 .getElementById("loginError");
 
 
-errorBox.style.display="none";
+hideMessage("loginError");
 
 
-if(!email || !password){
+if(!email||!password){
 
-errorBox.innerText =
-"E-mail və şifrəni daxil edin.";
-
-errorBox.style.display="block";
+showError(
+"loginError",
+"E-mail və şifrəni daxil edin."
+);
 
 return;
 
@@ -1332,8 +2199,8 @@ return;
 
 const {
 data,
-error
-} =
+error:authError
+}=
 await supabaseClient.auth.signInWithPassword({
 
 email:email,
@@ -1343,14 +2210,14 @@ password:password
 });
 
 
-if(error){
+if(authError){
 
-console.error(error);
+console.error(authError);
 
-errorBox.innerText =
-"E-mail və ya şifrə yanlışdır.";
-
-errorBox.style.display="block";
+showError(
+"loginError",
+"E-mail və ya şifrə yanlışdır."
+);
 
 return;
 
@@ -1359,18 +2226,16 @@ return;
 
 if(data.session){
 
-document
-.getElementById("adminEmail")
-.value="";
+document.getElementById(
+"adminEmail"
+).value="";
 
-document
-.getElementById("adminPassword")
-.value="";
+document.getElementById(
+"adminPassword"
+).value="";
 
 
 showPage("adminPage");
-
-loadAdminData();
 
 }
 
@@ -1378,7 +2243,7 @@ loadAdminData();
 
 
 /* =====================================================
-   ADMIN LOGOUT
+   LOGOUT
 ===================================================== */
 
 async function adminLogout(){
@@ -1391,7 +2256,7 @@ showPage("userPage");
 
 
 /* =====================================================
-   MƏQALƏ GÖNDƏR
+   SEND ARTICLE
 ===================================================== */
 
 async function sendArticle(){
@@ -1401,61 +2266,56 @@ hideMessage("articleSuccess");
 hideMessage("articleError");
 
 
-const year =
+const year=
 Number(
-document.getElementById("userYear").value
+document.getElementById(
+"userYear"
+).value
 );
 
 
-const month =
+const month=
 Number(
-document.getElementById("userMonth").value
+document.getElementById(
+"userMonth"
+).value
 );
 
 
-const organization =
-document.getElementById("organization")
-.value.trim();
+const organization=
+getValue("organization");
 
 
-const mesulAd =
-document.getElementById("mesulAd")
-.value.trim();
+const mesulAd=
+getValue("mesulAd");
 
 
-const mesulVezife =
-document.getElementById("mesulVezife")
-.value.trim();
+const mesulVezife=
+getValue("mesulVezife");
 
 
-const mesulTelefon =
-document.getElementById("mesulTelefon")
-.value.trim();
+const mesulTelefon=
+getValue("mesulTelefon");
 
 
-const mesulEmail =
-document.getElementById("mesulEmail")
-.value.trim();
+const mesulEmail=
+getValue("mesulEmail");
 
 
-const meqaleAdi =
-document.getElementById("meqaleAdi")
-.value.trim();
+const meqaleAdi=
+getValue("meqaleAdi");
 
 
-const muellifAd =
-document.getElementById("muellifAd")
-.value.trim();
+const muellifAd=
+getValue("muellifAd");
 
 
-const muellifVezife =
-document.getElementById("muellifVezife")
-.value.trim();
+const muellifVezife=
+getValue("muellifVezife");
 
 
-const facebookLink =
-document.getElementById("facebookLink")
-.value.trim();
+const facebookLink=
+getValue("facebookLink");
 
 
 if(!organization)
@@ -1503,14 +2363,14 @@ return showError(
 if(!muellifAd)
 return showError(
 "articleError",
-"Məqalə müəllifinin adını yazın."
+"Müəllifin adını yazın."
 );
 
 
 if(!muellifVezife)
 return showError(
 "articleError",
-"Məqalə müəllifinin vəzifəsini yazın."
+"Müəllifin vəzifəsini yazın."
 );
 
 
@@ -1521,14 +2381,7 @@ return showError(
 );
 
 
-if(!facebookLink.includes("facebook.com"))
-return showError(
-"articleError",
-"Facebook linki düzgün deyil."
-);
-
-
-const monthObject =
+const monthObject=
 months.find(
 m=>m.number===month
 );
@@ -1536,44 +2389,28 @@ m=>m.number===month
 
 const {
 error
-} =
+}=
 await supabaseClient
 .from("maqaleler")
 .insert({
 
 il:year,
-
 ay:month,
+ay_adi:monthObject.name,
 
-ay_adi:
-monthObject.name,
+teskilat:organization,
 
-teskilat:
-organization,
+mesul_ad:mesulAd,
+mesul_vezife:mesulVezife,
+mesul_telefon:mesulTelefon,
+mesul_email:mesulEmail,
 
-mesul_ad:
-mesulAd,
+meqale_adi:meqaleAdi,
 
-mesul_vezife:
-mesulVezife,
+muellif_ad:muellifAd,
+muellif_vezife:muellifVezife,
 
-mesul_telefon:
-mesulTelefon,
-
-mesul_email:
-mesulEmail,
-
-meqale_adi:
-meqaleAdi,
-
-muellif_ad:
-muellifAd,
-
-muellif_vezife:
-muellifVezife,
-
-facebook_link:
-facebookLink
+facebook_link:facebookLink
 
 });
 
@@ -1582,10 +2419,12 @@ if(error){
 
 console.error(error);
 
-return showError(
+showError(
 "articleError",
 error.message
 );
+
+return;
 
 }
 
@@ -1595,19 +2434,6 @@ showSuccess(
 "Məqalə uğurla göndərildi. ✅"
 );
 
-
-clearArticleForm();
-
-loadUserArticles();
-
-}
-
-
-/* =====================================================
-   FORM TƏMİZLƏ
-===================================================== */
-
-function clearArticleForm(){
 
 [
 "organization",
@@ -1620,51 +2446,129 @@ function clearArticleForm(){
 "muellifVezife",
 "facebookLink"
 ].forEach(id=>{
-
 document.getElementById(id).value="";
-
 });
+
+
+loadUserArticles();
 
 }
 
 
 /* =====================================================
-   İSTİFADƏÇİ MƏQALƏLƏRİ
+   VOLUNTEER SEND
 ===================================================== */
 
-async function loadUserArticles(){
+async function sendVolunteer(){
 
-const year =
-Number(
-document.getElementById("userYear").value
+hideMessage("volunteerSuccess");
+
+hideMessage("volunteerError");
+
+
+const name=
+getValue("volunteerName");
+
+
+const link=
+getValue("volunteerLink");
+
+
+if(!name){
+
+showError(
+"volunteerError",
+"Könüllünün ad və soyadını yazın."
+);
+
+return;
+
+}
+
+
+if(!link){
+
+showError(
+"volunteerError",
+"Məqalə linkini yazın."
+);
+
+return;
+
+}
+
+
+const {
+error
+}=
+await supabaseClient
+.from("konulluler")
+.insert({
+
+ad_soyad:name,
+
+meqale_link:link
+
+});
+
+
+if(error){
+
+console.error(error);
+
+showError(
+"volunteerError",
+error.message
+);
+
+return;
+
+}
+
+
+showSuccess(
+"volunteerSuccess",
+"Könüllü məqaləsi uğurla göndərildi. ✅"
 );
 
 
-const month =
-Number(
-document.getElementById("userMonth").value
-);
-
-
-const container =
 document.getElementById(
-"userArticles"
+"volunteerName"
+).value="";
+
+
+document.getElementById(
+"volunteerLink"
+).value="";
+
+
+loadVolunteerList();
+
+}
+
+
+/* =====================================================
+   VOLUNTEER LIST
+===================================================== */
+
+async function loadVolunteerList(){
+
+const container=
+document.getElementById(
+"volunteerList"
 );
 
 
-container.innerHTML =
-'<div class="empty">Yüklənir...</div>';
+if(!container)return;
 
 
 const {
 data,
 error
-} =
+}=
 await supabaseClient
-.from("maqaleler")
+.from("konulluler")
 .select("*")
-.eq("il",year)
-.eq("ay",month)
 .order(
 "created_at",
 {ascending:false}
@@ -1675,7 +2579,7 @@ if(error){
 
 console.error(error);
 
-container.innerHTML =
+container.innerHTML=
 '<div class="empty">Məlumat yüklənmədi.</div>';
 
 return;
@@ -1683,10 +2587,10 @@ return;
 }
 
 
-if(!data || data.length===0){
+if(!data.length){
 
-container.innerHTML =
-'<div class="empty">Bu ay üçün məqalə yoxdur.</div>';
+container.innerHTML=
+'<div class="empty">Hələ könüllü məqaləsi yoxdur.</div>';
 
 return;
 
@@ -1696,9 +2600,9 @@ return;
 container.innerHTML="";
 
 
-data.forEach(article=>{
+data.forEach(item=>{
 
-const div =
+const div=
 document.createElement("div");
 
 div.className="article";
@@ -1708,49 +2612,20 @@ div.innerHTML=`
 
 <div class="article-title">
 
-${escapeHtml(
-article.meqale_adi
+🤝 ${escapeHtml(
+item.ad_soyad
 )}
 
 </div>
-
-
-<div class="info">
-
-<strong>Təşkilat:</strong>
-
-${escapeHtml(
-article.teskilat
-)}
-
-</div>
-
-
-<div class="info">
-
-<strong>Müəllif:</strong>
-
-${escapeHtml(
-article.muellif_ad
-)}
-
-—
-
-${escapeHtml(
-article.muellif_vezife
-)}
-
-</div>
-
 
 <a
 class="link"
 href="${escapeAttribute(
-article.facebook_link
+item.meqale_link
 )}"
 target="_blank">
 
-🔗 Facebook məqaləsinə bax
+🔗 Məqaləni aç
 
 </a>
 
@@ -1768,30 +2643,38 @@ container.appendChild(div);
    ADMIN DATA
 ===================================================== */
 
+let allArticles=[];
+
+let allVolunteers=[];
+
+let allTheses=[];
+
+
 async function loadAdminData(){
 
 const {
-data:sessionData
-} =
+data:session
+}=
 await supabaseClient.auth.getSession();
 
 
-if(!sessionData.session){
-
+if(!session.session)
 return;
 
-}
 
-
-const year =
+const year=
 Number(
-document.getElementById("adminYear").value
+document.getElementById(
+"adminYear"
+).value
 );
 
 
-const month =
+const month=
 Number(
-document.getElementById("adminMonth").value
+document.getElementById(
+"adminMonth"
+).value
 );
 
 
@@ -1801,7 +2684,9 @@ month
 );
 
 
-await loadAdminThesisCount(
+await loadAdminVolunteers();
+
+await loadAdminTheses(
 year,
 month
 );
@@ -1810,31 +2695,18 @@ month
 
 
 /* =====================================================
-   ADMIN MƏQALƏLƏR
+   ADMIN ARTICLES
 ===================================================== */
-
-let allArticlesForSearch=[];
-
 
 async function loadAdminArticles(
 year,
 month
 ){
 
-const container =
-document.getElementById(
-"adminArticles"
-);
-
-
-container.innerHTML =
-'<div class="empty">Yüklənir...</div>';
-
-
 const {
 data,
 error
-} =
+}=
 await supabaseClient
 .from("maqaleler")
 .select("*")
@@ -1850,72 +2722,42 @@ if(error){
 
 console.error(error);
 
-container.innerHTML =
-'<div class="empty">Məlumat yüklənmədi.</div>';
-
 return;
 
 }
 
 
-allArticlesForSearch =
-data || [];
+allArticles=data||[];
 
 
 document.getElementById(
 "articleCount"
-).innerText =
-allArticlesForSearch.length;
+).innerText=
+allArticles.length;
 
 
 const organizations={};
 
-const authors=new Set();
 
+allArticles.forEach(item=>{
 
-allArticlesForSearch.forEach(article=>{
+const org=
+(item.teskilat||"").trim();
 
-const org =
-(article.teskilat || "")
-.trim();
+if(!organizations[org])
+organizations[org]=0;
 
-
-if(!organizations[org]){
-
-organizations[org]={
-count:0,
-mesul_ad:article.mesul_ad || "",
-mesul_vezife:article.mesul_vezife || "",
-mesul_telefon:article.mesul_telefon || "",
-mesul_email:article.mesul_email || ""
-};
-
-}
-
-
-organizations[org].count++;
-
-
-if(article.muellif_ad)
-authors.add(
-article.muellif_ad.trim()
-);
+organizations[org]++;
 
 });
 
 
 document.getElementById(
 "organizationCount"
-).innerText =
+).innerText=
 Object.keys(
 organizations
 ).length;
-
-
-document.getElementById(
-"authorCount"
-).innerText =
-authors.size;
 
 
 renderOrganizationStats(
@@ -1924,41 +2766,40 @@ organizations
 
 
 renderAdminArticles(
-allArticlesForSearch,
-container
+allArticles
 );
 
 
 renderSearchResults(
-allArticlesForSearch
+allArticles
 );
 
 }
 
 
 /* =====================================================
-   TƏŞKİLAT STATİSTİKASI
+   ORGANIZATION STATS
 ===================================================== */
 
 function renderOrganizationStats(
 organizations
 ){
 
-const container =
+const container=
 document.getElementById(
 "organizationStats"
 );
 
 
-const names =
+const names=
 Object.keys(
 organizations
 );
 
 
-if(names.length===0){
+if(!names.length){
 
-container.innerHTML =
+container.innerHTML=
 '<div class="empty">Bu ay üçün məlumat yoxdur.</div>';
 
 return;
@@ -1978,14 +2819,6 @@ let html=`
 
 <th>Təşkilat</th>
 
-<th>Məsul şəxs</th>
-
-<th>Vəzifə</th>
-
-<th>Telefon</th>
-
-<th>E-mail</th>
-
 <th>Məqalə sayı</th>
 
 </tr>
@@ -1998,42 +2831,23 @@ let html=`
 
 
 names
-.sort()
+.sort(
+(a,b)=>
+organizations[b]-organizations[a]
+)
 .forEach(name=>{
-
-const item =
-organizations[name];
-
 
 html+=`
 
 <tr>
 
 <td>
-<strong>
-${escapeHtml(name)}
-</strong>
-</td>
-
-<td>
-${escapeHtml(item.mesul_ad)}
-</td>
-
-<td>
-${escapeHtml(item.mesul_vezife)}
-</td>
-
-<td>
-${escapeHtml(item.mesul_telefon)}
-</td>
-
-<td>
-${escapeHtml(item.mesul_email)}
+🏢 ${escapeHtml(name)}
 </td>
 
 <td>
 <strong>
-${item.count}
+${organizations[name]}
 </strong>
 </td>
 
@@ -2047,7 +2861,6 @@ ${item.count}
 html+=`
 
 </tbody>
-
 </table>
 
 </div>
@@ -2061,17 +2874,22 @@ container.innerHTML=html;
 
 
 /* =====================================================
-   ADMİN MƏQALƏLƏRİ
+   ADMIN ARTICLE RENDER
 ===================================================== */
 
 function renderAdminArticles(
-articles,
-container
+articles
 ){
 
-if(articles.length===0){
+const container=
+document.getElementById(
+"adminArticles"
+);
 
-container.innerHTML =
+
+if(!articles.length){
+
+container.innerHTML=
 '<div class="empty">Bu ay üçün məqalə yoxdur.</div>';
 
 return;
@@ -2084,18 +2902,10 @@ container.innerHTML="";
 
 articles.forEach(article=>{
 
-const div =
+const div=
 document.createElement("div");
 
 div.className="article";
-
-
-const date =
-article.created_at
-? new Date(
-article.created_at
-).toLocaleString("az-AZ")
-: "";
 
 
 div.innerHTML=`
@@ -2111,7 +2921,7 @@ article.meqale_adi
 
 <div class="info">
 
-<strong>Təşkilat:</strong>
+<strong>🏢 Təşkilat:</strong>
 
 ${escapeHtml(
 article.teskilat
@@ -2122,14 +2932,12 @@ article.teskilat
 
 <div class="info">
 
-<strong>Məsul şəxs:</strong>
+<strong>👤 Məsul:</strong>
 
 ${escapeHtml(
 article.mesul_ad
 )}
-
 —
-
 ${escapeHtml(
 article.mesul_vezife
 )}
@@ -2139,7 +2947,7 @@ article.mesul_vezife
 
 <div class="info">
 
-<strong>Telefon:</strong>
+<strong>📞 Telefon:</strong>
 
 ${escapeHtml(
 article.mesul_telefon
@@ -2150,7 +2958,7 @@ article.mesul_telefon
 
 <div class="info">
 
-<strong>E-mail:</strong>
+<strong>✉️ E-mail:</strong>
 
 ${escapeHtml(
 article.mesul_email
@@ -2161,14 +2969,12 @@ article.mesul_email
 
 <div class="info">
 
-<strong>Məqalə müəllifi:</strong>
+<strong>✍️ Müəllif:</strong>
 
 ${escapeHtml(
 article.muellif_ad
 )}
-
 —
-
 ${escapeHtml(
 article.muellif_vezife
 )}
@@ -2176,28 +2982,42 @@ article.muellif_vezife
 </div>
 
 
-<div class="info">
-
-<strong>Göndərilmə tarixi:</strong>
-
-${date}
-
-</div>
-
-
 <br>
 
 
+<div class="actions">
+
 <a
-class="link"
+class="btn btn-small"
 href="${escapeAttribute(
 article.facebook_link
 )}"
-target="_blank">
+target="_blank"
+style="text-decoration:none;">
 
-🔗 Facebook məqaləsini aç
+🔗 Məqalə
 
 </a>
+
+
+<button
+class="btn btn-small"
+onclick="openArticleEdit('${article.id}')">
+
+✏️ Redaktə
+
+</button>
+
+
+<button
+class="btn btn-red btn-small"
+onclick="deleteArticle('${article.id}')">
+
+🗑️ Sil
+
+</button>
+
+</div>
 
 `;
 
@@ -2210,51 +3030,54 @@ container.appendChild(div);
 
 
 /* =====================================================
-   AXTARIŞ
+   SEARCH
 ===================================================== */
 
 function searchArticles(){
 
-const search =
-document.getElementById(
-"articleSearch"
-)
-.value
-.trim()
+const search=
+getValue("articleSearch")
 .toLowerCase();
-
-
-const container =
-document.getElementById(
-"searchResults"
-);
 
 
 if(!search){
 
-container.innerHTML =
-'<div class="empty">Axtarış üçün məqalə adını yazın.</div>';
+renderSearchResults(
+allArticles
+);
 
 return;
 
 }
 
 
-const results =
-allArticlesForSearch.filter(article=>{
+const results=
+allArticles.filter(item=>{
 
 return (
-article.meqale_adi || ""
-)
+
+(item.meqale_adi||"")
 .toLowerCase()
-.includes(search);
+.includes(search)
+
+||
+
+(item.teskilat||"")
+.toLowerCase()
+.includes(search)
+
+||
+
+(item.muellif_ad||"")
+.toLowerCase()
+.includes(search)
+
+);
 
 });
 
 
-renderSearchResults(
-results
-);
+renderSearchResults(results);
 
 }
 
@@ -2263,7 +3086,7 @@ function renderSearchResults(
 results
 ){
 
-const container =
+const container=
 document.getElementById(
 "searchResults"
 );
@@ -2271,8 +3094,8 @@ document.getElementById(
 
 if(!results.length){
 
-container.innerHTML =
-'<div class="empty">Uyğun məqalə tapılmadı.</div>';
+container.innerHTML=
+'<div class="empty">Uyğun nəticə tapılmadı.</div>';
 
 return;
 
@@ -2282,9 +3105,9 @@ return;
 container.innerHTML="";
 
 
-results.forEach(article=>{
+results.forEach(item=>{
 
-const div =
+const div=
 document.createElement("div");
 
 div.className="article";
@@ -2295,7 +3118,306 @@ div.innerHTML=`
 <div class="article-title">
 
 ${escapeHtml(
-article.meqale_adi
+item.meqale_adi
+)}
+
+</div>
+
+<div class="info">
+
+🏢 ${escapeHtml(
+item.teskilat
+)}
+
+</div>
+
+<div class="info">
+
+✍️ ${escapeHtml(
+item.muellif_ad
+)}
+
+</div>
+
+`;
+
+
+container.appendChild(div);
+
+});
+
+}
+
+
+/* =====================================================
+   EDIT ARTICLE
+===================================================== */
+
+function openArticleEdit(id){
+
+const article=
+allArticles.find(
+item=>String(item.id)===String(id)
+);
+
+
+if(!article)return;
+
+
+document.getElementById(
+"editArticleId"
+).value=article.id;
+
+
+document.getElementById(
+"editOrganization"
+).value=
+article.teskilat||"";
+
+
+document.getElementById(
+"editMesulAd"
+).value=
+article.mesul_ad||"";
+
+
+document.getElementById(
+"editMesulVezife"
+).value=
+article.mesul_vezife||"";
+
+
+document.getElementById(
+"editMesulTelefon"
+).value=
+article.mesul_telefon||"";
+
+
+document.getElementById(
+"editMesulEmail"
+).value=
+article.mesul_email||"";
+
+
+document.getElementById(
+"editMeqaleAdi"
+).value=
+article.meqale_adi||"";
+
+
+document.getElementById(
+"editMuellifAd"
+).value=
+article.muellif_ad||"";
+
+
+document.getElementById(
+"editMuellifVezife"
+).value=
+article.muellif_vezife||"";
+
+
+document.getElementById(
+"editFacebookLink"
+).value=
+article.facebook_link||"";
+
+
+openModal("articleModal");
+
+}
+
+
+/* =====================================================
+   SAVE ARTICLE EDIT
+===================================================== */
+
+async function saveArticleEdit(){
+
+const id=
+document.getElementById(
+"editArticleId"
+).value;
+
+
+const {
+error
+}=
+await supabaseClient
+.from("maqaleler")
+.update({
+
+teskilat:getValue("editOrganization"),
+
+mesul_ad:getValue("editMesulAd"),
+
+mesul_vezife:getValue(
+"editMesulVezife"
+),
+
+mesul_telefon:getValue(
+"editMesulTelefon"
+),
+
+mesul_email:getValue(
+"editMesulEmail"
+),
+
+meqale_adi:getValue(
+"editMeqaleAdi"
+),
+
+muellif_ad:getValue(
+"editMuellifAd"
+),
+
+muellif_vezife:getValue(
+"editMuellifVezife"
+),
+
+facebook_link:getValue(
+"editFacebookLink"
+)
+
+})
+.eq("id",id);
+
+
+if(error){
+
+alert(
+"Redaktə xətası: "+
+error.message
+);
+
+return;
+
+}
+
+
+closeModal("articleModal");
+
+await loadAdminData();
+
+alert(
+"Məqalə uğurla redaktə edildi. ✅"
+);
+
+}
+
+
+/* =====================================================
+   DELETE ARTICLE
+===================================================== */
+
+async function deleteArticle(id){
+
+if(!confirm(
+"Bu məqaləni silmək istədiyinizə əminsiniz?"
+))
+return;
+
+
+const {
+error
+}=
+await supabaseClient
+.from("maqaleler")
+.delete()
+.eq("id",id);
+
+
+if(error){
+
+alert(
+"Silinmə xətası: "+
+error.message
+);
+
+return;
+
+}
+
+
+await loadAdminData();
+
+alert(
+"Məqalə silindi. ✅"
+);
+
+}
+
+
+/* =====================================================
+   ADMIN VOLUNTEERS
+===================================================== */
+
+async function loadAdminVolunteers(){
+
+const {
+data,
+error
+}=
+await supabaseClient
+.from("konulluler")
+.select("*")
+.order(
+"created_at",
+{ascending:false}
+);
+
+
+if(error){
+
+console.error(error);
+
+return;
+
+}
+
+
+allVolunteers=data||[];
+
+
+document.getElementById(
+"volunteerCount"
+).innerText=
+allVolunteers.length;
+
+
+const container=
+document.getElementById(
+"adminVolunteers"
+);
+
+
+if(!allVolunteers.length){
+
+container.innerHTML=
+'<div class="empty">Könüllü məqaləsi yoxdur.</div>';
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+allVolunteers.forEach(item=>{
+
+const div=
+document.createElement("div");
+
+div.className="article";
+
+
+div.innerHTML=`
+
+<div class="article-title">
+
+🤝 ${escapeHtml(
+item.ad_soyad
 )}
 
 </div>
@@ -2303,40 +3425,848 @@ article.meqale_adi
 
 <div class="info">
 
-<strong>Təşkilat:</strong>
+🔗
 
-${escapeHtml(
-article.teskilat
-)}
+<a
+class="link"
+href="${escapeAttribute(
+item.meqale_link
+)}"
+target="_blank">
+
+Məqaləni aç
+
+</a>
 
 </div>
 
 
-<div class="info">
+<div class="actions">
 
-<strong>Müəllif:</strong>
+<button
+class="btn btn-small"
+onclick="openVolunteerEdit('${item.id}')">
+
+✏️ Redaktə
+
+</button>
+
+
+<button
+class="btn btn-red btn-small"
+onclick="deleteVolunteer('${item.id}')">
+
+🗑️ Sil
+
+</button>
+
+</div>
+
+`;
+
+
+container.appendChild(div);
+
+});
+
+}
+
+
+/* =====================================================
+   EDIT VOLUNTEER
+===================================================== */
+
+function openVolunteerEdit(id){
+
+const item=
+allVolunteers.find(
+x=>String(x.id)===String(id)
+);
+
+
+if(!item)return;
+
+
+document.getElementById(
+"editVolunteerId"
+).value=item.id;
+
+
+document.getElementById(
+"editVolunteerName"
+).value=
+item.ad_soyad||"";
+
+
+document.getElementById(
+"editVolunteerLink"
+).value=
+item.meqale_link||"";
+
+
+openModal(
+"volunteerModal"
+);
+
+}
+
+
+/* =====================================================
+   SAVE VOLUNTEER
+===================================================== */
+
+async function saveVolunteerEdit(){
+
+const id=
+document.getElementById(
+"editVolunteerId"
+).value;
+
+
+const {
+error
+}=
+await supabaseClient
+.from("konulluler")
+.update({
+
+ad_soyad:
+getValue(
+"editVolunteerName"
+),
+
+meqale_link:
+getValue(
+"editVolunteerLink"
+)
+
+})
+.eq("id",id);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+return;
+
+}
+
+
+closeModal(
+"volunteerModal"
+);
+
+await loadAdminData();
+
+alert(
+"Könüllü məlumatı yeniləndi. ✅"
+);
+
+}
+
+
+/* =====================================================
+   DELETE VOLUNTEER
+===================================================== */
+
+async function deleteVolunteer(id){
+
+if(!confirm(
+"Bu könüllü məqaləsini silmək istəyirsiniz?"
+))
+return;
+
+
+const {
+error
+}=
+await supabaseClient
+.from("konulluler")
+.delete()
+.eq("id",id);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+return;
+
+}
+
+
+await loadAdminData();
+
+alert(
+"Könüllü məqaləsi silindi. ✅"
+);
+
+}
+
+
+/* =====================================================
+   ADMIN THESES
+===================================================== */
+
+async function loadAdminTheses(
+year,
+month
+){
+
+const {
+data,
+error
+}=
+await supabaseClient
+.from("tezisler")
+.select("*")
+.eq("il",year)
+.eq("ay",month)
+.order(
+"created_at",
+{ascending:false}
+);
+
+
+if(error){
+
+console.error(error);
+
+return;
+
+}
+
+
+allTheses=data||[];
+
+
+document.getElementById(
+"thesisCount"
+).innerText=
+allTheses.length;
+
+
+const container=
+document.getElementById(
+"adminTheses"
+);
+
+
+if(!allTheses.length){
+
+container.innerHTML=
+'<div class="empty">Bu ay üçün tezis yoxdur.</div>';
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+allTheses.forEach(item=>{
+
+const div=
+document.createElement("div");
+
+div.className="thesis";
+
+
+div.innerHTML=`
+
+<div>
+
+<strong>
+📄 ${escapeHtml(
+item.fayl_adi
+)}
+</strong>
+
+<br>
+
+<span class="badge">
 
 ${escapeHtml(
-article.muellif_ad
+item.ay_adi||""
 )}
+${item.il}
 
-—
+</span>
+
+</div>
+
+
+<div class="actions">
+
+<a
+href="${escapeAttribute(
+item.fayl_url
+)}"
+target="_blank"
+class="btn btn-small"
+style="text-decoration:none;">
+
+👁️ Aç
+
+</a>
+
+
+<button
+class="btn btn-small"
+onclick="openThesisEdit('${item.id}')">
+
+✏️
+
+</button>
+
+
+<button
+class="btn btn-red btn-small"
+onclick="deleteThesis('${item.id}')">
+
+🗑️
+
+</button>
+
+</div>
+
+`;
+
+
+container.appendChild(div);
+
+});
+
+}
+
+
+/* =====================================================
+   UPLOAD THESIS
+===================================================== */
+
+async function uploadThesis(){
+
+hideMessage("uploadSuccess");
+
+hideMessage("uploadError");
+
+
+const year=
+Number(
+document.getElementById(
+"uploadYear"
+).value
+);
+
+
+const month=
+Number(
+document.getElementById(
+"uploadMonth"
+).value
+);
+
+
+const file=
+document.getElementById(
+"thesisFile"
+).files[0];
+
+
+if(!file){
+
+showError(
+"uploadError",
+"Word faylı seçin."
+);
+
+return;
+
+}
+
+
+const extension=
+file.name
+.split(".")
+.pop()
+.toLowerCase();
+
+
+if(
+extension!=="doc" &&
+extension!=="docx"
+){
+
+showError(
+"uploadError",
+"Yalnız Word .doc və .docx faylları qəbul olunur."
+);
+
+return;
+
+}
+
+
+const monthObject=
+months.find(
+m=>m.number===month
+);
+
+
+const safeName=
+file.name.replace(
+/[^a-zA-Z0-9._-]/g,
+"_"
+);
+
+
+const path=
+year+
+"/"+
+month+
+"/"+
+Date.now()+
+"_"+
+safeName;
+
+
+const {
+error:uploadError
+}=
+await supabaseClient
+.storage
+.from("tezisler")
+.upload(
+path,
+file,
+{
+upsert:false
+}
+);
+
+
+if(uploadError){
+
+console.error(
+uploadError
+);
+
+showError(
+"uploadError",
+uploadError.message
+);
+
+return;
+
+}
+
+
+const {
+data:publicData
+}=
+supabaseClient
+.storage
+.from("tezisler")
+.getPublicUrl(path);
+
+
+const {
+error:dbError
+}=
+await supabaseClient
+.from("tezisler")
+.insert({
+
+il:year,
+
+ay:month,
+
+ay_adi:
+monthObject.name,
+
+fayl_adi:
+file.name,
+
+fayl_url:
+publicData.publicUrl
+
+});
+
+
+if(dbError){
+
+console.error(dbError);
+
+showError(
+"uploadError",
+dbError.message
+);
+
+return;
+
+}
+
+
+showSuccess(
+"uploadSuccess",
+"Word tezisi uğurla əlavə edildi. ✅"
+);
+
+
+document.getElementById(
+"thesisFile"
+).value="";
+
+
+await loadAdminData();
+
+}
+
+
+/* =====================================================
+   EDIT THESIS
+===================================================== */
+
+function openThesisEdit(id){
+
+const item=
+allTheses.find(
+x=>String(x.id)===String(id)
+);
+
+
+if(!item)return;
+
+
+document.getElementById(
+"editThesisId"
+).value=item.id;
+
+
+document.getElementById(
+"editThesisYear"
+).value=item.il;
+
+
+document.getElementById(
+"editThesisMonth"
+).value=item.ay;
+
+
+document.getElementById(
+"editThesisName"
+).value=
+item.fayl_adi||"";
+
+
+document.getElementById(
+"editThesisUrl"
+).value=
+item.fayl_url||"";
+
+
+openModal(
+"thesisModal"
+);
+
+}
+
+
+/* =====================================================
+   SAVE THESIS EDIT
+===================================================== */
+
+async function saveThesisEdit(){
+
+const id=
+document.getElementById(
+"editThesisId"
+).value;
+
+
+const year=
+Number(
+document.getElementById(
+"editThesisYear"
+).value
+);
+
+
+const month=
+Number(
+document.getElementById(
+"editThesisMonth"
+).value
+);
+
+
+const monthObject=
+months.find(
+m=>m.number===month
+);
+
+
+const {
+error
+}=
+await supabaseClient
+.from("tezisler")
+.update({
+
+il:year,
+
+ay:month,
+
+ay_adi:
+monthObject.name,
+
+fayl_adi:
+getValue(
+"editThesisName"
+),
+
+fayl_url:
+getValue(
+"editThesisUrl"
+)
+
+})
+.eq("id",id);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+return;
+
+}
+
+
+closeModal(
+"thesisModal"
+);
+
+
+await loadAdminData();
+
+
+alert(
+"Tezis məlumatı yeniləndi. ✅"
+);
+
+}
+
+
+/* =====================================================
+   DELETE THESIS
+===================================================== */
+
+async function deleteThesis(id){
+
+if(!confirm(
+"Bu tezisi silmək istədiyinizə əminsiniz?"
+))
+return;
+
+
+const item=
+allTheses.find(
+x=>String(x.id)===String(id)
+);
+
+
+const {
+error
+}=
+await supabaseClient
+.from("tezisler")
+.delete()
+.eq("id",id);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+return;
+
+}
+
+
+/*
+   Faylın Storage-dan silinməsi üçün
+   URL-dən yolu çıxarmağa çalışırıq.
+*/
+
+if(item && item.fayl_url){
+
+try{
+
+const marker="/storage/v1/object/public/tezisler/";
+
+const index=
+item.fayl_url.indexOf(marker);
+
+
+if(index!==-1){
+
+const path=
+decodeURIComponent(
+item.fayl_url.substring(
+index+marker.length
+)
+);
+
+
+await supabaseClient
+.storage
+.from("tezisler")
+.remove([path]);
+
+}
+
+}catch(e){
+
+console.error(e);
+
+}
+
+}
+
+
+await loadAdminData();
+
+alert(
+"Tezis silindi. ✅"
+);
+
+}
+
+
+/* =====================================================
+   USER THESES
+===================================================== */
+
+async function loadTheses(){
+
+const year=
+Number(
+document.getElementById(
+"thesisYear"
+).value
+);
+
+
+const month=
+Number(
+document.getElementById(
+"thesisMonth"
+).value
+);
+
+
+const container=
+document.getElementById(
+"thesisList"
+);
+
+
+container.innerHTML=
+'<div class="empty">Yüklənir...</div>';
+
+
+const {
+data,
+error
+}=
+await supabaseClient
+.from("tezisler")
+.select("*")
+.eq("il",year)
+.eq("ay",month)
+.order(
+"created_at",
+{ascending:false}
+);
+
+
+if(error){
+
+console.error(error);
+
+container.innerHTML=
+'<div class="empty">Tezislər yüklənmədi.</div>';
+
+return;
+
+}
+
+
+if(!data.length){
+
+container.innerHTML=
+'<div class="empty">Bu ay üçün tezis yoxdur.</div>';
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+data.forEach(item=>{
+
+const div=
+document.createElement("div");
+
+div.className="thesis";
+
+
+div.innerHTML=`
+
+<div>
+
+<strong>
+📄 ${escapeHtml(
+item.fayl_adi
+)}
+</strong>
+
+<br>
+
+<span class="badge">
 
 ${escapeHtml(
-article.muellif_vezife
+item.ay_adi||""
 )}
+${item.il}
+
+</span>
 
 </div>
 
 
 <a
-class="link"
 href="${escapeAttribute(
-article.facebook_link
+item.fayl_url
 )}"
-target="_blank">
+target="_blank"
+class="btn"
+style="text-decoration:none;">
 
-🔗 Facebook məqaləsini aç
+📖 Word faylını aç
 
 </a>
 
@@ -2351,50 +4281,7 @@ container.appendChild(div);
 
 
 /* =====================================================
-   TEZİS SAYI
-===================================================== */
-
-async function loadAdminThesisCount(
-year,
-month
-){
-
-const {
-data,
-error
-} =
-await supabaseClient
-.from("tezisler")
-.select("id")
-.eq("il",year)
-.eq("ay",month);
-
-
-if(error){
-
-console.error(error);
-
-document.getElementById(
-"thesisCount"
-).innerText="0";
-
-return;
-
-}
-
-
-document.getElementById(
-"thesisCount"
-).innerText =
-data
-? data.length
-: 0;
-
-}
-
-
-/* =====================================================
-   HESABAT NÖVÜ
+   REPORT
 ===================================================== */
 
 document
@@ -2408,30 +4295,25 @@ const type=this.value;
 
 document.getElementById(
 "quarterSelectBox"
-).style.display =
+).style.display=
 type==="quarterly"
-? "block"
-: "none";
+?"block"
+:"none";
 
 
 document.getElementById(
 "monthlyReportBox"
-).style.display =
+).style.display=
 type==="monthly"
-? "block"
-: "none";
+?"block"
+:"none";
 
-}
-);
+});
 
-
-/* =====================================================
-   HESABAT
-===================================================== */
 
 async function generateReport(){
 
-const year =
+const year=
 Number(
 document.getElementById(
 "reportYear"
@@ -2439,31 +4321,35 @@ document.getElementById(
 );
 
 
-const type =
+const type=
 document.getElementById(
 "reportType"
 ).value;
 
 
-let monthsToUse=[];
+let selectedMonths=[];
 
 let title="";
 
 
 if(type==="monthly"){
 
-const month =
+const month=
 Number(
 document.getElementById(
 "reportMonth"
 ).value
 );
 
-monthsToUse=[month];
 
-title =
-months[month-1].name +
-" " +
+selectedMonths=[
+month
+];
+
+
+title=
+months[month-1].name+
+" "+
 year;
 
 }
@@ -2471,7 +4357,7 @@ year;
 
 if(type==="quarterly"){
 
-const quarter =
+const quarter=
 Number(
 document.getElementById(
 "reportQuarter"
@@ -2479,20 +4365,20 @@ document.getElementById(
 );
 
 
-const start =
+const start=
 (quarter-1)*3+1;
 
 
-monthsToUse=[
+selectedMonths=[
 start,
 start+1,
 start+2
 ];
 
 
-title =
-quarter +
-"-ci rüb " +
+title=
+quarter+
+"-ci rüb "+
 year;
 
 }
@@ -2500,14 +4386,14 @@ year;
 
 if(type==="yearly"){
 
-monthsToUse=[
+selectedMonths=[
 1,2,3,4,5,6,
 7,8,9,10,11,12
 ];
 
 
-title =
-year +
+title=
+year+
 "-ci il";
 
 }
@@ -2516,12 +4402,12 @@ year +
 const {
 data,
 error
-} =
+}=
 await supabaseClient
 .from("maqaleler")
 .select("*")
 .eq("il",year)
-.in("ay",monthsToUse);
+.in("ay",selectedMonths);
 
 
 if(error){
@@ -2530,7 +4416,7 @@ console.error(error);
 
 document.getElementById(
 "reportResult"
-).innerHTML =
+).innerHTML=
 '<div class="empty">Hesabat hazırlamaq mümkün olmadı.</div>';
 
 return;
@@ -2538,52 +4424,46 @@ return;
 }
 
 
-const articles =
-data || [];
-
+const articles=data||[];
 
 const organizations={};
 
 const monthly={};
 
 
-monthsToUse.forEach(m=>{
-
+selectedMonths.forEach(m=>{
 monthly[m]=0;
-
 });
 
 
-articles.forEach(article=>{
+articles.forEach(item=>{
 
-monthly[article.ay] =
-(monthly[article.ay] || 0)+1;
-
-
-const org =
-(article.teskilat || "")
-.trim();
+monthly[item.ay]=
+(monthly[item.ay]||0)+1;
 
 
-organizations[org] =
-(organizations[org] || 0)+1;
+const org=
+(item.teskilat||"").trim();
+
+
+organizations[org]=
+(organizations[org]||0)+1;
 
 });
-
-
-const organizationCount =
-Object.keys(
-organizations
-).length;
 
 
 let html=`
 
-<h2>${escapeHtml(title)}</h2>
+<div class="report">
+
+<h2>
+📊 ${escapeHtml(title)}
+</h2>
+
 
 <div class="grid3">
 
-<div class="report-box">
+<div>
 
 <div class="report-number">
 ${articles.length}
@@ -2596,10 +4476,10 @@ ${articles.length}
 </div>
 
 
-<div class="report-box">
+<div>
 
 <div class="report-number">
-${organizationCount}
+${Object.keys(organizations).length}
 </div>
 
 <div>
@@ -2609,12 +4489,12 @@ Təşkilat
 </div>
 
 
-<div class="report-box">
+<div>
 
 <div class="report-number">
 ${new Set(
 articles.map(
-a=>a.muellif_ad
+x=>x.muellif_ad
 )
 ).size}
 </div>
@@ -2628,7 +4508,11 @@ Müəllif
 </div>
 
 
-<h3>Aylar üzrə</h3>
+<br>
+
+<h3>
+📅 Aylar üzrə
+</h3>
 
 <div class="table-wrap">
 
@@ -2651,7 +4535,7 @@ Müəllif
 `;
 
 
-monthsToUse.forEach(m=>{
+selectedMonths.forEach(m=>{
 
 html+=`
 
@@ -2663,7 +4547,7 @@ ${months[m-1].name}
 
 <td>
 <strong>
-${monthly[m] || 0}
+${monthly[m]||0}
 </strong>
 </td>
 
@@ -2677,13 +4561,15 @@ ${monthly[m] || 0}
 html+=`
 
 </tbody>
-
 </table>
-
 </div>
 
 
-<h3>Təşkilatlar üzrə</h3>
+<br>
+
+<h3>
+🏢 Təşkilatlar üzrə
+</h3>
 
 <div class="table-wrap">
 
@@ -2711,7 +4597,8 @@ Object
 .sort(
 (a,b)=>b[1]-a[1]
 )
-.forEach(([org,count])=>{
+.forEach(
+([org,count])=>{
 
 html+=`
 
@@ -2737,8 +4624,8 @@ ${count}
 html+=`
 
 </tbody>
-
 </table>
+</div>
 
 </div>
 
@@ -2753,318 +4640,52 @@ document.getElementById(
 
 
 /* =====================================================
-   İSTİFADƏÇİ TEZİSLƏRİ
+   MODALS
 ===================================================== */
 
-async function loadTheses(){
+function openModal(id){
 
-const year =
-Number(
-document.getElementById(
-"thesisYear"
-).value
-);
-
-
-const month =
-Number(
-document.getElementById(
-"thesisMonth"
-).value
-);
-
-
-const container =
-document.getElementById(
-"thesisList"
-);
-
-
-container.innerHTML =
-'<div class="empty">Yüklənir...</div>';
-
-
-const {
-data,
-error
-} =
-await supabaseClient
-.from("tezisler")
-.select("*")
-.eq("il",year)
-.eq("ay",month)
-.order(
-"created_at",
-{ascending:false}
-);
-
-
-if(error){
-
-console.error(error);
-
-container.innerHTML =
-'<div class="empty">Tezislər yüklənmədi.</div>';
-
-return;
+document
+.getElementById(id)
+.classList.add("show");
 
 }
 
 
-if(!data || data.length===0){
+function closeModal(id){
 
-container.innerHTML =
-'<div class="empty">Bu ay üçün tezis yoxdur.</div>';
-
-return;
-
-}
-
-
-container.innerHTML="";
-
-
-data.forEach(thesis=>{
-
-const div =
-document.createElement("div");
-
-div.className="thesis";
-
-
-div.innerHTML=`
-
-<div>
-
-<strong>
-📄
-${escapeHtml(
-thesis.fayl_adi
-)}
-</strong>
-
-<br>
-
-<span class="badge">
-
-${escapeHtml(
-thesis.ay_adi || ""
-)}
-${thesis.il}
-
-</span>
-
-</div>
-
-
-<a
-href="${escapeAttribute(
-thesis.fayl_url
-)}"
-target="_blank"
-class="btn"
-style="text-decoration:none;">
-
-Word faylını aç
-
-</a>
-
-`;
-
-
-container.appendChild(div);
-
-});
+document
+.getElementById(id)
+.classList.remove("show");
 
 }
 
 
 /* =====================================================
-   WORD YÜKLƏ
+   HELPERS
 ===================================================== */
 
-async function uploadThesis(){
+function getValue(id){
 
-hideMessage("uploadSuccess");
+const el=
+document.getElementById(id);
 
-hideMessage("uploadError");
-
-
-const year =
-Number(
-document.getElementById(
-"uploadYear"
-).value
-);
-
-
-const month =
-Number(
-document.getElementById(
-"uploadMonth"
-).value
-);
-
-
-const file =
-document.getElementById(
-"thesisFile"
-).files[0];
-
-
-if(!file){
-
-return showError(
-"uploadError",
-"Word faylı seçin."
-);
+return el
+?el.value.trim()
+:"";
 
 }
 
-
-const ext =
-file.name
-.split(".")
-.pop()
-.toLowerCase();
-
-
-if(ext!=="doc" && ext!=="docx"){
-
-return showError(
-"uploadError",
-"Yalnız .doc və .docx faylları qəbul olunur."
-);
-
-}
-
-
-const monthObject =
-months.find(
-m=>m.number===month
-);
-
-
-const safeName =
-file.name
-.replace(
-/[^a-zA-Z0-9._-]/g,
-"_"
-);
-
-
-const path =
-year +
-"/" +
-month +
-"/" +
-Date.now() +
-"_" +
-safeName;
-
-
-const {
-error:storageError
-} =
-await supabaseClient
-.storage
-.from("tezisler")
-.upload(
-path,
-file,
-{
-upsert:false
-}
-);
-
-
-if(storageError){
-
-console.error(
-storageError
-);
-
-return showError(
-"uploadError",
-storageError.message
-);
-
-}
-
-
-const {
-data:publicData
-} =
-supabaseClient
-.storage
-.from("tezisler")
-.getPublicUrl(path);
-
-
-const {
-error:dbError
-} =
-await supabaseClient
-.from("tezisler")
-.insert({
-
-il:year,
-
-ay:month,
-
-ay_adi:
-monthObject.name,
-
-fayl_adi:
-file.name,
-
-fayl_url:
-publicData.publicUrl
-
-});
-
-
-if(dbError){
-
-console.error(dbError);
-
-return showError(
-"uploadError",
-dbError.message
-);
-
-}
-
-
-showSuccess(
-"uploadSuccess",
-"Word tezisi uğurla əlavə edildi. ✅"
-);
-
-
-document.getElementById(
-"thesisFile"
-).value="";
-
-
-loadTheses();
-
-loadAdminData();
-
-}
-
-
-/* =====================================================
-   MESAJLAR
-===================================================== */
 
 function showSuccess(
 id,
 message
 ){
 
-const el =
+const el=
 document.getElementById(id);
+
+if(!el)return;
 
 el.innerText=message;
 
@@ -3078,8 +4699,10 @@ id,
 message
 ){
 
-const el =
+const el=
 document.getElementById(id);
+
+if(!el)return;
 
 el.innerText=message;
 
@@ -3090,24 +4713,22 @@ el.style.display="block";
 
 function hideMessage(id){
 
-document.getElementById(
-id
-).style.display="none";
+const el=
+document.getElementById(id);
+
+if(el)
+el.style.display="none";
 
 }
 
 
-/* =====================================================
-   TƏHLÜKƏSİZ HTML
-===================================================== */
-
 function escapeHtml(value){
 
-const div =
+const div=
 document.createElement("div");
 
-div.textContent =
-value || "";
+div.textContent=
+value||"";
 
 return div.innerHTML;
 
@@ -3117,7 +4738,7 @@ return div.innerHTML;
 function escapeAttribute(value){
 
 return String(
-value || ""
+value||""
 )
 .replace(
 /"/g,
@@ -3132,7 +4753,7 @@ value || ""
 
 
 /* =====================================================
-   EVENTLƏR
+   EVENTS
 ===================================================== */
 
 document
@@ -3184,7 +4805,7 @@ loadAdminData
 
 
 /* =====================================================
-   BAŞLAT
+   START
 ===================================================== */
 
 initialize();
