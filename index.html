@@ -3,13 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>E-Tezis Sistemi</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #1f2937;
+        }
+
+        header {
+            background: #17365d;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .admin-btn {
+            background: white;
+            color: #17365d;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .admin-btn:hover {
+            background: #e8eef7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            color: #17365d;
+            margin-bottom: 12px;
+        }
+
+        .welcome p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .search-box h2 {
+            margin-bottom: 15px;
+            color: #17365d;
+        }
+
+        .search-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-area input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-area input:focus {
+            border-color: #17365d;
+        }
+
+        .search-btn {
+            background: #17365d;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .search-btn:hover {
+            background: #102b4a;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            color: #17365d;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #17365d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 7px;
+            display: none;
+            background: #e8f5e9;
+            color: #256029;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .search-area {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                padding: 14px;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>E-Tezis Sistemi</h1>
+<header>
+    <div class="logo">E-Tezis Sistemi</div>
 
-    <p>Sistem uğurla işləyir.</p>
+    <button class="admin-btn" onclick="openAdmin()">
+        Admin Panel
+    </button>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <h1>E-Tezis Sisteminə xoş gəlmisiniz</h1>
+        <p>
+            Tezis və məqalələrin idarə olunması üçün elektron sistem
+        </p>
+    </section>
+
+    <section class="search-box">
+        <h2>Tezis axtarışı</h2>
+
+        <div class="search-area">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Tezis, müəllif və ya mövzu axtarın..."
+            >
+
+            <button class="search-btn" onclick="searchThesis()">
+                Axtar
+            </button>
+        </div>
+
+        <div class="message" id="message"></div>
+    </section>
+
+    <section class="cards">
+
+        <div class="card">
+            <h3>📚 Tezislər</h3>
+            <p>
+                Sistemdə olan tezislərə baxış və axtarış.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📄 Məqalələr</h3>
+            <p>
+                İstifadəçilər tərəfindən göndərilən məqalələrin idarəsi.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>👥 İstifadəçilər</h3>
+            <p>
+                Sistem istifadəçilərinin məlumatlarının idarə olunması.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    © 2026 E-Tezis Sistemi
+</footer>
+
+<script>
+
+function searchThesis() {
+
+    const input = document.getElementById("searchInput");
+    const message = document.getElementById("message");
+
+    const value = input.value.trim();
+
+    if (value === "") {
+        message.style.display = "block";
+        message.innerText = "Zəhmət olmasa axtarış sözünü daxil edin.";
+        return;
+    }
+
+    message.style.display = "block";
+    message.innerText =
+        '"' + value + '" üçün axtarış sistemi hazırlanır.';
+}
+
+function openAdmin() {
+
+    alert(
+        "Admin paneli növbəti mərhələdə qoşulacaq."
+    );
+
+}
+
+</script>
 
 </body>
 </html>
