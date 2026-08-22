@@ -29,6 +29,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,.12);
         }
 
         .logo {
@@ -42,12 +43,20 @@
             gap: 10px;
         }
 
+        .user-info {
+            font-size: 14px;
+        }
+
         button {
             border: none;
             border-radius: 7px;
             padding: 12px 18px;
             cursor: pointer;
             font-weight: bold;
+        }
+
+        button:hover {
+            opacity: .92;
         }
 
         .white-btn {
@@ -86,27 +95,36 @@
             margin-bottom: 15px;
         }
 
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 13px;
-            margin-bottom: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            font-size: 15px;
-            background: white;
-        }
-
-        textarea {
-            min-height: 110px;
-            resize: vertical;
+        p {
+            line-height: 1.6;
         }
 
         label {
             display: block;
             margin-bottom: 6px;
             font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 15px;
+            background: white;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #17365d;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
         }
 
         .hidden {
@@ -147,20 +165,47 @@
             color: #991b1b;
         }
 
-        .article {
+        .info {
+            background: #e0f2fe;
+            color: #075985;
+        }
+
+        .profile-info {
+            background: #f8fafc;
             border: 1px solid #e5e7eb;
             padding: 18px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-top: 15px;
+        }
+
+        .profile-row {
+            margin-bottom: 8px;
+        }
+
+        .profile-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .article {
+            border: 1px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 9px;
+            margin-bottom: 15px;
+            background: #fff;
         }
 
         .article h3 {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .article-info {
+            margin: 7px 0;
+            color: #4b5563;
         }
 
         .status {
             display: inline-block;
-            padding: 5px 10px;
+            padding: 6px 11px;
             background: #fef3c7;
             color: #92400e;
             border-radius: 20px;
@@ -176,13 +221,21 @@
             text-decoration: none;
         }
 
-        .user-info {
-            font-size: 14px;
+        .facebook:hover {
+            text-decoration: underline;
         }
 
         .empty {
             padding: 25px;
             text-align: center;
+            color: #6b7280;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
             color: #6b7280;
         }
 
@@ -212,6 +265,15 @@
             .box {
                 padding: 20px;
             }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                width: 100%;
+            }
+
         }
 
     </style>
@@ -227,7 +289,10 @@
 
     <div class="header-right">
 
-        <span id="userInfo" class="user-info"></span>
+        <span
+            id="userInfo"
+            class="user-info">
+        </span>
 
         <button
             id="loginButton"
@@ -250,16 +315,22 @@
 
 <div class="container">
 
-    <!-- ANA SƏHİFƏ -->
 
-    <section id="homeSection" class="box">
+    <!-- =========================
+         ANA SƏHİFƏ
+    ========================== -->
+
+    <section
+        id="homeSection"
+        class="box">
 
         <h1>
             E-Tezis Sisteminə xoş gəlmisiniz
         </h1>
 
         <p>
-            Məqalə və tezislərin elektron şəkildə göndərilməsi və idarə olunması.
+            Məqalə və tezislərin elektron şəkildə
+            göndərilməsi və idarə olunması.
         </p>
 
         <br>
@@ -270,28 +341,51 @@
             Sistemə daxil ol
         </button>
 
+        <button
+            class="white-btn"
+            onclick="showRegister()">
+            Qeydiyyatdan keç
+        </button>
+
     </section>
 
 
-    <!-- GİRİŞ -->
+    <!-- =========================
+         GİRİŞ
+    ========================== -->
 
-    <section id="loginSection" class="box hidden">
+    <section
+        id="loginSection"
+        class="box hidden">
 
         <h2>
             İstifadəçi girişi
         </h2>
 
-        <div id="loginError" class="message error"></div>
+        <div
+            id="loginError"
+            class="message error">
+        </div>
+
+        <label>
+            E-poçt
+        </label>
 
         <input
             type="email"
             id="loginEmail"
-            placeholder="E-poçt">
+            placeholder="E-poçt ünvanınızı yazın">
+
+
+        <label>
+            Şifrə
+        </label>
 
         <input
             type="password"
             id="loginPassword"
-            placeholder="Şifrə">
+            placeholder="Şifrənizi yazın">
+
 
         <button
             class="blue-btn"
@@ -308,47 +402,84 @@
     </section>
 
 
-    <!-- QEYDİYYAT -->
+    <!-- =========================
+         QEYDİYYAT
+    ========================== -->
 
-    <section id="registerSection" class="box hidden">
+    <section
+        id="registerSection"
+        class="box hidden">
 
         <h2>
             Yeni istifadəçi qeydiyyatı
         </h2>
 
-        <div id="registerError" class="message error"></div>
+        <div
+            id="registerError"
+            class="message error">
+        </div>
+
+        <div
+            id="registerSuccess"
+            class="message success">
+        </div>
+
+
+        <label>
+            Ad və soyad
+        </label>
 
         <input
             type="text"
             id="registerName"
-            placeholder="Ad və soyad">
+            placeholder="Ad və soyadınızı yazın">
+
+
+        <label>
+            E-poçt
+        </label>
 
         <input
             type="email"
             id="registerEmail"
-            placeholder="E-poçt">
+            placeholder="E-poçt ünvanınızı yazın">
+
+
+        <label>
+            Şifrə
+        </label>
 
         <input
             type="password"
             id="registerPassword"
-            placeholder="Şifrə">
+            placeholder="Ən azı 6 simvol">
+
+
+        <label>
+            Telefon
+        </label>
 
         <input
             type="text"
             id="registerPhone"
-            placeholder="Telefon">
+            placeholder="Telefon nömrəsi">
+
 
         <label>
-            Təşkilatınız
+            Təşkilatınızın tam adı
         </label>
 
-        <select id="registerOrganization">
+        <input
+            type="text"
+            id="registerOrganization"
+            placeholder="Məsələn: Bakı Dövlət Universiteti">
 
-            <option value="">
-                Təşkilat seçin
-            </option>
 
-        </select>
+        <div class="message info" style="display:block;">
+            Təşkilatınız siyahıda hazır olmayacaq.
+            Öz təşkilatınızın tam adını yazın.
+        </div>
+
 
         <button
             class="blue-btn"
@@ -365,9 +496,16 @@
     </section>
 
 
-    <!-- İSTİFADƏÇİ PANELİ -->
+    <!-- =========================
+         İSTİFADƏÇİ PANELİ
+    ========================== -->
 
-    <section id="userSection" class="hidden">
+    <section
+        id="userSection"
+        class="hidden">
+
+
+        <!-- PROFİL -->
 
         <div class="box">
 
@@ -377,8 +515,36 @@
 
             <p id="welcomeText"></p>
 
+            <div
+                id="profileInfo"
+                class="profile-info">
+
+                <div class="profile-row">
+                    <strong>Ad və soyad:</strong>
+                    <span id="profileName">-</span>
+                </div>
+
+                <div class="profile-row">
+                    <strong>E-poçt:</strong>
+                    <span id="profileEmail">-</span>
+                </div>
+
+                <div class="profile-row">
+                    <strong>Telefon:</strong>
+                    <span id="profilePhone">-</span>
+                </div>
+
+                <div class="profile-row">
+                    <strong>Təşkilat:</strong>
+                    <span id="profileOrganization">-</span>
+                </div>
+
+            </div>
+
         </div>
 
+
+        <!-- TABLAR -->
 
         <div class="tabs">
 
@@ -399,9 +565,13 @@
         </div>
 
 
-        <!-- YENİ MƏQALƏ -->
+        <!-- =========================
+             YENİ MƏQALƏ
+        ========================== -->
 
-        <div id="newArticleSection" class="box">
+        <div
+            id="newArticleSection"
+            class="box">
 
             <h2>
                 Yeni məqalə əlavə et
@@ -419,21 +589,26 @@
             </div>
 
 
+            <div class="profile-info">
+
+                <div class="profile-row">
+                    <strong>Təşkilat:</strong>
+                    <span id="articleOrganization">
+                        -
+                    </span>
+                </div>
+
+                <small>
+                    Təşkilatınız profilinizdən avtomatik götürülür.
+                </small>
+
+            </div>
+
+            <br>
+
+
             <label>
-                Təşkilat
-            </label>
-
-            <select id="articleOrganization">
-
-                <option value="">
-                    Təşkilat seçin
-                </option>
-
-            </select>
-
-
-            <label>
-                Məqalənin adı
+                Məqalənin adı *
             </label>
 
             <input
@@ -469,7 +644,7 @@
             <input
                 type="text"
                 id="articleKeywords"
-                placeholder="Məsələn: iqtisadiyyat, təhsil, texnologiya">
+                placeholder="Məsələn: təhsil, iqtisadiyyat, texnologiya">
 
 
             <label>
@@ -488,8 +663,7 @@
 
             <textarea
                 id="articleInfo"
-                placeholder="Məqalə haqqında əlavə məlumat...">
-            </textarea>
+                placeholder="Məqalə haqqında əlavə məlumat..."></textarea>
 
 
             <button
@@ -501,17 +675,24 @@
         </div>
 
 
-        <!-- MƏQALƏLƏR -->
+        <!-- =========================
+             MƏQALƏLƏR
+        ========================== -->
 
-        <div id="myArticlesSection" class="box hidden">
+        <div
+            id="myArticlesSection"
+            class="box hidden">
 
             <h2>
                 Mənim məqalələrim
             </h2>
 
-            <div id="articlesList"></div>
+            <div
+                id="articlesList">
+            </div>
 
         </div>
+
 
     </section>
 
@@ -525,11 +706,18 @@
 
 <script>
 
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
 const SUPABASE_URL =
     "https://qbfzvplfoibgyirqpavi.supabase.co";
 
+
 const SUPABASE_KEY =
     "sb_publishable_pmXwkYmAoAN3l319cGGqFQ_WGIF9eyp";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -540,9 +728,11 @@ const supabaseClient =
 
 let currentUser = null;
 
+let currentProfile = null;
+
 
 /* =====================================================
-   SƏHİFƏLƏR
+   SEKSİYALARI GİZLƏT
 ===================================================== */
 
 function hideAllSections() {
@@ -562,8 +752,13 @@ function hideAllSections() {
     document
         .getElementById("userSection")
         .classList.add("hidden");
+
 }
 
+
+/* =====================================================
+   GİRİŞ SƏHİFƏSİ
+===================================================== */
 
 function showLogin() {
 
@@ -576,6 +771,10 @@ function showLogin() {
 }
 
 
+/* =====================================================
+   QEYDİYYAT SƏHİFƏSİ
+===================================================== */
+
 function showRegister() {
 
     hideAllSections();
@@ -584,12 +783,12 @@ function showRegister() {
         .getElementById("registerSection")
         .classList.remove("hidden");
 
-    loadOrganizations(
-        "registerOrganization"
-    );
-
 }
 
+
+/* =====================================================
+   İSTİFADƏÇİ PANELİ
+===================================================== */
 
 function showUserPanel() {
 
@@ -603,85 +802,58 @@ function showUserPanel() {
 
 
 /* =====================================================
-   TƏŞKİLATLAR
-===================================================== */
-
-async function loadOrganizations(selectId) {
-
-    const select =
-        document.getElementById(selectId);
-
-    select.innerHTML =
-        '<option value="">Təşkilat seçin</option>';
-
-    const { data, error } =
-        await supabaseClient
-            .from("teskilatlar")
-            .select("id, ad")
-            .order("ad");
-
-    if (error) {
-
-        console.error(error);
-
-        return;
-    }
-
-    data.forEach(function(org) {
-
-        const option =
-            document.createElement("option");
-
-        option.value = org.id;
-
-        option.textContent = org.ad;
-
-        select.appendChild(option);
-
-    });
-
-}
-
-
-/* =====================================================
    QEYDİYYAT
 ===================================================== */
 
 async function register() {
 
     const name =
-        document.getElementById(
-            "registerName"
-        ).value.trim();
+        document
+            .getElementById("registerName")
+            .value
+            .trim();
+
 
     const email =
-        document.getElementById(
-            "registerEmail"
-        ).value.trim();
+        document
+            .getElementById("registerEmail")
+            .value
+            .trim();
+
 
     const password =
-        document.getElementById(
-            "registerPassword"
-        ).value;
+        document
+            .getElementById("registerPassword")
+            .value;
+
 
     const phone =
-        document.getElementById(
-            "registerPhone"
-        ).value.trim();
+        document
+            .getElementById("registerPhone")
+            .value
+            .trim();
+
 
     const organization =
-        document.getElementById(
-            "registerOrganization"
-        ).value;
+        document
+            .getElementById("registerOrganization")
+            .value
+            .trim();
 
 
     const errorBox =
-        document.getElementById(
-            "registerError"
-        );
+        document
+            .getElementById("registerError");
+
+
+    const successBox =
+        document
+            .getElementById("registerSuccess");
 
 
     errorBox.style.display = "none";
+
+    successBox.style.display = "none";
 
 
     if (
@@ -694,7 +866,8 @@ async function register() {
         errorBox.innerText =
             "Ad, e-poçt, şifrə və təşkilat mütləq doldurulmalıdır.";
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
 
         return;
     }
@@ -705,13 +878,29 @@ async function register() {
         errorBox.innerText =
             "Şifrə ən azı 6 simvol olmalıdır.";
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
 
         return;
     }
 
 
-    const { data, error } =
+    if (organization.length < 2) {
+
+        errorBox.innerText =
+            "Təşkilat adını düzgün yazın.";
+
+        errorBox.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
         await supabaseClient.auth.signUp({
 
             email: email,
@@ -726,7 +915,8 @@ async function register() {
         errorBox.innerText =
             error.message;
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
 
         return;
     }
@@ -737,13 +927,16 @@ async function register() {
         errorBox.innerText =
             "İstifadəçi yaradılmadı.";
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
 
         return;
     }
 
 
-    const { error: profileError } =
+    const {
+        error: profileError
+    } =
         await supabaseClient
             .from("profillər")
             .insert({
@@ -754,28 +947,53 @@ async function register() {
 
                 telefon: phone,
 
-                teskilat_id: organization
+                teskilat_adi: organization
 
             });
 
 
     if (profileError) {
 
+        console.error(
+            profileError
+        );
+
         errorBox.innerText =
             profileError.message;
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
 
         return;
     }
 
 
-    alert(
-        "Qeydiyyat uğurla tamamlandı."
-    );
+    successBox.innerText =
+        "Qeydiyyat uğurla tamamlandı. E-poçtunuzu təsdiqlədikdən sonra sistemə daxil ola bilərsiniz.";
+
+    successBox.style.display =
+        "block";
 
 
-    showLogin();
+    document
+        .getElementById("registerName")
+        .value = "";
+
+    document
+        .getElementById("registerEmail")
+        .value = "";
+
+    document
+        .getElementById("registerPassword")
+        .value = "";
+
+    document
+        .getElementById("registerPhone")
+        .value = "";
+
+    document
+        .getElementById("registerOrganization")
+        .value = "";
 
 }
 
@@ -787,26 +1005,43 @@ async function register() {
 async function login() {
 
     const email =
-        document.getElementById(
-            "loginEmail"
-        ).value.trim();
+        document
+            .getElementById("loginEmail")
+            .value
+            .trim();
+
 
     const password =
-        document.getElementById(
-            "loginPassword"
-        ).value;
+        document
+            .getElementById("loginPassword")
+            .value;
 
 
     const errorBox =
-        document.getElementById(
-            "loginError"
-        );
+        document
+            .getElementById("loginError");
 
 
-    errorBox.style.display = "none";
+    errorBox.style.display =
+        "none";
 
 
-    const { data, error } =
+    if (!email || !password) {
+
+        errorBox.innerText =
+            "E-poçt və şifrəni daxil edin.";
+
+        errorBox.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
         await supabaseClient.auth.signInWithPassword({
 
             email: email,
@@ -821,13 +1056,16 @@ async function login() {
         errorBox.innerText =
             error.message;
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
 
         return;
     }
 
 
-    currentUser = data.user;
+    currentUser =
+        data.user;
+
 
     await initializeUser();
 
@@ -835,7 +1073,7 @@ async function login() {
 
 
 /* =====================================================
-   İSTİFADƏÇİNİ YÜKLƏ
+   İSTİFADƏÇİ PROFİLİNİ YÜKLƏ
 ===================================================== */
 
 async function initializeUser() {
@@ -845,57 +1083,86 @@ async function initializeUser() {
     }
 
 
-    const { data: profile } =
+    const {
+        data: profile,
+        error
+    } =
         await supabaseClient
             .from("profillər")
-            .select(`
-                ad_soyad,
-                teskilat_id,
-                teskilatlar (
-                    ad
-                )
-            `)
-            .eq("id", currentUser.id)
+            .select(
+                "id, ad_soyad, telefon, teskilat_adi"
+            )
+            .eq(
+                "id",
+                currentUser.id
+            )
             .single();
 
 
-    if (profile) {
+    if (error) {
 
-        document
-            .getElementById("userInfo")
-            .innerText =
-            profile.ad_soyad || "";
+        console.error(error);
 
-        document
-            .getElementById("welcomeText")
-            .innerText =
-            "Xoş gəlmisiniz, " +
-            (profile.ad_soyad || "") +
-            "! Təşkilat: " +
-            (
-                profile.teskilatlar
-                    ? profile.teskilatlar.ad
-                    : "Seçilməyib"
-            );
-
-
-        await loadOrganizations(
-            "articleOrganization"
+        alert(
+            "İstifadəçi profili yüklənmədi."
         );
 
-        document
-            .getElementById(
-                "articleOrganization"
-            )
-            .value =
-            profile.teskilat_id || "";
-
+        return;
     }
+
+
+    currentProfile =
+        profile;
+
+
+    document
+        .getElementById("userInfo")
+        .innerText =
+        profile.ad_soyad || "";
+
+
+    document
+        .getElementById("welcomeText")
+        .innerText =
+        "Xoş gəlmisiniz, " +
+        (profile.ad_soyad || "") +
+        "!";
+
+
+    document
+        .getElementById("profileName")
+        .innerText =
+        profile.ad_soyad || "-";
+
+
+    document
+        .getElementById("profileEmail")
+        .innerText =
+        currentUser.email || "-";
+
+
+    document
+        .getElementById("profilePhone")
+        .innerText =
+        profile.telefon || "-";
+
+
+    document
+        .getElementById("profileOrganization")
+        .innerText =
+        profile.teskilat_adi || "-";
+
+
+    document
+        .getElementById("articleOrganization")
+        .innerText =
+        profile.teskilat_adi || "-";
 
 
     document
         .getElementById("loginButton")
         .classList.add("hidden");
+
 
     document
         .getElementById("logoutButton")
@@ -914,62 +1181,85 @@ async function initializeUser() {
 async function addArticle() {
 
     const errorBox =
-        document.getElementById(
-            "articleError"
-        );
+        document
+            .getElementById("articleError");
+
 
     const successBox =
-        document.getElementById(
-            "articleSuccess"
-        );
+        document
+            .getElementById("articleSuccess");
 
 
-    errorBox.style.display = "none";
-    successBox.style.display = "none";
+    errorBox.style.display =
+        "none";
 
 
-    const organization =
-        document.getElementById(
-            "articleOrganization"
-        ).value;
-
-    const title =
-        document.getElementById(
-            "articleTitle"
-        ).value.trim();
-
-    const authors =
-        document.getElementById(
-            "articleAuthors"
-        ).value.trim();
-
-    const topic =
-        document.getElementById(
-            "articleTopic"
-        ).value.trim();
-
-    const keywords =
-        document.getElementById(
-            "articleKeywords"
-        ).value.trim();
-
-    const facebook =
-        document.getElementById(
-            "facebookLink"
-        ).value.trim();
-
-    const info =
-        document.getElementById(
-            "articleInfo"
-        ).value.trim();
+    successBox.style.display =
+        "none";
 
 
-    if (!organization || !title) {
+    if (!currentUser ||
+        !currentProfile) {
 
         errorBox.innerText =
-            "Təşkilat və məqalənin adı mütləq doldurulmalıdır.";
+            "Əvvəlcə sistemə daxil olun.";
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const title =
+        document
+            .getElementById("articleTitle")
+            .value
+            .trim();
+
+
+    const authors =
+        document
+            .getElementById("articleAuthors")
+            .value
+            .trim();
+
+
+    const topic =
+        document
+            .getElementById("articleTopic")
+            .value
+            .trim();
+
+
+    const keywords =
+        document
+            .getElementById("articleKeywords")
+            .value
+            .trim();
+
+
+    const facebook =
+        document
+            .getElementById("facebookLink")
+            .value
+            .trim();
+
+
+    const info =
+        document
+            .getElementById("articleInfo")
+            .value
+            .trim();
+
+
+    if (!title) {
+
+        errorBox.innerText =
+            "Məqalənin adını daxil edin.";
+
+        errorBox.style.display =
+            "block";
 
         return;
     }
@@ -977,43 +1267,52 @@ async function addArticle() {
 
     if (
         facebook &&
-        !facebook.startsWith(
-            "https://www.facebook.com/"
-        ) &&
-        !facebook.startsWith(
-            "https://facebook.com/"
-        )
+        !facebook.includes("facebook.com")
     ) {
 
         errorBox.innerText =
-            "Facebook linki düzgün formatda deyil.";
+            "Facebook linki düzgün deyil.";
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
 
         return;
     }
 
 
-    const { error } =
+    const {
+        error
+    } =
         await supabaseClient
             .from("məqalələr")
             .insert({
 
-                user_id: currentUser.id,
+                user_id:
+                    currentUser.id,
 
-                teskilat_id: organization,
+                teskilat_adi:
+                    currentProfile.teskilat_adi,
 
-                basliq: title,
+                basliq:
+                    title,
 
-                muellif: authors,
+                muellif:
+                    authors,
 
-                movzu: topic,
+                movzu:
+                    topic,
 
-                acar_sozler: keywords,
+                acar_sozler:
+                    keywords,
 
-                facebook_link: facebook,
+                facebook_link:
+                    facebook,
 
-                elave_melumat: info
+                elave_melumat:
+                    info,
+
+                status:
+                    "Yeni"
 
             });
 
@@ -1025,34 +1324,44 @@ async function addArticle() {
         errorBox.innerText =
             error.message;
 
-        errorBox.style.display = "block";
+        errorBox.style.display =
+            "block";
 
         return;
     }
 
 
-    successBox.style.display = "block";
+    successBox.innerText =
+        "Məqalə uğurla göndərildi. ✅";
+
+    successBox.style.display =
+        "block";
 
 
     document
         .getElementById("articleTitle")
         .value = "";
 
+
     document
         .getElementById("articleAuthors")
         .value = "";
+
 
     document
         .getElementById("articleTopic")
         .value = "";
 
+
     document
         .getElementById("articleKeywords")
         .value = "";
 
+
     document
         .getElementById("facebookLink")
         .value = "";
+
 
     document
         .getElementById("articleInfo")
@@ -1071,6 +1380,7 @@ async function showMyArticles() {
         .getElementById("newArticleSection")
         .classList.add("hidden");
 
+
     document
         .getElementById("myArticlesSection")
         .classList.remove("hidden");
@@ -1080,59 +1390,58 @@ async function showMyArticles() {
         .getElementById("newArticleTab")
         .classList.remove("active");
 
+
     document
         .getElementById("myArticlesTab")
         .classList.add("active");
 
 
     const list =
-        document.getElementById(
-            "articlesList"
-        );
+        document
+            .getElementById("articlesList");
 
 
     list.innerHTML =
-        "<p>Yüklənir...</p>";
+        '<div class="loading">Məqalələr yüklənir...</div>';
 
 
-    const { data, error } =
+    const {
+        data,
+        error
+    } =
         await supabaseClient
             .from("məqalələr")
-            .select(`
-                id,
-                basliq,
-                muellif,
-                movzu,
-                acar_sozler,
-                facebook_link,
-                elave_melumat,
-                status,
-                created_at,
-                teskilatlar (
-                    ad
-                )
-            `)
-            .eq("user_id", currentUser.id)
-            .order("created_at", {
-                ascending: false
-            });
+            .select(
+                "id, teskilat_adi, basliq, muellif, movzu, acar_sozler, facebook_link, elave_melumat, status, created_at"
+            )
+            .eq(
+                "user_id",
+                currentUser.id
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
 
     if (error) {
 
-        list.innerHTML =
-            "<p>Məqalələri yükləmək mümkün olmadı.</p>";
-
         console.error(error);
+
+        list.innerHTML =
+            '<div class="empty">Məqalələri yükləmək mümkün olmadı.</div>';
 
         return;
     }
 
 
-    if (!data || data.length === 0) {
+    if (!data ||
+        data.length === 0) {
 
         list.innerHTML =
-            '<div class="empty">Hələ məqalə göndərməmisiniz.</div>';
+            '<div class="empty">Hələ heç bir məqalə göndərməmisiniz.</div>';
 
         return;
     }
@@ -1141,70 +1450,75 @@ async function showMyArticles() {
     list.innerHTML = "";
 
 
-    data.forEach(function(article) {
+    data.forEach(
+        function(article) {
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-        div.className = "article";
+
+            div.className =
+                "article";
 
 
-        let facebookHtml = "";
+            let facebookHtml = "";
 
-        if (article.facebook_link) {
 
-            facebookHtml =
-                `
-                <a
-                    class="facebook"
-                    href="${article.facebook_link}"
-                    target="_blank">
-                    🔗 Facebook paylaşımını aç
-                </a>
+            if (
+                article.facebook_link
+            ) {
+
+                facebookHtml = `
+                    <a
+                        class="facebook"
+                        href="${escapeAttribute(article.facebook_link)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        🔗 Facebook paylaşımını aç
+                    </a>
                 `;
 
+            }
+
+
+            div.innerHTML = `
+
+                <h3>
+                    ${escapeHtml(article.basliq)}
+                </h3>
+
+                <div class="article-info">
+                    <strong>Təşkilat:</strong>
+                    ${escapeHtml(article.teskilat_adi || "-")}
+                </div>
+
+                <div class="article-info">
+                    <strong>Müəllif:</strong>
+                    ${escapeHtml(article.muellif || "-")}
+                </div>
+
+                <div class="article-info">
+                    <strong>Mövzu:</strong>
+                    ${escapeHtml(article.movzu || "-")}
+                </div>
+
+                ${facebookHtml}
+
+                <br>
+
+                <span class="status">
+                    ${escapeHtml(article.status || "Yeni")}
+                </span>
+
+            `;
+
+
+            list.appendChild(div);
+
         }
-
-
-        div.innerHTML = `
-
-            <h3>
-                ${escapeHtml(article.basliq)}
-            </h3>
-
-            <p>
-                <strong>Təşkilat:</strong>
-                ${
-                    article.teskilatlar
-                    ? escapeHtml(article.teskilatlar.ad)
-                    : "-"
-                }
-            </p>
-
-            <p>
-                <strong>Müəllif:</strong>
-                ${escapeHtml(article.muellif || "-")}
-            </p>
-
-            <p>
-                <strong>Mövzu:</strong>
-                ${escapeHtml(article.movzu || "-")}
-            </p>
-
-            ${facebookHtml}
-
-            <br>
-
-            <span class="status">
-                ${escapeHtml(article.status || "Yeni")}
-            </span>
-
-        `;
-
-
-        list.appendChild(div);
-
-    });
+    );
 
 }
 
@@ -1219,6 +1533,7 @@ function showNewArticle() {
         .getElementById("myArticlesSection")
         .classList.add("hidden");
 
+
     document
         .getElementById("newArticleSection")
         .classList.remove("hidden");
@@ -1227,6 +1542,7 @@ function showNewArticle() {
     document
         .getElementById("myArticlesTab")
         .classList.remove("active");
+
 
     document
         .getElementById("newArticleTab")
@@ -1241,23 +1557,36 @@ function showNewArticle() {
 
 async function logout() {
 
-    await supabaseClient.auth.signOut();
+    await supabaseClient
+        .auth
+        .signOut();
 
-    currentUser = null;
+
+    currentUser =
+        null;
+
+
+    currentProfile =
+        null;
+
 
     document
         .getElementById("loginButton")
         .classList.remove("hidden");
 
+
     document
         .getElementById("logoutButton")
         .classList.add("hidden");
+
 
     document
         .getElementById("userInfo")
         .innerText = "";
 
+
     hideAllSections();
+
 
     document
         .getElementById("homeSection")
@@ -1267,7 +1596,7 @@ async function logout() {
 
 
 /* =====================================================
-   TƏHLÜKƏSİZ MƏTN
+   TƏHLÜKƏSİZ HTML
 ===================================================== */
 
 function escapeHtml(text) {
@@ -1283,6 +1612,15 @@ function escapeHtml(text) {
 }
 
 
+function escapeAttribute(text) {
+
+    return String(text || "")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
 /* =====================================================
    SESSİYA YOXLAMASI
 ===================================================== */
@@ -1290,17 +1628,22 @@ function escapeHtml(text) {
 async function checkSession() {
 
     const {
-        data: {
-            session
-        }
+        data
     } =
-        await supabaseClient.auth.getSession();
+        await supabaseClient
+            .auth
+            .getSession();
 
 
-    if (session && session.user) {
+    if (
+        data &&
+        data.session &&
+        data.session.user
+    ) {
 
         currentUser =
-            session.user;
+            data.session.user;
+
 
         await initializeUser();
 
@@ -1310,6 +1653,32 @@ async function checkSession() {
 
 
 checkSession();
+
+
+/* =====================================================
+   AUTH DƏYİŞİKLİYİNİ İZLƏ
+===================================================== */
+
+supabaseClient
+    .auth
+    .onAuthStateChange(
+        async function(
+            event,
+            session
+        ) {
+
+            if (
+                session &&
+                session.user
+            ) {
+
+                currentUser =
+                    session.user;
+
+            }
+
+        }
+    );
 
 </script>
 
