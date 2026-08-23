@@ -1410,7 +1410,7 @@ async function adminLogout(){
 
 
 /* =====================================================
-   🏢 TƏŞKİLAT MƏQALƏSİ GÖNDƏR
+   🏢 TƏŞKİLAT MƏQALƏSİ GÖNDƏR — DÜZƏLDİLMİŞ
 ===================================================== */
 
 async function submitOrganizationArticle(){
@@ -1418,27 +1418,158 @@ async function submitOrganizationArticle(){
     const message =
         document.getElementById("organizationMessage");
 
+    /* ---------------------------------------------
+       FORM MƏLUMATLARINI GÖTÜR
+    --------------------------------------------- */
+
+    const organizationName =
+        document
+        .getElementById("organizationName")
+        .value
+        .trim();
+
     const year =
         Number(
-            document.getElementById("organizationYear").value
+            document
+            .getElementById("organizationYear")
+            .value
         );
 
     const month =
         Number(
-            document.getElementById("organizationMonth").value
+            document
+            .getElementById("organizationMonth")
+            .value
         );
 
+    const responsibleName =
+        document
+        .getElementById("responsibleName")
+        .value
+        .trim();
+
+    const responsiblePosition =
+        document
+        .getElementById("responsiblePosition")
+        .value
+        .trim();
+
+    const responsiblePhone =
+        document
+        .getElementById("responsiblePhone")
+        .value
+        .trim();
+
+    const responsibleEmail =
+        document
+        .getElementById("responsibleEmail")
+        .value
+        .trim();
+
+    const articleTitle =
+        document
+        .getElementById("articleTitle")
+        .value
+        .trim();
+
+    const authorName =
+        document
+        .getElementById("authorName")
+        .value
+        .trim();
+
+    const authorPosition =
+        document
+        .getElementById("authorPosition")
+        .value
+        .trim();
+
+    const facebookLink =
+        document
+        .getElementById("facebookLink")
+        .value
+        .trim();
+
+
+    /* ---------------------------------------------
+       YOXLAMALAR
+    --------------------------------------------- */
+
+    if(!organizationName){
+
+        message.innerHTML =
+            '<div class="error-message">' +
+            '❌ Təşkilatın adını yazın.' +
+            '</div>';
+
+        return;
+    }
+
+
+    if(!articleTitle){
+
+        message.innerHTML =
+            '<div class="error-message">' +
+            '❌ Məqalənin adını yazın.' +
+            '</div>';
+
+        return;
+    }
+
+
+    if(!authorName){
+
+        message.innerHTML =
+            '<div class="error-message">' +
+            '❌ Müəllifin adını və soyadını yazın.' +
+            '</div>';
+
+        return;
+    }
+
+
+    if(!facebookLink){
+
+        message.innerHTML =
+            '<div class="error-message">' +
+            '❌ Facebook məqalə linkini yazın.' +
+            '</div>';
+
+        return;
+    }
+
+
+    /* ---------------------------------------------
+       AY ADINI AVTOMATİK TAP
+    --------------------------------------------- */
+
     const monthName =
-        months[month - 1];
+        months[month - 1] || "";
 
 
-    const data = {
+    if(!monthName){
 
-        teskilat:
-    document
-    .getElementById("organizationName")
-    .value
-    .trim(),
+        message.innerHTML =
+            '<div class="error-message">' +
+            '❌ Ay düzgün seçilməyib.' +
+            '</div>';
+
+        return;
+    }
+
+
+    /* ---------------------------------------------
+       SUPABASE-Ə GÖNDƏRİLƏCƏK DƏQİQ MƏLUMATLAR
+
+       VACİB:
+       BAZADA "teskilat" sütunu NOT NULL-dur.
+       Ona görə "teskilat" mütləq göndərilir.
+
+       "ay_adi" də NOT NULL-dur.
+       Ona görə ay adı da mütləq göndərilir.
+    --------------------------------------------- */
+
+    const articleData = {
 
         il: year,
 
@@ -1446,116 +1577,49 @@ async function submitOrganizationArticle(){
 
         ay_adi: monthName,
 
-        mesul_sexs:
-            document
-            .getElementById("responsibleName")
-            .value
-            .trim(),
+        teskilat: organizationName,
 
-        mesul_vezife:
-            document
-            .getElementById("responsiblePosition")
-            .value
-            .trim(),
+        facebook_link: facebookLink,
 
-        telefon:
-            document
-            .getElementById("responsiblePhone")
-            .value
-            .trim(),
+        mesul_ad: responsibleName,
 
-        email:
-            document
-            .getElementById("responsibleEmail")
-            .value
-            .trim(),
+        mesul_vezife: responsiblePosition,
 
-        meqale_adi:
-            document
-            .getElementById("articleTitle")
-            .value
-            .trim(),
+        mesul_telefon: responsiblePhone,
 
-        muellif:
-            document
-            .getElementById("authorName")
-            .value
-            .trim(),
+        mesul_email: responsibleEmail,
 
-        muellif_vezife:
-            document
-            .getElementById("authorPosition")
-            .value
-            .trim(),
+        muellif_ad: authorName,
 
-        facebook_link:
-            document
-            .getElementById("facebookLink")
-            .value
-            .trim()
+        muellif_vezife: authorPosition,
+
+        meqale_adi: articleTitle,
+
+        /* Köhnə sistemdə istifadə olunan sahələr
+           varsa, onları da doldururuq. */
+
+        teskilat_adi: organizationName,
+
+        mesul_sexs: responsibleName,
+
+        telefon: responsiblePhone,
+
+        email: responsibleEmail,
+
+        muellif: authorName
 
     };
 
 
-    /* =========================
-       YOXLAMA
-    ========================= */
-
-    if(!data.teskilat_adi){
-
-        alert("❌ Təşkilatın adını yazın.");
-
-        return;
-    }
+    console.log(
+        "SUPABASE-Ə GÖNDƏRİLƏN MƏQALƏ:",
+        articleData
+    );
 
 
-    if(!data.mesul_sexs){
-
-        alert("❌ Məsul şəxsin adını yazın.");
-
-        return;
-    }
-
-
-    if(!data.meqale_adi){
-
-        alert("❌ Məqalənin adını yazın.");
-
-        return;
-    }
-
-
-    if(!data.muellif){
-
-        alert("❌ Müəllifin adını yazın.");
-
-        return;
-    }
-
-
-    if(!data.il){
-
-        alert("❌ İli seçin.");
-
-        return;
-    }
-
-
-    if(!data.ay){
-
-        alert("❌ Ayı seçin.");
-
-        return;
-    }
-
-
-    if(!data.ay_adi){
-
-        alert("❌ Ay düzgün seçilməyib.");
-
-        return;
-    }
-
+    /* ---------------------------------------------
+       GÖNDƏR
+    --------------------------------------------- */
 
     try{
 
@@ -1565,19 +1629,19 @@ async function submitOrganizationArticle(){
             '</div>';
 
 
-        console.log(
-            "Təşkilat məqaləsi göndərilir:",
-            data
-        );
-
-
         const {
+            data,
             error
         } =
             await supabaseClient
             .from("maqaleler")
-            .insert([data]);
+            .insert([articleData])
+            .select();
 
+
+        /* -----------------------------------------
+           XƏTA
+        ----------------------------------------- */
 
         if(error){
 
@@ -1586,30 +1650,46 @@ async function submitOrganizationArticle(){
                 error
             );
 
-
             message.innerHTML =
                 '<div class="error-message">' +
                 '❌ Məqalə göndərilmədi.<br><br>' +
-                escapeHtml(error.message) +
+                escapeHtml(
+                    error.message ||
+                    "Naməlum xəta"
+                ) +
                 '</div>';
 
             return;
         }
 
 
-        /* =========================
-           UĞURLU GÖNDƏRİLDİ
-        ========================= */
+        /* -----------------------------------------
+           UĞURLU
+        ----------------------------------------- */
+
+        console.log(
+            "MƏQALƏ UĞURLA YARADILDI:",
+            data
+        );
+
 
         message.innerHTML =
             '<div class="success-message">' +
             '✅ Təşkilat məqaləsi uğurla göndərildi!' +
+            '<br><br>' +
+            '📌 Təşkilat: ' +
+            escapeHtml(organizationName) +
+            '<br>' +
+            '📅 ' +
+            year +
+            ' — ' +
+            escapeHtml(monthName) +
             '</div>';
 
 
-        /* =========================
+        /* -----------------------------------------
            FORMU TƏMİZLƏ
-        ========================= */
+        ----------------------------------------- */
 
         document
             .getElementById("organizationName")
@@ -1655,11 +1735,13 @@ async function submitOrganizationArticle(){
             error
         );
 
-
         message.innerHTML =
             '<div class="error-message">' +
             '❌ Sistem xətası:<br><br>' +
-            escapeHtml(error.message) +
+            escapeHtml(
+                error.message ||
+                "Naməlum sistem xətası"
+            ) +
             '</div>';
 
     }
