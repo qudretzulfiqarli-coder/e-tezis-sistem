@@ -1020,84 +1020,69 @@ async function adminLogout(){
    TƏŞKİLAT MƏQALƏSİ
 ================================ */
 
-async function submitOrganizationArticle(){
+async function submitVolunteer(){
 
     const data = {
 
-        il:
-        Number(
-            document.getElementById("organizationYear").value
+        il: Number(
+            document.getElementById("volunteerYear").value
         ),
 
-        ay:
-        Number(
-            document.getElementById("organizationMonth").value
+        ay: Number(
+            document.getElementById("volunteerMonth").value
         ),
 
         meqale_adi:
-        document.getElementById("articleTitle").value.trim(),
+            document.getElementById("volunteerArticleTitle").value.trim(),
 
-        teskilat_adi:
-        document.getElementById("organizationName").value.trim(),
+        ad_soyad:
+            document.getElementById("volunteerName").value.trim(),
 
-        mesul_sexs:
-        document.getElementById("responsibleName").value.trim(),
+        meqale_link:
+            document.getElementById("volunteerArticleLink").value.trim()
 
-        mesul_vezife:
-        document.getElementById("responsiblePosition").value.trim(),
-
-        telefon:
-        document.getElementById("responsiblePhone").value.trim(),
-
-        email:
-        document.getElementById("responsibleEmail").value.trim(),
-
-        muellif:
-        document.getElementById("authorName").value.trim(),
-
-        muellif_vezife:
-        document.getElementById("authorPosition").value.trim(),
-
-        facebook_link:
-        document.getElementById("facebookLink").value.trim()
     };
 
-    if(!data.teskilat_adi ||
-       !data.meqale_adi){
-
-        alert(
-            "Təşkilatın adı və məqalənin adı mütləqdir."
-        );
-
+    if(!data.ad_soyad){
+        alert("Könüllünün adını və soyadını yazın.");
         return;
     }
 
-    const {error} =
-    await supabaseClient
-    .from("maqaleler")
-    .insert([data]);
+    if(!data.meqale_adi){
+        alert("Məqalənin adını yazın.");
+        return;
+    }
+
+    if(!data.meqale_link){
+        alert("Məqalə linkini yazın.");
+        return;
+    }
+
+    console.log("KÖNÜLLÜ MƏQALƏSİ:", data);
+
+    const { error } =
+        await supabaseClient
+        .from("konulluler")
+        .insert([data]);
 
     if(error){
 
+        console.error("KÖNÜLLÜ XƏTASI:", error);
+
         alert(
-            "Məqalə göndərilmədi:\n\n"+
+            "❌ Könüllü məqaləsi göndərilmədi.\n\n" +
             error.message
         );
-
-        console.error(error);
 
         return;
     }
 
-    alert(
-        "✅ Məqalə uğurla göndərildi."
-    );
+    alert("✅ Könüllü məqaləsi uğurla göndərildi.");
 
     document
-    .querySelectorAll("#organizationForm input")
-    .forEach(x=>x.value="");
+        .querySelectorAll("#volunteerForm input")
+        .forEach(input => input.value = "");
 
-    await loadArticles();
 }
 
 /* ================================
