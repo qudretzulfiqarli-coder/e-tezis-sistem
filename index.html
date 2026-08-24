@@ -3845,33 +3845,21 @@ ${shareLinks}
    PAYLAŞIM ƏLAVƏ ET
 ===================================================== */
 
-async function addArticleShare(
-    type,
-    articleId
-){
+async function addArticleShare(type, articleId){
 
     const linkInput =
         document.getElementById(
-            "shareLink_" +
-            type +
-            "_" +
-            articleId
+            "shareLink_" + type + "_" + articleId
         );
 
     const nameInput =
         document.getElementById(
-            "shareName_" +
-            type +
-            "_" +
-            articleId
+            "shareName_" + type + "_" + articleId
         );
 
     const message =
         document.getElementById(
-            "shareMessage_" +
-            type +
-            "_" +
-            articleId
+            "shareMessage_" + type + "_" + articleId
         );
 
     const link =
@@ -3890,8 +3878,7 @@ async function addArticleShare(
         return;
     }
 
-    const validLink =
-        safeUrl(link);
+    const validLink = safeUrl(link);
 
     if(validLink === "#"){
 
@@ -3911,13 +3898,14 @@ async function addArticleShare(
     try{
 
         /*
-         * Eyni linkin əvvəlcədən
-         * olub-olmadığını yoxlayırıq.
+         * =================================================
+         * 1. EYNİ LINKİ YOXLA
+         * =================================================
          */
 
         const {
-            data:existing,
-            error:existingError
+            data: existing,
+            error: existingError
         } =
             await supabaseClient
             .from("meqale_paylasimlari")
@@ -3938,8 +3926,7 @@ async function addArticleShare(
 
             message.innerHTML =
                 '<div class="error-message">' +
-                '⚠️ Bu link artıq sistemdə mövcuddur. ' +
-                'Eyni link ikinci dəfə sayılmayacaq.' +
+                '⚠️ Bu link artıq sistemdə mövcuddur.' +
                 '</div>';
 
             return;
@@ -3947,7 +3934,9 @@ async function addArticleShare(
 
 
         /*
-         * Məqalənin məlumatını tapırıq.
+         * =================================================
+         * 2. MƏQALƏ MƏLUMATLARINI TAP
+         * =================================================
          */
 
         let articleTitle = "";
@@ -3971,7 +3960,9 @@ async function addArticleShare(
                 .single();
 
             if(error){
+
                 throw error;
+
             }
 
             articleTitle =
@@ -3982,7 +3973,9 @@ async function addArticleShare(
                 data.facebook_link ||
                 "";
 
-        }else{
+        }
+
+        else if(type === "konullu"){
 
             const {
                 data,
@@ -4000,7 +3993,9 @@ async function addArticleShare(
                 .single();
 
             if(error){
+
                 throw error;
+
             }
 
             articleTitle =
@@ -4015,18 +4010,32 @@ async function addArticleShare(
 
 
         /*
-         * Yeni paylaşımı yazırıq.
+         * =================================================
+         * 3. PAYLAŞIMI ƏLAVƏ ET
+         * =================================================
+         *
+         * Artıq kaynak_id istifadə etmirik.
+         *
+         * Yalnız yeni struktur:
+         *
+         * meqale_id
+         * meqale_tipi
+         * meqale_adi
+         * orijinal_link
+         * paylasilan_link
+         * paylasan_ad
+         *
          */
 
         const {
-            error:insertError
+            error: insertError
         } =
             await supabaseClient
             .from("meqale_paylasimlari")
-            .insert([{
+            .insert({
 
                 meqale_id:
-                    articleId,
+                    Number(articleId),
 
                 meqale_tipi:
                     type,
@@ -4043,31 +4052,45 @@ async function addArticleShare(
                 paylasan_ad:
                     name || null
 
-            }]);
+            });
+
+
+        /*
+         * =================================================
+         * 4. XƏTA
+         * =================================================
+         */
 
         if(insertError){
 
-            /*
-             * UNIQUE constraint-dən gələn
-             * təkrar link xətasını ayrıca göstəririk.
-             */
+            console.error(
+                "PAYLAŞIM INSERT XƏTASI:",
+                insertError
+            );
 
             if(
-                insertError.code ===
-                "23505"
+                insertError.code === "23505"
             ){
 
                 message.innerHTML =
                     '<div class="error-message">' +
-                    '⚠️ Bu link artıq əlavə olunub. ' +
-                    'İkinci dəfə hesablanmadı.' +
+                    '⚠️ Bu link artıq sistemdə mövcuddur.' +
                     '</div>';
 
                 return;
+
             }
 
             throw insertError;
+
         }
+
+
+        /*
+         * =================================================
+         * 5. UĞURLU
+         * =================================================
+         */
 
         message.innerHTML =
             '<div class="success-message">' +
@@ -4077,9 +4100,16 @@ async function addArticleShare(
         linkInput.value = "";
         nameInput.value = "";
 
+
+        /*
+         * Siyahını yenilə
+         */
+
         await loadSharedArticles();
 
-    }catch(error){
+    }
+
+    catch(error){
 
         console.error(
             "PAYLAŞIM ƏLAVƏ XƏTASI:",
@@ -4090,7 +4120,8 @@ async function addArticleShare(
             '<div class="error-message">' +
             '❌ Link əlavə edilmədi.<br><br>' +
             escapeHtml(
-                error.message
+                error.message ||
+                "Naməlum xəta"
             ) +
             '</div>';
 
