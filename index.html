@@ -4028,31 +4028,32 @@ async function addArticleShare(type, articleId){
          */
 
         const {
-            error: insertError
-        } =
-            await supabaseClient
-            .from("meqale_paylasimlari")
-            .insert({
+    error: insertError
+} =
+    await supabaseClient
+    .from("meqale_paylasimlari")
+    .insert({
+        meqale_id:
+            Number(articleId),
 
-                meqale_id:
-                    Number(articleId),
+        meqale_tipi:
+            type,
 
-                meqale_tipi:
-                    type,
+        qaynaq_tipi:
+            type,
 
-                meqale_adi:
-                    articleTitle,
+        meqale_adi:
+            articleTitle,
 
-                orijinal_link:
-                    originalLink,
+        orijinal_link:
+            originalLink,
 
-                paylasilan_link:
-                    link,
+        paylasilan_link:
+            link,
 
-                paylasan_ad:
-                    name || null
-
-            });
+        paylasan_ad:
+            name || null
+    });
 
 
         /*
