@@ -75,6 +75,11 @@ button{
     color:white;
 }
 
+.btn-warning{
+    background:#f59f00;
+    color:white;
+}
+
 .container{
     max-width:1400px;
     margin:30px auto;
@@ -324,6 +329,92 @@ footer{
     margin-top:15px;
 }
 
+/* =====================================================
+   PAYLAŞILAN MƏQALƏLƏR
+===================================================== */
+
+.shared-article{
+    border:1px solid #e1e6f0;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:18px;
+    background:linear-gradient(135deg,#ffffff,#f8faff);
+    box-shadow:0 5px 18px rgba(20,40,80,.05);
+}
+
+.shared-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+    margin-bottom:12px;
+}
+
+.shared-title{
+    font-size:19px;
+    font-weight:800;
+    color:#243b78;
+}
+
+.shared-type{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    background:#e9efff;
+    color:#3157d5;
+    font-size:12px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.shared-original{
+    margin:12px 0;
+    padding:12px;
+    border-radius:10px;
+    background:#f5f7fb;
+}
+
+.shared-count{
+    font-size:15px;
+    font-weight:800;
+    color:#198754;
+    margin:12px 0;
+}
+
+.shared-links{
+    margin:10px 0;
+}
+
+.shared-link-item{
+    padding:9px 12px;
+    background:#fff;
+    border:1px solid #e5e9f2;
+    border-radius:8px;
+    margin-top:7px;
+    word-break:break-all;
+}
+
+.share-box{
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:#f5f8ff;
+    border:1px solid #e0e6f5;
+}
+
+.share-box-title{
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.empty-shared{
+    padding:30px;
+    text-align:center;
+    color:#687386;
+    background:#f8faff;
+    border-radius:15px;
+}
+
 </style>
 
 </head>
@@ -343,13 +434,17 @@ footer{
 <button
     class="btn"
     onclick="showSection('user')">
+
     İstifadəçi
+
 </button>
 
 <button
     class="btn"
     onclick="openAdminLogin()">
+
     Admin
+
 </button>
 
 </div>
@@ -410,6 +505,15 @@ footer{
     onclick="userMode('volunteer',this)">
 
     🤝 Könüllü
+
+</button>
+
+
+<button
+    class="tab"
+    onclick="userMode('shared',this)">
+
+    📢 Paylaşılan Məqalələr
 
 </button>
 
@@ -686,6 +790,37 @@ footer{
 </div>
 
 
+<!-- =====================================================
+     PAYLAŞILAN MƏQALƏLƏR
+===================================================== -->
+
+<div
+    id="sharedArticlesForm"
+    class="hidden">
+
+<h2>
+    📢 Paylaşılan Məqalələr
+</h2>
+
+<p class="small" style="margin-top:8px;margin-bottom:20px;">
+
+Burada sistemə göndərilmiş təşkilat və könüllü
+məqalələri görünür. Hər məqalə üçün paylaşılmış
+linkləri əlavə edə bilərsiniz.
+
+</p>
+
+
+<div
+    id="sharedArticlesContainer">
+
+    Yüklənir...
+
+</div>
+
+</div>
+
+
 <hr>
 
 
@@ -814,8 +949,6 @@ flex-wrap:wrap;">
 </div>
 
 
-<!-- STATİSTİKA -->
-
 <div class="cards">
 
 
@@ -924,6 +1057,15 @@ flex-wrap:wrap;">
     onclick="adminTab('theses',this)">
 
     📄 Tezislər
+
+</button>
+
+
+<button
+    class="tab"
+    onclick="adminTab('sharedReports',this)">
+
+    📢 Paylaşımlar
 
 </button>
 
@@ -1112,42 +1254,18 @@ flex-wrap:wrap;">
 
 <tr>
 
-<th>
-    Təşkilat
-</th>
-
-<th>
-    Məqalə
-</th>
-
-<th>
-    Məsul şəxs
-</th>
-
-<th>
-    Müəllif
-</th>
-
-<th>
-    İl
-</th>
-
-<th>
-    Ay
-</th>
-
-<th>
-    Facebook
-</th>
-
-<th>
-    Əməliyyat
-</th>
+<th>Təşkilat</th>
+<th>Məqalə</th>
+<th>Məsul şəxs</th>
+<th>Müəllif</th>
+<th>İl</th>
+<th>Ay</th>
+<th>Facebook</th>
+<th>Əməliyyat</th>
 
 </tr>
 
 </thead>
-
 
 <tbody
     id="articlesTable">
@@ -1181,29 +1299,12 @@ flex-wrap:wrap;">
 
 <tr>
 
-<th>
-    Ad Soyad
-</th>
-
-<th>
-    Məqalə
-</th>
-
-<th>
-    İl
-</th>
-
-<th>
-    Ay
-</th>
-
-<th>
-    Link
-</th>
-
-<th>
-    Əməliyyat
-</th>
+<th>Ad Soyad</th>
+<th>Məqalə</th>
+<th>İl</th>
+<th>Ay</th>
+<th>Link</th>
+<th>Əməliyyat</th>
 
 </tr>
 
@@ -1324,25 +1425,11 @@ flex-wrap:wrap;">
 
 <tr>
 
-<th>
-    Tezis
-</th>
-
-<th>
-    İl
-</th>
-
-<th>
-    Ay
-</th>
-
-<th>
-    Word
-</th>
-
-<th>
-    Əməliyyat
-</th>
+<th>Tezis</th>
+<th>İl</th>
+<th>Ay</th>
+<th>Word</th>
+<th>Əməliyyat</th>
 
 </tr>
 
@@ -1358,6 +1445,69 @@ flex-wrap:wrap;">
 </div>
 
 </div>
+
+
+<!-- =====================================================
+     PAYLAŞIM HESABATI
+===================================================== -->
+
+<div
+    id="sharedReports"
+    class="adminPage hidden">
+
+<h2>
+    📢 Paylaşım hesabatı
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>
+    Ümumi paylaşım
+</h3>
+
+<div
+    class="number"
+    id="totalShares">
+
+    0
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Növ</th>
+<th>Məqalə</th>
+<th>Orijinal link</th>
+<th>Paylaşım sayı</th>
+<th>Paylaşılan linklər</th>
+
+</tr>
+
+</thead>
+
+<tbody
+    id="sharedReportsTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -1380,10 +1530,8 @@ E-Tezis Premium © 2026
 const SUPABASE_URL =
 "https://qbfzvplfoibgyirqpavi.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_pmXwkYmAoAN3l319cGGqFQ_WGIF9eyp";
-
 
 const supabaseClient =
 supabase.createClient(
@@ -1430,25 +1578,19 @@ function fillYears(){
 
     ];
 
-
     const currentYear =
         new Date().getFullYear();
-
 
     ids.forEach(id => {
 
         const select =
             document.getElementById(id);
 
-
         if(!select){
-
             return;
         }
 
-
         select.innerHTML = "";
-
 
         for(
             let y = 2000;
@@ -1461,22 +1603,14 @@ function fillYears(){
                     "option"
                 );
 
-
             option.value = y;
-
             option.textContent = y;
 
-
             if(y === currentYear){
-
                 option.selected = true;
-
             }
 
-
-            select.appendChild(
-                option
-            );
+            select.appendChild(option);
 
         }
 
@@ -1500,25 +1634,19 @@ function fillMonths(){
 
     ];
 
-
     const currentMonth =
         new Date().getMonth() + 1;
-
 
     ids.forEach(id => {
 
         const select =
             document.getElementById(id);
 
-
         if(!select){
-
             return;
         }
 
-
         select.innerHTML = "";
-
 
         months.forEach(
             (month,index) => {
@@ -1528,28 +1656,20 @@ function fillMonths(){
                     "option"
                 );
 
-
             option.value =
                 index + 1;
 
-
             option.textContent =
                 month;
-
 
             if(
                 index + 1 ===
                 currentMonth
             ){
-
                 option.selected = true;
-
             }
 
-
-            select.appendChild(
-                option
-            );
+            select.appendChild(option);
 
         });
 
@@ -1574,10 +1694,8 @@ function showSection(id){
 
         });
 
-
     const section =
         document.getElementById(id);
-
 
     if(section){
 
@@ -1611,11 +1729,9 @@ function userMode(
 
         });
 
-
     button.classList.add(
         "active"
     );
-
 
     document
         .getElementById(
@@ -1626,7 +1742,6 @@ function userMode(
             mode !== "organization"
         );
 
-
     document
         .getElementById(
             "volunteerForm"
@@ -1635,6 +1750,19 @@ function userMode(
             "hidden",
             mode !== "volunteer"
         );
+
+    document
+        .getElementById(
+            "sharedArticlesForm"
+        )
+        .classList.toggle(
+            "hidden",
+            mode !== "shared"
+        );
+
+    if(mode === "shared"){
+        loadSharedArticles();
+    }
 
 }
 
@@ -1662,7 +1790,6 @@ async function adminLogin(){
         .value
         .trim();
 
-
     const password =
         document
         .getElementById(
@@ -1670,12 +1797,10 @@ async function adminLogin(){
         )
         .value;
 
-
     const message =
         document.getElementById(
             "loginMessage"
         );
-
 
     if(
         !email ||
@@ -1690,7 +1815,6 @@ async function adminLogin(){
         return;
     }
 
-
     const {
         data,
         error
@@ -1699,16 +1823,13 @@ async function adminLogin(){
         .signInWithPassword({
 
             email:email,
-
             password:password
 
         });
 
-
     if(error){
 
         console.error(error);
-
 
         message.innerHTML =
             '<div class="error-message">' +
@@ -1718,16 +1839,13 @@ async function adminLogin(){
         return;
     }
 
-
     if(data.session){
 
         message.innerHTML = "";
 
-
         showSection(
             "admin"
         );
-
 
         await loadAdmin();
 
@@ -1752,8 +1870,7 @@ async function adminLogout(){
 
 
 /* =====================================================
-   🏢 TƏŞKİLAT MƏQALƏSİ
-   REAL DATABASE STRUKTURUNA UYĞUN
+   TƏŞKİLAT MƏQALƏSİ
 ===================================================== */
 
 async function submitOrganizationArticle(){
@@ -1763,7 +1880,6 @@ async function submitOrganizationArticle(){
             "organizationMessage"
         );
 
-
     const organizationName =
         document
         .getElementById(
@@ -1771,7 +1887,6 @@ async function submitOrganizationArticle(){
         )
         .value
         .trim();
-
 
     const year =
         Number(
@@ -1782,7 +1897,6 @@ async function submitOrganizationArticle(){
             .value
         );
 
-
     const month =
         Number(
             document
@@ -1792,7 +1906,6 @@ async function submitOrganizationArticle(){
             .value
         );
 
-
     const responsibleName =
         document
         .getElementById(
@@ -1800,7 +1913,6 @@ async function submitOrganizationArticle(){
         )
         .value
         .trim();
-
 
     const responsiblePosition =
         document
@@ -1810,7 +1922,6 @@ async function submitOrganizationArticle(){
         .value
         .trim();
 
-
     const responsiblePhone =
         document
         .getElementById(
@@ -1818,7 +1929,6 @@ async function submitOrganizationArticle(){
         )
         .value
         .trim();
-
 
     const responsibleEmail =
         document
@@ -1828,7 +1938,6 @@ async function submitOrganizationArticle(){
         .value
         .trim();
 
-
     const articleTitle =
         document
         .getElementById(
@@ -1836,7 +1945,6 @@ async function submitOrganizationArticle(){
         )
         .value
         .trim();
-
 
     const authorName =
         document
@@ -1846,7 +1954,6 @@ async function submitOrganizationArticle(){
         .value
         .trim();
 
-
     const authorPosition =
         document
         .getElementById(
@@ -1855,7 +1962,6 @@ async function submitOrganizationArticle(){
         .value
         .trim();
 
-
     const facebookLink =
         document
         .getElementById(
@@ -1863,11 +1969,6 @@ async function submitOrganizationArticle(){
         )
         .value
         .trim();
-
-
-    /* ---------------------------------------------
-       YOXLAMA
-    --------------------------------------------- */
 
     if(!organizationName){
 
@@ -1879,7 +1980,6 @@ async function submitOrganizationArticle(){
         return;
     }
 
-
     if(!articleTitle){
 
         message.innerHTML =
@@ -1889,7 +1989,6 @@ async function submitOrganizationArticle(){
 
         return;
     }
-
 
     if(!authorName){
 
@@ -1901,7 +2000,6 @@ async function submitOrganizationArticle(){
         return;
     }
 
-
     if(!facebookLink){
 
         message.innerHTML =
@@ -1912,60 +2010,58 @@ async function submitOrganizationArticle(){
         return;
     }
 
-
     const monthName =
         months[month - 1];
-
-
-    /* ---------------------------------------------
-       REAL MAQALƏLƏR CƏDVƏLİ
-
-       NOT NULL:
-       il
-       ay
-       ay_adi
-       teskilat
-       facebook_link
-    --------------------------------------------- */
 
     const articleData = {
 
         il: year,
-
         ay: month,
-
         ay_adi: monthName,
 
-        teskilat: organizationName,
+        teskilat:
+            organizationName,
 
-        facebook_link: facebookLink,
+        facebook_link:
+            facebookLink,
 
-        mesul_ad: responsibleName,
+        mesul_ad:
+            responsibleName,
 
-        mesul_vezife: responsiblePosition,
+        mesul_vezife:
+            responsiblePosition,
 
-        mesul_telefon: responsiblePhone,
+        mesul_telefon:
+            responsiblePhone,
 
-        mesul_email: responsibleEmail,
+        mesul_email:
+            responsibleEmail,
 
-        muellif_ad: authorName,
+        muellif_ad:
+            authorName,
 
-        muellif_vezife: authorPosition,
+        muellif_vezife:
+            authorPosition,
 
-        meqale_adi: articleTitle,
+        meqale_adi:
+            articleTitle,
 
-        teskilat_adi: organizationName,
+        teskilat_adi:
+            organizationName,
 
-        mesul_sexs: responsibleName,
+        mesul_sexs:
+            responsibleName,
 
-        telefon: responsiblePhone,
+        telefon:
+            responsiblePhone,
 
-        email: responsibleEmail,
+        email:
+            responsibleEmail,
 
-        muellif: authorName
+        muellif:
+            authorName
 
     };
-
 
     try{
 
@@ -1973,7 +2069,6 @@ async function submitOrganizationArticle(){
             '<div class="notice">' +
             '⏳ Məqalə göndərilir...' +
             '</div>';
-
 
         const {
             error
@@ -1984,14 +2079,12 @@ async function submitOrganizationArticle(){
                 articleData
             ]);
 
-
         if(error){
 
             console.error(
                 "TƏŞKİLAT XƏTASI:",
                 error
             );
-
 
             message.innerHTML =
                 '<div class="error-message">' +
@@ -2004,64 +2097,30 @@ async function submitOrganizationArticle(){
             return;
         }
 
-
         message.innerHTML =
             '<div class="success-message">' +
             '✅ Təşkilat məqaləsi uğurla göndərildi!' +
             '</div>';
 
-
-        /* FORMU TƏMİZLƏ */
-
-        document.getElementById(
-            "organizationName"
-        ).value = "";
-
-
-        document.getElementById(
-            "responsibleName"
-        ).value = "";
-
-
-        document.getElementById(
-            "responsiblePosition"
-        ).value = "";
-
-
-        document.getElementById(
-            "responsiblePhone"
-        ).value = "";
-
-
-        document.getElementById(
-            "responsibleEmail"
-        ).value = "";
-
-
-        document.getElementById(
-            "articleTitle"
-        ).value = "";
-
-
-        document.getElementById(
-            "authorName"
-        ).value = "";
-
-
-        document.getElementById(
-            "authorPosition"
-        ).value = "";
-
-
-        document.getElementById(
+        [
+            "organizationName",
+            "responsibleName",
+            "responsiblePosition",
+            "responsiblePhone",
+            "responsibleEmail",
+            "articleTitle",
+            "authorName",
+            "authorPosition",
             "facebookLink"
-        ).value = "";
+        ].forEach(id => {
 
+            document.getElementById(id).value = "";
+
+        });
 
     }catch(error){
 
         console.error(error);
-
 
         message.innerHTML =
             '<div class="error-message">' +
@@ -2077,8 +2136,7 @@ async function submitOrganizationArticle(){
 
 
 /* =====================================================
-   🤝 KÖNÜLLÜ MƏQALƏSİ
-   REAL DATABASE STRUKTURUNA UYĞUN
+   KÖNÜLLÜ MƏQALƏSİ
 ===================================================== */
 
 async function submitVolunteer(){
@@ -2088,7 +2146,6 @@ async function submitVolunteer(){
             "volunteerMessage"
         );
 
-
     const name =
         document
         .getElementById(
@@ -2096,7 +2153,6 @@ async function submitVolunteer(){
         )
         .value
         .trim();
-
 
     const year =
         Number(
@@ -2107,7 +2163,6 @@ async function submitVolunteer(){
             .value
         );
 
-
     const month =
         Number(
             document
@@ -2117,7 +2172,6 @@ async function submitVolunteer(){
             .value
         );
 
-
     const articleTitle =
         document
         .getElementById(
@@ -2126,7 +2180,6 @@ async function submitVolunteer(){
         .value
         .trim();
 
-
     const articleLink =
         document
         .getElementById(
@@ -2134,7 +2187,6 @@ async function submitVolunteer(){
         )
         .value
         .trim();
-
 
     if(!name){
 
@@ -2146,7 +2198,6 @@ async function submitVolunteer(){
         return;
     }
 
-
     if(!articleTitle){
 
         message.innerHTML =
@@ -2156,7 +2207,6 @@ async function submitVolunteer(){
 
         return;
     }
-
 
     if(!articleLink){
 
@@ -2168,31 +2218,24 @@ async function submitVolunteer(){
         return;
     }
 
-
-    /* ---------------------------------------------
-       REAL KONULLULER CƏDVƏLİ
-
-       NOT NULL:
-       ad_soyad
-       meqale_link
-
-       il / ay isə mövcuddur.
-    --------------------------------------------- */
-
     const volunteerData = {
 
-        ad_soyad: name,
+        ad_soyad:
+            name,
 
-        meqale_link: articleLink,
+        meqale_link:
+            articleLink,
 
-        il: year,
+        il:
+            year,
 
-        ay: month,
+        ay:
+            month,
 
-        meqale_adi: articleTitle
+        meqale_adi:
+            articleTitle
 
     };
-
 
     try{
 
@@ -2200,7 +2243,6 @@ async function submitVolunteer(){
             '<div class="notice">' +
             '⏳ Məqalə göndərilir...' +
             '</div>';
-
 
         const {
             error
@@ -2211,14 +2253,12 @@ async function submitVolunteer(){
                 volunteerData
             ]);
 
-
         if(error){
 
             console.error(
                 "KÖNÜLLÜ XƏTASI:",
                 error
             );
-
 
             message.innerHTML =
                 '<div class="error-message">' +
@@ -2231,32 +2271,26 @@ async function submitVolunteer(){
             return;
         }
 
-
         message.innerHTML =
             '<div class="success-message">' +
             '✅ Könüllü məqaləsi uğurla göndərildi!' +
             '</div>';
 
-
         document.getElementById(
             "volunteerName"
         ).value = "";
-
 
         document.getElementById(
             "volunteerArticleTitle"
         ).value = "";
 
-
         document.getElementById(
             "volunteerArticleLink"
         ).value = "";
 
-
     }catch(error){
 
         console.error(error);
-
 
         message.innerHTML =
             '<div class="error-message">' +
@@ -2272,7 +2306,7 @@ async function submitVolunteer(){
 
 
 /* =====================================================
-   ADMIN YÜKLƏ
+   ADMİN YÜKLƏ
 ===================================================== */
 
 async function loadAdmin(){
@@ -2285,7 +2319,6 @@ async function loadAdmin(){
         await supabaseClient.auth
         .getSession();
 
-
     if(!session){
 
         showSection(
@@ -2295,22 +2328,18 @@ async function loadAdmin(){
         return;
     }
 
-
     await loadArticles();
-
     await loadVolunteers();
-
     await loadTheses();
-
     await loadReport();
-
     await loadStatistics();
+    await loadSharedReports();
 
 }
 
 
 /* =====================================================
-   ADMIN TAB
+   ADMİN TAB
 ===================================================== */
 
 function adminTab(
@@ -2330,13 +2359,11 @@ function adminTab(
 
         });
 
-
     document
         .getElementById(id)
         .classList.remove(
             "hidden"
         );
-
 
     document
         .querySelectorAll(
@@ -2350,16 +2377,19 @@ function adminTab(
 
         });
 
-
     button.classList.add(
         "active"
     );
+
+    if(id === "sharedReports"){
+        loadSharedReports();
+    }
 
 }
 
 
 /* =====================================================
-   📰 TƏŞKİLAT MƏQALƏLƏRİ
+   TƏŞKİLAT MƏQALƏLƏRİ
 ===================================================== */
 
 let allArticles = [];
@@ -2381,7 +2411,6 @@ async function loadArticles(){
             }
         );
 
-
     if(error){
 
         console.error(
@@ -2392,10 +2421,8 @@ async function loadArticles(){
         return;
     }
 
-
     allArticles =
         data || [];
-
 
     renderArticles(
         allArticles
@@ -2411,9 +2438,7 @@ function renderArticles(data){
             "articlesTable"
         );
 
-
     tbody.innerHTML = "";
-
 
     if(!data.length){
 
@@ -2427,7 +2452,6 @@ function renderArticles(data){
         return;
     }
 
-
     data.forEach(row => {
 
         const tr =
@@ -2435,10 +2459,8 @@ function renderArticles(data){
                 "tr"
             );
 
-
         const facebook =
             row.facebook_link || "";
-
 
         tr.innerHTML = `
 
@@ -2495,7 +2517,9 @@ ${
         href="${safeUrl(facebook)}"
         target="_blank"
         rel="noopener noreferrer">
+
         Aç
+
     </a>
     `
     :
@@ -2518,7 +2542,6 @@ ${
 
 `;
 
-
         tbody.appendChild(
             tr
         );
@@ -2538,7 +2561,6 @@ function filterArticles(){
         .value
         .toLowerCase();
 
-
     const year =
         Number(
             document
@@ -2547,7 +2569,6 @@ function filterArticles(){
             )
             .value
         );
-
 
     const filtered =
         allArticles.filter(row => {
@@ -2558,7 +2579,6 @@ function filterArticles(){
                 )
                 .toLowerCase();
 
-
             const organization =
                 String(
                     row.teskilat ||
@@ -2566,7 +2586,6 @@ function filterArticles(){
                     ""
                 )
                 .toLowerCase();
-
 
             return (
 
@@ -2590,7 +2609,6 @@ function filterArticles(){
 
         });
 
-
     renderArticles(
         filtered
     );
@@ -2605,10 +2623,8 @@ async function deleteArticle(id){
             "Bu məqalə silinsin?"
         )
     ){
-
         return;
     }
-
 
     const {
         error
@@ -2621,7 +2637,6 @@ async function deleteArticle(id){
             id
         );
 
-
     if(error){
 
         alert(
@@ -2631,18 +2646,16 @@ async function deleteArticle(id){
         return;
     }
 
-
     await loadArticles();
-
     await loadStatistics();
-
     await loadReport();
+    await loadSharedArticles();
 
 }
 
 
 /* =====================================================
-   🤝 KÖNÜLLÜLƏR
+   KÖNÜLLÜLƏR
 ===================================================== */
 
 async function loadVolunteers(){
@@ -2661,7 +2674,6 @@ async function loadVolunteers(){
             }
         );
 
-
     if(error){
 
         console.error(
@@ -2672,15 +2684,12 @@ async function loadVolunteers(){
         return;
     }
 
-
     const tbody =
         document.getElementById(
             "volunteersTable"
         );
 
-
     tbody.innerHTML = "";
-
 
     if(
         !data ||
@@ -2697,14 +2706,12 @@ async function loadVolunteers(){
         return;
     }
 
-
     data.forEach(row => {
 
         const tr =
             document.createElement(
                 "tr"
             );
-
 
         tr.innerHTML = `
 
@@ -2767,7 +2774,6 @@ ${
 
 `;
 
-
         tbody.appendChild(
             tr
         );
@@ -2784,10 +2790,8 @@ async function deleteVolunteer(id){
             "Bu könüllü məqaləsi silinsin?"
         )
     ){
-
         return;
     }
-
 
     const {
         error
@@ -2800,7 +2804,6 @@ async function deleteVolunteer(id){
             id
         );
 
-
     if(error){
 
         alert(
@@ -2810,18 +2813,16 @@ async function deleteVolunteer(id){
         return;
     }
 
-
     await loadVolunteers();
-
     await loadStatistics();
-
     await loadReport();
+    await loadSharedArticles();
 
 }
 
 
 /* =====================================================
-   📄 WORD TEZİS ƏLAVƏ ET
+   WORD TEZİS ƏLAVƏ ET
 ===================================================== */
 
 async function addThesis(){
@@ -2834,7 +2835,6 @@ async function addThesis(){
         .value
         .trim();
 
-
     const year =
         Number(
             document
@@ -2843,7 +2843,6 @@ async function addThesis(){
             )
             .value
         );
-
 
     const month =
         Number(
@@ -2854,20 +2853,13 @@ async function addThesis(){
             .value
         );
 
-
     const fileInput =
         document.getElementById(
             "thesisFile"
         );
 
-
     const file =
         fileInput.files[0];
-
-
-    /* ---------------------------------------------
-       YOXLAMALAR
-    --------------------------------------------- */
 
     if(!title){
 
@@ -2878,7 +2870,6 @@ async function addThesis(){
         return;
     }
 
-
     if(!year){
 
         alert(
@@ -2887,7 +2878,6 @@ async function addThesis(){
 
         return;
     }
-
 
     if(!month){
 
@@ -2898,7 +2888,6 @@ async function addThesis(){
         return;
     }
 
-
     if(!file){
 
         alert(
@@ -2908,13 +2897,11 @@ async function addThesis(){
         return;
     }
 
-
     const extension =
         file.name
         .split(".")
         .pop()
         .toLowerCase();
-
 
     if(
         extension !== "doc" &&
@@ -2928,7 +2915,6 @@ async function addThesis(){
         return;
     }
 
-
     if(
         file.size >
         20 * 1024 * 1024
@@ -2941,12 +2927,10 @@ async function addThesis(){
         return;
     }
 
-
     const monthName =
         months[
             month - 1
         ];
-
 
     const safeName =
         file.name.replace(
@@ -2954,23 +2938,16 @@ async function addThesis(){
             "_"
         );
 
-
     const filePath =
         Date.now() +
         "_" +
         safeName;
 
-
     try{
-
-        /* =========================================
-           STORAGE
-        ========================================= */
 
         alert(
             "⏳ Word faylı yüklənir..."
         );
-
 
         const {
             error: uploadError
@@ -2987,14 +2964,12 @@ async function addThesis(){
                 }
             );
 
-
         if(uploadError){
 
             console.error(
                 "STORAGE XƏTASI:",
                 uploadError
             );
-
 
             alert(
                 "❌ Word faylı yüklənmədi:\n\n" +
@@ -3003,11 +2978,6 @@ async function addThesis(){
 
             return;
         }
-
-
-        /* =========================================
-           PUBLIC URL
-        ========================================= */
 
         const {
             data:publicData
@@ -3019,52 +2989,20 @@ async function addThesis(){
                 filePath
             );
 
-
         const fileUrl =
             publicData.publicUrl;
-
-
-        /* =========================================
-           REAL TEZİSLƏR CƏDVƏLİ
-
-           NOT NULL:
-           il
-           ay
-           ay_adi
-           title
-           year
-           month
-           file_url
-        ========================================= */
 
         const thesisData = {
 
             title:title,
-
             year:year,
-
             month:month,
-
             il:year,
-
             ay:month,
-
             ay_adi:monthName,
-
             file_url:fileUrl
 
         };
-
-
-        console.log(
-            "TEZİS DATA:",
-            thesisData
-        );
-
-
-        /* =========================================
-           DATABASE
-        ========================================= */
 
         const {
             error:databaseError
@@ -3075,7 +3013,6 @@ async function addThesis(){
                 thesisData
             ]);
 
-
         if(databaseError){
 
             console.error(
@@ -3083,17 +3020,12 @@ async function addThesis(){
                 databaseError
             );
 
-
-            /* Fayl artıq yüklənmişdisə,
-               database yazılmadıqda sil */
-
             await supabaseClient
                 .storage
                 .from("tezisler")
                 .remove([
                     filePath
                 ]);
-
 
             alert(
                 "❌ Tezis əlavə edilmədi:\n\n" +
@@ -3103,15 +3035,9 @@ async function addThesis(){
             return;
         }
 
-
-        /* =========================================
-           UĞURLU
-        ========================================= */
-
         alert(
             "✅ Word tezisi uğurla əlavə edildi!"
         );
-
 
         document
             .getElementById(
@@ -3119,20 +3045,15 @@ async function addThesis(){
             )
             .value = "";
 
-
         document
             .getElementById(
                 "thesisFile"
             )
             .value = "";
 
-
         await loadTheses();
-
         await loadPublicTheses();
-
         await loadStatistics();
-
 
     }catch(error){
 
@@ -3140,25 +3061,6 @@ async function addThesis(){
             "TEZİS SİSTEM XƏTASI:",
             error
         );
-
-
-        try{
-
-            await supabaseClient
-                .storage
-                .from("tezisler")
-                .remove([
-                    filePath
-                ]);
-
-        }catch(cleanError){
-
-            console.error(
-                cleanError
-            );
-
-        }
-
 
         alert(
             "❌ Sistem xətası:\n\n" +
@@ -3193,7 +3095,6 @@ async function loadTheses(){
             }
         );
 
-
     if(error){
 
         console.error(
@@ -3204,15 +3105,12 @@ async function loadTheses(){
         return;
     }
 
-
     const tbody =
         document.getElementById(
             "thesesTable"
         );
 
-
     tbody.innerHTML = "";
-
 
     if(
         !data ||
@@ -3226,17 +3124,14 @@ async function loadTheses(){
             '</td>' +
             '</tr>';
 
-
         document
             .getElementById(
                 "totalTheses"
             )
             .textContent = "0";
 
-
         return;
     }
-
 
     data.forEach(row => {
 
@@ -3245,7 +3140,6 @@ async function loadTheses(){
                 "tr"
             );
 
-
         const monthNumber =
             Number(
                 row.ay ||
@@ -3253,14 +3147,12 @@ async function loadTheses(){
                 0
             );
 
-
         const monthName =
             months[
                 monthNumber - 1
             ] ||
             row.ay_adi ||
             "";
-
 
         tr.innerHTML = `
 
@@ -3319,13 +3211,11 @@ ${
 
 `;
 
-
         tbody.appendChild(
             tr
         );
 
     });
-
 
     document
         .getElementById(
@@ -3348,10 +3238,8 @@ async function deleteThesis(id){
             "Bu tezis silinsin?"
         )
     ){
-
         return;
     }
-
 
     const {
         data,
@@ -3368,7 +3256,6 @@ async function deleteThesis(id){
         )
         .single();
 
-
     if(selectError){
 
         alert(
@@ -3377,7 +3264,6 @@ async function deleteThesis(id){
 
         return;
     }
-
 
     const {
         error
@@ -3390,7 +3276,6 @@ async function deleteThesis(id){
             id
         );
 
-
     if(error){
 
         alert(
@@ -3399,7 +3284,6 @@ async function deleteThesis(id){
 
         return;
     }
-
 
     if(
         data &&
@@ -3413,16 +3297,13 @@ async function deleteThesis(id){
                     data.file_url
                 );
 
-
             const marker =
                 "/storage/v1/object/public/tezisler/";
-
 
             const index =
                 url.pathname.indexOf(
                     marker
                 );
-
 
             if(index !== -1){
 
@@ -3431,7 +3312,6 @@ async function deleteThesis(id){
                         index +
                         marker.length
                     );
-
 
                 await supabaseClient
                     .storage
@@ -3450,11 +3330,8 @@ async function deleteThesis(id){
 
     }
 
-
     await loadTheses();
-
     await loadPublicTheses();
-
     await loadStatistics();
 
 }
@@ -3471,12 +3348,9 @@ async function loadPublicTheses(){
             "publicTheses"
         );
 
-
     if(!container){
-
         return;
     }
-
 
     const {
         data,
@@ -3492,13 +3366,11 @@ async function loadPublicTheses(){
             }
         );
 
-
     if(error){
 
         console.error(
             error
         );
-
 
         container.innerHTML =
             "<div class='small'>" +
@@ -3507,7 +3379,6 @@ async function loadPublicTheses(){
 
         return;
     }
-
 
     if(
         !data ||
@@ -3522,9 +3393,7 @@ async function loadPublicTheses(){
         return;
     }
 
-
     container.innerHTML = "";
-
 
     data.forEach(row => {
 
@@ -3533,10 +3402,8 @@ async function loadPublicTheses(){
                 "div"
             );
 
-
         div.className =
             "tezis";
-
 
         const monthNumber =
             Number(
@@ -3545,14 +3412,12 @@ async function loadPublicTheses(){
                 0
             );
 
-
         const monthName =
             months[
                 monthNumber - 1
             ] ||
             row.ay_adi ||
             "";
-
 
         div.innerHTML = `
 
@@ -3567,7 +3432,6 @@ ${escapeHtml(
 
 </h3>
 
-
 <p class="small">
 
 ${row.il || row.year || ""}
@@ -3580,9 +3444,7 @@ ${escapeHtml(
 
 </p>
 
-
 <br>
-
 
 ${
     row.file_url
@@ -3607,12 +3469,856 @@ ${
 
 `;
 
-
         container.appendChild(
             div
         );
 
     });
+
+}
+
+
+/* =====================================================
+   📢 PAYLAŞILAN MƏQALƏLƏR
+===================================================== */
+
+async function loadSharedArticles(){
+
+    const container =
+        document.getElementById(
+            "sharedArticlesContainer"
+        );
+
+    if(!container){
+        return;
+    }
+
+    container.innerHTML =
+        "<div class='notice'>⏳ Məqalələr yüklənir...</div>";
+
+    try{
+
+        const [
+            articlesResult,
+            volunteersResult,
+            sharesResult
+        ] = await Promise.all([
+
+            supabaseClient
+                .from("maqaleler")
+                .select("*")
+                .order(
+                    "id",
+                    {
+                        ascending:false
+                    }
+                ),
+
+            supabaseClient
+                .from("konulluler")
+                .select("*")
+                .order(
+                    "id",
+                    {
+                        ascending:false
+                    }
+                ),
+
+            supabaseClient
+                .from("meqale_paylasimlari")
+                .select("*")
+                .order(
+                    "id",
+                    {
+                        ascending:false
+                    }
+                )
+
+        ]);
+
+        if(articlesResult.error){
+            throw articlesResult.error;
+        }
+
+        if(volunteersResult.error){
+            throw volunteersResult.error;
+        }
+
+        if(sharesResult.error){
+            throw sharesResult.error;
+        }
+
+        const articles =
+            articlesResult.data || [];
+
+        const volunteers =
+            volunteersResult.data || [];
+
+        const shares =
+            sharesResult.data || [];
+
+        const all = [];
+
+        articles.forEach(row => {
+
+            all.push({
+
+                id:row.id,
+
+                type:"teskilat",
+
+                typeName:"🏢 Təşkilat",
+
+                title:
+                    row.meqale_adi ||
+                    "Adsız məqalə",
+
+                originalLink:
+                    row.facebook_link ||
+                    "",
+
+                person:
+                    row.teskilat ||
+                    row.teskilat_adi ||
+                    ""
+
+            });
+
+        });
+
+        volunteers.forEach(row => {
+
+            all.push({
+
+                id:row.id,
+
+                type:"konullu",
+
+                typeName:"🤝 Könüllü",
+
+                title:
+                    row.meqale_adi ||
+                    "Adsız məqalə",
+
+                originalLink:
+                    row.meqale_link ||
+                    "",
+
+                person:
+                    row.ad_soyad ||
+                    ""
+
+            });
+
+        });
+
+        if(!all.length){
+
+            container.innerHTML =
+                "<div class='empty-shared'>" +
+                "Hazırda paylaşılacaq məqalə yoxdur." +
+                "</div>";
+
+            return;
+        }
+
+        container.innerHTML = "";
+
+        all.forEach(article => {
+
+            const articleShares =
+                shares.filter(share =>
+
+                    Number(
+                        share.meqale_id
+                    ) ===
+                    Number(
+                        article.id
+                    )
+
+                    &&
+
+                    share.meqale_tipi ===
+                    article.type
+
+                );
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "shared-article";
+
+            let shareLinks = "";
+
+            articleShares.forEach(
+                share => {
+
+                shareLinks += `
+
+<div class="shared-link-item">
+
+🔗
+
+<a
+    href="${safeUrl(share.paylasilan_link)}"
+    target="_blank"
+    rel="noopener noreferrer">
+
+    ${escapeHtml(
+        share.paylasilan_link
+    )}
+
+</a>
+
+</div>
+
+`;
+
+            });
+
+            if(!shareLinks){
+
+                shareLinks =
+                    "<div class='small'>" +
+                    "Hələ paylaşılmış link yoxdur." +
+                    "</div>";
+
+            }
+
+            div.innerHTML = `
+
+<div class="shared-header">
+
+<div>
+
+<div class="shared-title">
+
+${escapeHtml(
+    article.title
+)}
+
+</div>
+
+<p class="small" style="margin-top:6px;">
+
+${escapeHtml(
+    article.person
+)}
+
+</p>
+
+</div>
+
+<span class="shared-type">
+
+${article.typeName}
+
+</span>
+
+</div>
+
+
+<div class="shared-original">
+
+<strong>
+🔗 Orijinal məqalə:
+</strong>
+
+<br><br>
+
+${
+    article.originalLink
+    ?
+    `
+    <a
+        href="${safeUrl(article.originalLink)}"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        Məqaləni aç
+
+    </a>
+    `
+    :
+    "-"
+}
+
+</div>
+
+
+<div class="shared-count">
+
+📊 Paylaşım sayı:
+${articleShares.length}
+
+</div>
+
+
+<div class="shared-links">
+
+<strong>
+Paylaşılan linklər:
+</strong>
+
+${shareLinks}
+
+</div>
+
+
+<div class="share-box">
+
+<div class="share-box-title">
+
+➕ Bu məqalənin paylaşılmış linkini əlavə et
+
+</div>
+
+
+<input
+    id="shareLink_${article.type}_${article.id}"
+    type="url"
+    placeholder="https://...">
+
+
+<input
+    id="shareName_${article.type}_${article.id}"
+    type="text"
+    placeholder="Adınız (istəyə görə)"
+    style="margin-top:8px;">
+
+
+<div class="actions">
+
+<button
+    class="btn-success"
+    onclick="addArticleShare(
+        '${article.type}',
+        ${article.id}
+    )">
+
+    🔗 Linki əlavə et
+
+</button>
+
+</div>
+
+
+<div
+    id="shareMessage_${article.type}_${article.id}">
+
+</div>
+
+</div>
+
+`;
+
+            container.appendChild(
+                div
+            );
+
+        });
+
+    }catch(error){
+
+        console.error(
+            "PAYLAŞILAN MƏQALƏLƏR XƏTASI:",
+            error
+        );
+
+        container.innerHTML =
+            "<div class='error-message'>" +
+            "❌ Paylaşılan məqalələri yükləmək mümkün olmadı.<br><br>" +
+            escapeHtml(
+                error.message
+            ) +
+            "</div>";
+
+    }
+
+}
+
+
+/* =====================================================
+   PAYLAŞIM ƏLAVƏ ET
+===================================================== */
+
+async function addArticleShare(
+    type,
+    articleId
+){
+
+    const linkInput =
+        document.getElementById(
+            "shareLink_" +
+            type +
+            "_" +
+            articleId
+        );
+
+    const nameInput =
+        document.getElementById(
+            "shareName_" +
+            type +
+            "_" +
+            articleId
+        );
+
+    const message =
+        document.getElementById(
+            "shareMessage_" +
+            type +
+            "_" +
+            articleId
+        );
+
+    const link =
+        linkInput.value.trim();
+
+    const name =
+        nameInput.value.trim();
+
+    if(!link){
+
+        message.innerHTML =
+            '<div class="error-message">' +
+            '❌ Paylaşılan linki daxil edin.' +
+            '</div>';
+
+        return;
+    }
+
+    const validLink =
+        safeUrl(link);
+
+    if(validLink === "#"){
+
+        message.innerHTML =
+            '<div class="error-message">' +
+            '❌ Düzgün http:// və ya https:// linki daxil edin.' +
+            '</div>';
+
+        return;
+    }
+
+    message.innerHTML =
+        '<div class="notice">' +
+        '⏳ Link əlavə edilir...' +
+        '</div>';
+
+    try{
+
+        /*
+         * Eyni linkin əvvəlcədən
+         * olub-olmadığını yoxlayırıq.
+         */
+
+        const {
+            data:existing,
+            error:existingError
+        } =
+            await supabaseClient
+            .from("meqale_paylasimlari")
+            .select("id")
+            .eq(
+                "paylasilan_link",
+                link
+            )
+            .maybeSingle();
+
+        if(existingError){
+
+            throw existingError;
+
+        }
+
+        if(existing){
+
+            message.innerHTML =
+                '<div class="error-message">' +
+                '⚠️ Bu link artıq sistemdə mövcuddur. ' +
+                'Eyni link ikinci dəfə sayılmayacaq.' +
+                '</div>';
+
+            return;
+        }
+
+
+        /*
+         * Məqalənin məlumatını tapırıq.
+         */
+
+        let articleTitle = "";
+        let originalLink = "";
+
+        if(type === "teskilat"){
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                .from("maqaleler")
+                .select(
+                    "meqale_adi,facebook_link"
+                )
+                .eq(
+                    "id",
+                    articleId
+                )
+                .single();
+
+            if(error){
+                throw error;
+            }
+
+            articleTitle =
+                data.meqale_adi ||
+                "Adsız məqalə";
+
+            originalLink =
+                data.facebook_link ||
+                "";
+
+        }else{
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                .from("konulluler")
+                .select(
+                    "meqale_adi,meqale_link"
+                )
+                .eq(
+                    "id",
+                    articleId
+                )
+                .single();
+
+            if(error){
+                throw error;
+            }
+
+            articleTitle =
+                data.meqale_adi ||
+                "Adsız məqalə";
+
+            originalLink =
+                data.meqale_link ||
+                "";
+
+        }
+
+
+        /*
+         * Yeni paylaşımı yazırıq.
+         */
+
+        const {
+            error:insertError
+        } =
+            await supabaseClient
+            .from("meqale_paylasimlari")
+            .insert([{
+
+                meqale_id:
+                    articleId,
+
+                meqale_tipi:
+                    type,
+
+                meqale_adi:
+                    articleTitle,
+
+                orijinal_link:
+                    originalLink,
+
+                paylasilan_link:
+                    link,
+
+                paylasan_ad:
+                    name || null
+
+            }]);
+
+        if(insertError){
+
+            /*
+             * UNIQUE constraint-dən gələn
+             * təkrar link xətasını ayrıca göstəririk.
+             */
+
+            if(
+                insertError.code ===
+                "23505"
+            ){
+
+                message.innerHTML =
+                    '<div class="error-message">' +
+                    '⚠️ Bu link artıq əlavə olunub. ' +
+                    'İkinci dəfə hesablanmadı.' +
+                    '</div>';
+
+                return;
+            }
+
+            throw insertError;
+        }
+
+        message.innerHTML =
+            '<div class="success-message">' +
+            '✅ Paylaşılan link uğurla əlavə edildi!' +
+            '</div>';
+
+        linkInput.value = "";
+        nameInput.value = "";
+
+        await loadSharedArticles();
+
+    }catch(error){
+
+        console.error(
+            "PAYLAŞIM ƏLAVƏ XƏTASI:",
+            error
+        );
+
+        message.innerHTML =
+            '<div class="error-message">' +
+            '❌ Link əlavə edilmədi.<br><br>' +
+            escapeHtml(
+                error.message
+            ) +
+            '</div>';
+
+    }
+
+}
+
+
+/* =====================================================
+   📢 ADMİN PAYLAŞIM HESABATI
+===================================================== */
+
+async function loadSharedReports(){
+
+    const tbody =
+        document.getElementById(
+            "sharedReportsTable"
+        );
+
+    if(!tbody){
+        return;
+    }
+
+    tbody.innerHTML =
+        '<tr>' +
+        '<td colspan="5">' +
+        '⏳ Yüklənir...' +
+        '</td>' +
+        '</tr>';
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+            .from("meqale_paylasimlari")
+            .select("*")
+            .order(
+                "id",
+                {
+                    ascending:false
+                }
+            );
+
+        if(error){
+            throw error;
+        }
+
+        const shares =
+            data || [];
+
+        document
+            .getElementById(
+                "totalShares"
+            )
+            .textContent =
+            shares.length;
+
+        if(!shares.length){
+
+            tbody.innerHTML =
+                '<tr>' +
+                '<td colspan="5">' +
+                'Hazırda paylaşım yoxdur.' +
+                '</td>' +
+                '</tr>';
+
+            return;
+        }
+
+        const grouped = {};
+
+        shares.forEach(share => {
+
+            const key =
+                share.meqale_tipi +
+                "_" +
+                share.meqale_id;
+
+            if(!grouped[key]){
+
+                grouped[key] = {
+
+                    type:
+                        share.meqale_tipi,
+
+                    title:
+                        share.meqale_adi ||
+                        "",
+
+                    original:
+                        share.orijinal_link ||
+                        "",
+
+                    links:[]
+
+                };
+
+            }
+
+            grouped[key].links.push(
+                share.paylasilan_link
+            );
+
+        });
+
+        tbody.innerHTML = "";
+
+        Object.values(
+            grouped
+        ).forEach(item => {
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+            const links =
+                item.links
+                .map(link =>
+
+                    `
+                    <div
+                        style="margin-bottom:6px;">
+
+                        <a
+                            href="${safeUrl(link)}"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            Aç
+
+                        </a>
+
+                    </div>
+                    `
+
+                )
+                .join("");
+
+            tr.innerHTML = `
+
+<td>
+
+${
+    item.type === "teskilat"
+    ?
+    "🏢 Təşkilat"
+    :
+    "🤝 Könüllü"
+}
+
+</td>
+
+<td>
+
+${escapeHtml(
+    item.title
+)}
+
+</td>
+
+<td>
+
+${
+    item.original
+    ?
+    `
+    <a
+        href="${safeUrl(item.original)}"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        Aç
+
+    </a>
+    `
+    :
+    "-"
+}
+
+</td>
+
+<td>
+
+<span class="badge">
+
+${item.links.length}
+
+</span>
+
+</td>
+
+<td>
+
+${links}
+
+</td>
+
+`;
+
+            tbody.appendChild(
+                tr
+            );
+
+        });
+
+    }catch(error){
+
+        console.error(
+            "PAYLAŞIM HESABATI XƏTASI:",
+            error
+        );
+
+        tbody.innerHTML =
+            '<tr>' +
+            '<td colspan="5">' +
+            '<div class="error-message">' +
+            escapeHtml(
+                error.message
+            ) +
+            '</div>' +
+            '</td>' +
+            '</tr>';
+
+    }
 
 }
 
@@ -3628,42 +4334,34 @@ async function loadReport(){
             "reportYear"
         );
 
-
     const monthElement =
         document.getElementById(
             "reportMonth"
         );
 
-
     if(
         !yearElement ||
         !monthElement
     ){
-
         return;
     }
-
 
     const year =
         Number(
             yearElement.value
         );
 
-
     const month =
         Number(
             monthElement.value
         );
 
-
     if(
         !year ||
         !month
     ){
-
         return;
     }
-
 
     const articles =
         await supabaseClient
@@ -3678,7 +4376,6 @@ async function loadReport(){
             month
         );
 
-
     const volunteers =
         await supabaseClient
         .from("konulluler")
@@ -3692,14 +4389,11 @@ async function loadReport(){
             month
         );
 
-
     const articleData =
         articles.data || [];
 
-
     const volunteerData =
         volunteers.data || [];
-
 
     document
         .getElementById(
@@ -3708,7 +4402,6 @@ async function loadReport(){
         .textContent =
         articleData.length;
 
-
     document
         .getElementById(
             "selectedMonthVolunteers"
@@ -3716,9 +4409,7 @@ async function loadReport(){
         .textContent =
         volunteerData.length;
 
-
     const grouped = {};
-
 
     articleData.forEach(
         row => {
@@ -3728,7 +4419,6 @@ async function loadReport(){
             row.teskilat_adi ||
             "Naməlum";
 
-
         grouped[name] =
             (
                 grouped[name] ||
@@ -3737,15 +4427,12 @@ async function loadReport(){
 
     });
 
-
     const tbody =
         document.getElementById(
             "organizationReport"
         );
 
-
     tbody.innerHTML = "";
-
 
     Object.keys(
         grouped
@@ -3756,7 +4443,6 @@ async function loadReport(){
             document.createElement(
                 "tr"
             );
-
 
         tr.innerHTML = `
 
@@ -3786,7 +4472,6 @@ ${grouped[name]}
 
 `;
 
-
         tbody.appendChild(
             tr
         );
@@ -3809,14 +4494,12 @@ async function loadStatistics(){
             "id,teskilat"
         );
 
-
     const volunteers =
         await supabaseClient
         .from("konulluler")
         .select(
             "id"
         );
-
 
     const theses =
         await supabaseClient
@@ -3825,18 +4508,14 @@ async function loadStatistics(){
             "id"
         );
 
-
     const articleData =
         articles.data || [];
-
 
     const volunteerData =
         volunteers.data || [];
 
-
     const thesisData =
         theses.data || [];
-
 
     document
         .getElementById(
@@ -3845,14 +4524,12 @@ async function loadStatistics(){
         .textContent =
         articleData.length;
 
-
     document
         .getElementById(
             "totalVolunteers"
         )
         .textContent =
         volunteerData.length;
-
 
     document
         .getElementById(
@@ -3861,10 +4538,8 @@ async function loadStatistics(){
         .textContent =
         thesisData.length;
 
-
     const organizations =
         new Set();
-
 
     articleData.forEach(
         row => {
@@ -3878,7 +4553,6 @@ async function loadStatistics(){
         }
 
     });
-
 
     document
         .getElementById(
@@ -3930,17 +4604,13 @@ function escapeHtml(value){
 function safeUrl(url){
 
     if(!url){
-
         return "#";
-
     }
-
 
     try{
 
         const parsed =
             new URL(url);
-
 
         if(
             parsed.protocol ===
@@ -3959,7 +4629,6 @@ function safeUrl(url){
         console.error(e);
 
     }
-
 
     return "#";
 
@@ -3987,13 +4656,11 @@ loadPublicTheses();
         await supabaseClient.auth
         .getSession();
 
-
     if(session){
 
         showSection(
             "admin"
         );
-
 
         await loadAdmin();
 
